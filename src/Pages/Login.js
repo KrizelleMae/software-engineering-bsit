@@ -144,7 +144,12 @@ function Login(props) {
                     LOGIN
                   </Button>
                   <br />
-                  <Link fontWeight="400" fontSize={13} variant="ghost">
+                  <Link
+                    fontWeight="400"
+                    fontSize={13}
+                    variant="ghost"
+                    href="/signup"
+                  >
                     Create an account
                   </Link>
                 </Box>

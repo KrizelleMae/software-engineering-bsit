@@ -2,6 +2,8 @@
 
 * {
   font-family: "Raleway", sans-serif;
+  scroll-behavior: smooth;
+  transition: "2s ease";
 }
 
 body {
