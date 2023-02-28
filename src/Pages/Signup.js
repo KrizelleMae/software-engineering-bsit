@@ -1,13 +1,9 @@
 import {
   Box,
   Button,
-  Center,
   Container,
   FormControl,
   FormLabel,
-  Grid,
-  GridItem,
-  Heading,
   HStack,
   Image,
   Input,
@@ -16,21 +12,17 @@ import {
   InputRightElement,
   Link,
   Select,
-  Spacer,
-  Stack,
   Text,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import "../Styles/Login.css";
 import {
-  BsArrowRight,
   BsArrowRightShort,
   BsAt,
   BsEye,
   BsEyeSlash,
   BsLock,
 } from "react-icons/bs";
-import ccs from "../Assets/ccs.jpg";
 import logo from "../Assets/logo.png";
 import wave from "../Assets/wave.svg";
 

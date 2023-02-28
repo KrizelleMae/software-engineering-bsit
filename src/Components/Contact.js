@@ -4,18 +4,13 @@ import {
   FormLabel,
   Flex,
   Input,
-  FormHelperText,
   Textarea,
-  HStack,
   Button,
-  IconButton,
   VStack,
   Divider,
-  Spacer,
 } from "@chakra-ui/react";
 import React from "react";
-import { MdPhone, MdEmail, MdLocationOn, MdFacebook } from "react-icons/md";
-import { BsGithub, BsDiscord, BsPerson } from "react-icons/bs";
+import { MdPhone, MdEmail, MdLocationOn } from "react-icons/md";
 import { BiSend } from "react-icons/bi";
 
 function Contact(props) {

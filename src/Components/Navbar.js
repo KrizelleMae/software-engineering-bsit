@@ -14,7 +14,6 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
-  Image,
   Container,
 } from "@chakra-ui/react";
 import {
@@ -23,7 +22,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
-import logo from "../Assets/logo.png";
+
 import { BiLogIn } from "react-icons/bi";
 export default function Header() {
   const { isOpen, onToggle } = useDisclosure();

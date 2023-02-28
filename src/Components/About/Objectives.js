@@ -2,10 +2,7 @@ import {
   Box,
   SimpleGrid,
   Text,
-  List,
   ListItem,
-  ListIcon,
-  OrderedList,
   UnorderedList,
 } from "@chakra-ui/react";
 import React from "react";

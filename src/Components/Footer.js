@@ -1,18 +1,8 @@
-import {
-  Box,
-  FormControl,
-  HStack,
-  Button,
-  IconButton,
-  Image,
-  Text,
-  Flex,
-  Spacer,
-} from "@chakra-ui/react";
+import { Box, HStack, IconButton, Text, Flex, Spacer } from "@chakra-ui/react";
 import React from "react";
 import { MdFacebook } from "react-icons/md";
 import { BsGithub, BsDiscord } from "react-icons/bs";
-import logo from "../Assets/logo.png";
+// import logo from "../Assets/logo.png";
 
 function Footer(props) {
   return (

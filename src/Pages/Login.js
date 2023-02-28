@@ -1,27 +1,23 @@
 import {
   Box,
   Button,
-  Center,
   Container,
   FormControl,
   FormLabel,
   Grid,
   GridItem,
-  Heading,
   Image,
   Input,
   InputGroup,
   InputLeftElement,
   InputRightElement,
   Link,
-  Spacer,
   Stack,
   Text,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import "../Styles/Login.css";
 import {
-  BsArrowRight,
   BsArrowRightShort,
   BsAt,
   BsEye,
@@ -53,7 +49,7 @@ function Login(props) {
             display={{ sm: "none", md: "none", lg: "block" }}
             colSpan={4}
           >
-            <img src={ccs} style={{ height: "80vh" }} />
+            <img src={ccs} style={{ height: "80vh" }} alt="" />
           </GridItem>
           <GridItem w="100%" colSpan={3} p={7}>
             <Box mt={30}>

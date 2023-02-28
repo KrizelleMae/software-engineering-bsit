@@ -35,23 +35,22 @@ import {
 import { IconType } from "react-icons";
 import { ReactText } from "react";
 import logo from "../../Assets/logo.png";
-import {
-  CheckCircleIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
-} from "@chakra-ui/icons";
+import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { BiDownload, BiNews } from "react-icons/bi";
 import { BsFilePerson } from "react-icons/bs";
+import "../../Styles/Sidebar.css";
 
-interface LinkItemProps {
-  name: string;
-  icon: IconType;
-}
+// interface LinkItemProps {
+//   name: string;
+//   icon: IconType;
+// }
+
+const path = window.location.pathname;
 
 export default function Sidebar({ children }: { children: ReactNode }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh" bg={useColorModeValue("gray.50", "gray.900")}>
+    <>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
@@ -74,7 +73,7 @@ export default function Sidebar({ children }: { children: ReactNode }) {
       <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
       </Box>
-    </Box>
+    </>
   );
 }
 
@@ -96,12 +95,16 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       h="full"
       {...rest}
     >
-      <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Image src={logo} width={30} />
-
+      <Flex h="16" alignItems="center" mx="8" justifyContent="space-between">
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
-      <NavItem icon={FiHome}>Dashboard</NavItem>
+      <NavItem
+        mt={5}
+        icon={FiHome}
+        className={path.includes("admin/dashboard") ? "active" : ""}
+      >
+        Dashboard
+      </NavItem>
       <NavItem icon={BiNews}>News & Anns</NavItem>
 
       <Flex
@@ -112,6 +115,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           bg: "gray.100",
           color: "alpha.600",
         }}
+        className={path.includes("admin/about") ? "active" : ""}
       >
         <NavItem onClick={onToggle} icon={FiFilePlus}>
           About
@@ -122,13 +126,13 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       <Collapse in={isOpen} animateOpacity>
         <Stack pl={8} py={3} bg="red.50">
           <Box py={2}>
-            <Link>Mission and Vision</Link>
+            <Link href="/admin/about/mission-vision">Mission and Vision</Link>
           </Box>
           <Box py={2}>
-            <Link>Objectives</Link>
+            <Link href="/admin/about/objectives">Objectives</Link>
           </Box>
           <Box py={2}>
-            <Link>Program Outcomes</Link>
+            <Link href="/admin/about/outcomes">Program Outcomes</Link>
           </Box>
         </Stack>
       </Collapse>
@@ -185,12 +189,13 @@ interface MobileProps extends FlexProps {
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
   return (
     <Flex
-      ml={{ base: 0, md: 60 }}
-      px={{ base: 4, md: 4 }}
+      px={{ base: 6, md: 8 }}
       height="16"
       alignItems="center"
       bg={useColorModeValue("white", "gray.900")}
       borderBottomWidth="1px"
+      pos="fixed"
+      w={"100%"}
       borderBottomColor={useColorModeValue("gray.200", "gray.700")}
       justifyContent={{ base: "space-between", md: "space-between" }}
       {...rest}
@@ -203,9 +208,13 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         icon={<FiMenu />}
       />
 
-      <Text lineHeight={1} textAlign="left">
-        BSIT Content Management System
-      </Text>
+      <Box display="flex" alignItems="center">
+        <Image src={logo} width={35} />
+
+        <Text lineHeight={1} textAlign="left" ml={2} fontWeight={500}>
+          BSIT Content Management System
+        </Text>
+      </Box>
 
       <HStack spacing={{ base: "0", md: "6" }}>
         {/* <IconButton

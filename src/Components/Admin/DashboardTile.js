@@ -1,10 +1,10 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import React from "react";
 
 function DashboardTile(props) {
   return (
-    <Box bg="red" w="100%">
-      Tiles here
+    <Box w="100%">
+      <Heading fontSize="2xl">Dashboard </Heading>
     </Box>
   );
 }

@@ -1,4 +1,4 @@
-import { Box, Grid, Heading, SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, SimpleGrid, Text } from "@chakra-ui/react";
 import React from "react";
 
 function MissionVision() {

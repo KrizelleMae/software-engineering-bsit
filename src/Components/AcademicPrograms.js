@@ -1,13 +1,4 @@
-import {
-  background,
-  Badge,
-  Box,
-  Button,
-  Center,
-  Image,
-  SimpleGrid,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Button, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import React from "react";
 import { BiChevronRight } from "react-icons/bi";
 import bsit from "../Assets/bsit.jpg";

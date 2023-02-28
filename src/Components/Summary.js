@@ -1,13 +1,6 @@
-import {
-  background,
-  Badge,
-  Box,
-  Center,
-  Image,
-  SimpleGrid,
-} from "@chakra-ui/react";
+import { Box, SimpleGrid } from "@chakra-ui/react";
 import React from "react";
-import bsit from "../Assets/bsit.jpg";
+// import bsit from "../Assets/bsit.jpg";
 
 function Summary(props) {
   return (
