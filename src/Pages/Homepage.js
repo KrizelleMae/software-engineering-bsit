@@ -3,6 +3,7 @@ import React from "react";
 import About from "../Components/About";
 import AcademicPrograms from "../Components/AcademicPrograms";
 import Contact from "../Components/Contact";
+import Faculty from "../Components/Faculty";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 import News from "../Components/News";
@@ -13,6 +14,9 @@ function Homepage(props) {
     <>
       <Navbar />
       <Container maxW="container.xl" pt={10}>
+        <Box mt={14} py={20} h={200} borderRadius={10} borderWidth={1}>
+          <Heading textAlign="center">Header here</Heading>
+        </Box>
         <Box mt={10}>
           <Summary />
         </Box>
@@ -48,17 +52,24 @@ function Homepage(props) {
           <About />
         </Box>
 
-        {/* CONTACT */}
-        <Box pt={28} bg="" id="contact-us">
-          <Heading fontSize={30} mb={3}>
-            Contact Us
-          </Heading>
-          <Contact />
+        <Box mt={20}>
+          <Box textAlign="center" mb={14}>
+            <Heading fontSize={30} mb={3}>
+              Faculty
+            </Heading>
+            <Text color="gray.500">Faculty members of BSIT</Text>
+            <Faculty />
+          </Box>
         </Box>
+
+        {/* CONTACT */}
+        {/* <Box py={28} bg="" id="contact-us">
+          <Contact />
+        </Box> */}
 
         {/* FOOTER */}
       </Container>
-      <Box pt={28} bg="#a20202">
+      <Box bg="gray.100">
         <Container maxW="container.xl">
           <Footer />
         </Container>
