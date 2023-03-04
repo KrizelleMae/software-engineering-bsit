@@ -312,12 +312,31 @@ const NAV_ITEMS: Array<NavItem> = [
     label: "Faculty",
     href: "#",
   },
-  {
-    label: "Downloads",
-    href: "#",
-  },
+
   {
     label: "More",
     href: "#",
+    children: [
+      {
+        label: "Support",
+        subLabel: "Student Support & Services",
+        href: "/student-support",
+      },
+      {
+        label: "Activities",
+        subLabel: "Student Activities and Events",
+        href: "/student-act",
+      },
+      {
+        label: "Scholarships",
+        subLabel: "Student Available Scholarships",
+        href: "/student-act",
+      },
+      {
+        label: "Download",
+        subLabel: "Click here to view downloadable files",
+        href: "/student-act",
+      },
+    ],
   },
 ];

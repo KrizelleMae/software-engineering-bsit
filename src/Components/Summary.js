@@ -1,16 +1,15 @@
-import { Box, SimpleGrid } from "@chakra-ui/react";
+import { Box, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import React from "react";
 // import bsit from "../Assets/bsit.jpg";
 
 function Summary(props) {
   return (
-    <Box align="center">
+    <Box>
       <SimpleGrid
         columns={{ base: 1, md: 4 }}
         spacing={{ md: 8, lg: 8 }}
         w="100%"
         mt={7}
-        align="center"
       >
         {[...Array(4)].map((el) => {
           return (
@@ -19,8 +18,16 @@ function Summary(props) {
               borderWidth="1px"
               borderRadius="lg"
               overflow="hidden"
+              boxShadow="md"
             >
-              <Box p="6">Bachelor</Box>
+              <Box p="8" lineHeight={1.7}>
+                <b>THE</b>
+                <Text fontSize={18}>College of Computer Studies has </Text>
+                <Heading fontSize="5xl"> 1203</Heading> for the{" "}
+                <b>
+                  <i>school-year</i> 2023
+                </b>
+              </Box>
             </Box>
           );
         })}

@@ -36,7 +36,7 @@ import { IconType } from "react-icons";
 import { ReactText } from "react";
 import logo from "../../Assets/logo.png";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
-import { BiDownload, BiNews } from "react-icons/bi";
+import { BiDownload, BiNews, BiUserPlus } from "react-icons/bi";
 import { BsFilePerson } from "react-icons/bs";
 import "../../Styles/Sidebar.css";
 
@@ -136,6 +136,8 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           </Box>
         </Stack>
       </Collapse>
+      <NavItem icon={BiUserPlus}>Students</NavItem>
+
       {/* ABOUT */}
       <NavItem icon={FiUsers}>Faculty</NavItem>
       <NavItem icon={BsFilePerson}>Alumni</NavItem>
