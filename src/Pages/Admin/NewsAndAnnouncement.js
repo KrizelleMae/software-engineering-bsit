@@ -8,12 +8,11 @@ import {
   Box,
 } from "@chakra-ui/react";
 import React from "react";
-import Mission from "../../Components/Admin/Mission";
+import Announcements from "../../Components/Admin/Announcements";
+import News from "../../Components/Admin/News";
 import Sidebar from "../../Components/Admin/Sidebar";
-import Vision from "../../Components/Admin/Vision";
-import Objectives from "../../Components/Admin/Objectives";
 
-function AdminAbout(props) {
+function NewsAndAnnouncement(props) {
   return (
     <div className="container">
       <Sidebar />
@@ -25,22 +24,16 @@ function AdminAbout(props) {
           <Box bg="white" boxShadow="lg" p={4}>
             <Tabs variant="enclosed">
               <TabList>
-                <Tab>Mission</Tab>
-                <Tab>Vision</Tab>
-                <Tab>Objectives</Tab>
-                <Tab>Program Outcomes</Tab>
+                <Tab>News</Tab>
+                <Tab>Announcements</Tab>
               </TabList>
               <TabPanels>
                 <TabPanel>
-                  <Mission />
+                  <News />
                 </TabPanel>
                 <TabPanel>
-                  <Vision />
+                  <Announcements />
                 </TabPanel>
-                <TabPanel>
-                  <Objectives />
-                </TabPanel>
-                <TabPanel></TabPanel>
               </TabPanels>
             </Tabs>
           </Box>
@@ -50,4 +43,4 @@ function AdminAbout(props) {
   );
 }
 
-export default AdminAbout;
+export default NewsAndAnnouncement;

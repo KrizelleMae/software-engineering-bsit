@@ -14,52 +14,52 @@ import React, { useEffect, useState } from "react";
 import { BiSave } from "react-icons/bi";
 import api from "../../Api/api";
 
-function Mission(props) {
+function News(props) {
   const [mTitle, setMTitle] = useState("");
   const [mDesc, setMDesc] = useState("");
   const [date, setDate] = useState("");
 
-  const getMission = async () => {
-    try {
-      let mission = await api.get("/admin/get_mission.php");
+  // const getMission = async () => {
+  //   try {
+  //     let mission = await api.get("/admin/get_mission.php");
 
-      if (mission) {
-        setMTitle(mission.data[0].TITLE);
-        setMDesc(mission.data[0].DESCRIPTION);
-        setDate(mission.data[0].DATE);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     if (mission) {
+  //       setMTitle(mission.data[0].TITLE);
+  //       setMDesc(mission.data[0].DESCRIPTION);
+  //       setDate(mission.data[0].DATE);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  // EDIT
-  const update = async (event) => {
-    event.preventDefault();
-    try {
-      let response = await api.post("/admin/update_mission.php", {
-        description: mDesc,
-      });
+  // // EDIT
+  // const update = async (event) => {
+  //   event.preventDefault();
+  //   try {
+  //     let response = await api.post("/admin/update_mission.php", {
+  //       description: mDesc,
+  //     });
 
-      if (response.data.status === 1) {
-        console.log("success");
-      } else {
-        console.log("failed");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     if (response.data.status === 1) {
+  //       console.log("success");
+  //     } else {
+  //       console.log("failed");
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    getMission();
-  }, []);
+  // useEffect(() => {
+  //   getMission();
+  // }, []);
 
   return (
     <Box mt={2}>
-      <Heading fontSize="2xl">Mission </Heading>
+      <Heading fontSize="2xl">News </Heading>
 
-      <form onSubmit={update}>
+      <form>
         <Box mt={10} w={"auto"}>
           <FormControl>
             <FormLabel fontWeight={600} fontSize={15}>
@@ -109,4 +109,4 @@ function Mission(props) {
   );
 }
 
-export default Mission;
+export default News;

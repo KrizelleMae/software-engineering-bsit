@@ -105,7 +105,12 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       >
         Dashboard
       </NavItem>
-      <NavItem icon={BiNews}>News & Anns</NavItem>
+      <NavItem
+        icon={BiNews}
+        className={path.includes("admin/news-announcement") ? "active" : ""}
+      >
+        <Link href="/admin/news-announcement">News & Anns</Link>
+      </NavItem>
 
       <Flex
         justifyContent="space-between"
@@ -117,13 +122,13 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         }}
         className={path.includes("admin/about") ? "active" : ""}
       >
-        <NavItem onClick={onToggle} icon={FiFilePlus}>
-          About
+        <NavItem icon={FiFilePlus}>
+          <Link href="/admin/about">About</Link>
         </NavItem>
-        {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+        {/* {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />} */}
       </Flex>
       {/* ABOUT */}
-      <Collapse in={isOpen} animateOpacity>
+      {/* <Collapse in={isOpen} animateOpacity>
         <Stack pl={8} py={3} bg="red.50">
           <Box py={2}>
             <Link href="/admin/about/mission-vision">Mission and Vision</Link>
@@ -135,7 +140,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             <Link href="/admin/about/outcomes">Program Outcomes</Link>
           </Box>
         </Stack>
-      </Collapse>
+      </Collapse> */}
       <NavItem icon={BiUserPlus}>Students</NavItem>
 
       {/* ABOUT */}
