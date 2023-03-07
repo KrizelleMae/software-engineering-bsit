@@ -22,6 +22,7 @@ import api from "../../Api/api";
 function Mission(props) {
   const [objectives, setObjectives] = useState([]);
   const [date, setDate] = useState("");
+  const [len, setLen] = useState(objectives.length);
 
   const add_objective = () => {};
 
@@ -78,13 +79,14 @@ function Mission(props) {
   };
 
   // handle click event of the Add button
-  const handleAddClick = (e, index) => {
+  const handleAddClick = (k) => {
     setObjectives([...objectives, { desc: "" }]);
+    console.log(objectives[objectives.length]);
   };
 
   useEffect(() => {
     // getMission();
-  }, []);
+  }, [len]);
 
   return (
     <Box mt={2}>
@@ -134,7 +136,9 @@ function Mission(props) {
           mt={5}
           rightIcon={<BiPlus />}
           size="sm"
-          onClick={handleAddClick}
+          onClick={() => {
+            handleAddClick();
+          }}
         >
           Add objective
         </Button>

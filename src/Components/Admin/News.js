@@ -8,89 +8,112 @@ import {
   FormLabel,
   FormHelperText,
   Button,
+  GridItem,
+  Grid,
+  UnorderedList,
+  ListItem,
+  AspectRatio,
 } from "@chakra-ui/react";
+import { ErrorResponse } from "@remix-run/router";
+import axios from "axios";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import { BiSave } from "react-icons/bi";
+import { BiSave, BiUpload } from "react-icons/bi";
 import api from "../../Api/api";
+import cloudinary from "../../Api/CloudinaryApi";
 
 function News(props) {
-  const [mTitle, setMTitle] = useState("");
-  const [mDesc, setMDesc] = useState("");
-  const [date, setDate] = useState("");
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [file, setFile] = useState("");
 
-  // const getMission = async () => {
-  //   try {
-  //     let mission = await api.get("/admin/get_mission.php");
+  const post_to_cloudinary = async (e) => {
+    e.preventDefault();
 
-  //     if (mission) {
-  //       setMTitle(mission.data[0].TITLE);
-  //       setMDesc(mission.data[0].DESCRIPTION);
-  //       setDate(mission.data[0].DATE);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+    try {
+      if (file[0].size > 10000000) {
+        console.log("File size is too big. Maximum size upload is 10mb");
+      } else {
+        const data = new FormData();
+        data.append("file", file[0]);
+        data.append("upload_preset", "v5l0cmm0");
+        data.append("cloud_name", "de0h9yawl");
 
-  // // EDIT
-  // const update = async (event) => {
-  //   event.preventDefault();
-  //   try {
-  //     let response = await api.post("/admin/update_mission.php", {
-  //       description: mDesc,
-  //     });
+        let upload = await cloudinary.post("/", data);
 
-  //     if (response.data.status === 1) {
-  //       console.log("success");
-  //     } else {
-  //       console.log("failed");
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+        if (upload.status === 200) {
+          let response = await api.post("/admin/news.php", {
+            title: title,
+            desc: desc,
+            image: upload.data.url,
+            public_id: upload.data.public_id,
+          });
 
-  // useEffect(() => {
-  //   getMission();
-  // }, []);
+          if (response.status === 200) {
+            console.log("Success");
+            setDesc("");
+            setTitle("");
+            setFile("");
+          }
+
+          console.log(response);
+        } else {
+          console.log(upload);
+        }
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    // getMission();
+  }, []);
 
   return (
     <Box mt={2}>
       <Heading fontSize="2xl">News </Heading>
 
-      <form>
+      <form onSubmit={post_to_cloudinary}>
         <Box mt={10} w={"auto"}>
-          <FormControl>
+          <FormControl isRequired>
             <FormLabel fontWeight={600} fontSize={15}>
-              Title
+              News Title
             </FormLabel>
-            <Input defaultValue={mTitle} bg="white" isReadOnly />
-            <FormHelperText color="teal" textTransform="italic" fontSize={13}>
-              You cannot edit this section.
-            </FormHelperText>
+            <Input
+              autoFocus
+              bg="white"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
           </FormControl>
         </Box>
 
-        <Box mt={10}>
+        <Box mt={6}>
           <FormControl isRequired>
             <FormLabel fontWeight={600} fontSize={15}>
               Description
             </FormLabel>
             <Textarea
-              autoFocus
-              defaultValue={mDesc}
               bg="white"
-              onChange={(e) => setMDesc(e.target.value)}
-            />{" "}
-            <FormHelperText
-              align="right"
-              color="teal"
-              textTransform="italic"
-              fontSize={13}
-            >
-              Last edit: {moment(date).format("LLL")}
-            </FormHelperText>
+              value={desc}
+              onChange={(e) => setDesc(e.target.value)}
+            />
+          </FormControl>
+        </Box>
+
+        <Box mt={6}>
+          <FormControl isRequired>
+            <FormLabel fontWeight={600} fontSize={15}>
+              Image cover
+            </FormLabel>
+            <Input
+              type="file"
+              accept="image/png, image/jpeg"
+              onChange={(e) => {
+                setFile(e.target.files);
+              }}
+            />
           </FormControl>
         </Box>
 
@@ -98,10 +121,10 @@ function News(props) {
           <Button
             colorScheme="blue"
             fontWeight={400}
-            rightIcon={<BiSave />}
+            rightIcon={<BiUpload />}
             type="submit"
           >
-            Save edit
+            Add news
           </Button>
         </Box>
       </form>

@@ -20,7 +20,7 @@ function AdminAbout(props) {
       <div className="content">
         <div className="content-wrapper">
           <Heading fontSize="4xl" mb={6}>
-            About{" "}
+            About
           </Heading>
           <Box bg="white" boxShadow="lg" p={4}>
             <Tabs variant="enclosed">
