@@ -1,7 +1,7 @@
 .overlay {
   position: absolute;
   bottom: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.9));
+  background: linear-gradient(rgba(0, 0, 0, 0.048), rgba(68, 0, 0, 0.815));
   height: 100%;
   width: 100%;
   color: white;
@@ -12,10 +12,19 @@
 
 .image {
   display: block;
-
   height: auto;
 }
 
 .image-container {
   position: relative;
+}
+
+.overlay-act {
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(rgba(35, 34, 34, 0.044), rgb(68, 0, 0));
+  height: 35%;
+  width: 100%;
+  color: white;
+  opacity: 1;
 }

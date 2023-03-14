@@ -20,7 +20,7 @@ function Homepage(props) {
       </Box>
       <Container maxW="container.xl">
         {/* <Box mt={14} py={20} h={200} borderRadius={10} borderWidth={1}>
-          <Heading textAlign="center">Header here</Heading>
+          <Heading >Header here</Heading>
         </Box> */}
         <Box mt={10}>
           <Summary />
@@ -32,8 +32,20 @@ function Homepage(props) {
           <News />
         </Box>
 
+        <Box mt={20}>
+          <Box mb={14}>
+            <Heading fontSize={30} mb={2}>
+              Student Activities
+            </Heading>
+            <Text color="gray.500" mb={10}>
+              IT Students enjoying the activities for the SY 2022-2023
+            </Text>
+            <Gallery />
+          </Box>
+        </Box>
+
         {/* PROGRAMS */}
-        <Box pt={28} textAlign="center" id="academic-programs">
+        <Box pt={28} id="academic-programs" textAlign="center">
           <Heading fontSize={30} mb={3}>
             Academic Programs
           </Heading>
@@ -47,7 +59,7 @@ function Homepage(props) {
 
         {/* ABOUT */}
         <Box pt={28} id="about">
-          <Box textAlign="center" mb={14}>
+          <Box mb={14}>
             <Heading fontSize={30} mb={3}>
               About
             </Heading>{" "}
@@ -60,7 +72,7 @@ function Homepage(props) {
         </Box>
 
         <Box mt={20}>
-          <Box textAlign="center" mb={14}>
+          <Box mb={14} textAlign="center">
             <Heading fontSize={30} mb={2}>
               Faculty Members
             </Heading>
@@ -72,17 +84,6 @@ function Homepage(props) {
           </Box>
         </Box>
       </Container>
-      <Box mt={20}>
-        <Box textAlign="center" mb={14}>
-          <Heading fontSize={30} mb={2}>
-            Student Activities
-          </Heading>
-          <Text color="gray.500" mb={10}>
-            IT Students enjoying the activities for the SY 2022-2023
-          </Text>
-          <Gallery />
-        </Box>
-      </Box>
 
       {/* CONTACT */}
       {/* <Box py={28} bg="" id="contact-us">
