@@ -144,7 +144,12 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       <NavItem icon={BiUserPlus}>Students</NavItem>
 
       {/* ABOUT */}
-      <NavItem icon={FiUsers}>Faculty</NavItem>
+      <NavItem
+        icon={FiUsers}
+        className={path.includes("admin/faculty") ? "active" : ""}
+      >
+        <Link href="/admin/faculty">Faculty</Link>
+      </NavItem>
       <NavItem icon={BsFilePerson}>Alumni</NavItem>
       <NavItem icon={BiDownload}>Downloadables</NavItem>
     </Box>

@@ -5,11 +5,11 @@ function MissionVision() {
   return (
     <SimpleGrid
       columns={{ base: 1, md: 2 }}
-      spacing={{ sm: 6, lg: 28 }}
+      // spacing={{ sm: 6, lg: 28 }}
       w="100%"
-      mt={10}
+      // mt={10}
     >
-      <Box>
+      <Box bg="gray.100" color="alpha" p={10}>
         <Text fontSize={22} fontWeight={600}>
           Mission
         </Text>
@@ -30,7 +30,7 @@ function MissionVision() {
         </Text>
       </Box>
 
-      <Box>
+      <Box p={10}>
         <Text fontSize={22} fontWeight={600}>
           Vision
         </Text>

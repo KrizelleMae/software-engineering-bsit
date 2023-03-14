@@ -19,6 +19,9 @@ import {
   Stack,
   Badge,
   Divider,
+  SimpleGrid,
+  Link,
+  Center,
 } from "@chakra-ui/react";
 
 function Faculty(props) {
@@ -34,133 +37,96 @@ function Faculty(props) {
 
   return (
     <div>
-      <HStack mt="50px" spacing="24px">
-        <Box w="400px" h="400px">
-          <Image
-            borderRadius="xl"
-            mx="100"
-            mt="10"
-            boxSize="200"
-            src="https://scontent.fdvo2-1.fna.fbcdn.net/v/t39.30808-6/310996071_3338055726479422_7676943693330611078_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=yDxAllAKV3MAX8h3Gl0&_nc_ht=scontent.fdvo2-1.fna&oh=00_AfAbjyi7hjDtm-CMtSQyuRB3uhzkTmZ0tPQnimqwrWlfbw&oe=64079F1C"
-          />
-          <Heading
-            pt={30}
-            fontSize={"2xl"}
-            fontWeight={500}
-            fontFamily={"body"}
-          >
-            Dr. James Tu
-          </Heading>
-          <Text color={"gray.500"}>Frontend Developer</Text>
-          {/* <Button
-            w={200}
-            mt={8}
-            bg={useColorModeValue("#151f21", "gray.900")}
-            color={"white"}
-            rounded={"md"}
-            _hover={{
-              transform: "translateY(-2px)",
-              boxShadow: "lg",
-            }}
-          >
-            View more
-          </Button> */}
-          <Button
-            mt={30}
-            w={200}
-            ml="4"
-            _hover={{
-              transform: "translateY(-10px)",
-              boxShadow: "lg",
-            }}
-            bg={useColorModeValue("#151f21", "red.500")}
-            color={"White"}
-            onClick={() => {
-              setOverlay(<OverlayOne />);
-              onOpen();
-            }}
-          >
-            View more
-          </Button>
-        </Box>
-        <Box w="400px" h="400px">
-          <Image
-            borderRadius="xl"
-            mx="100"
-            mt="10"
-            boxSize="200"
-            src="https://scontent.fdvo2-1.fna.fbcdn.net/v/t39.30808-6/310996071_3338055726479422_7676943693330611078_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=yDxAllAKV3MAX8h3Gl0&_nc_ht=scontent.fdvo2-1.fna&oh=00_AfAbjyi7hjDtm-CMtSQyuRB3uhzkTmZ0tPQnimqwrWlfbw&oe=64079F1C"
-          />
-          <Heading
-            pt={30}
-            fontSize={"2xl"}
-            fontWeight={500}
-            fontFamily={"body"}
-          >
-            James Tu
-          </Heading>
-          <Text color={"gray.500"}>Frontend Developer</Text>
-          <Button
-            mt={30}
-            w={200}
-            ml="4"
-            _hover={{
-              transform: "translateY(-10px)",
-              boxShadow: "lg",
-            }}
-            bg={useColorModeValue("#151f21", "red.500")}
-            color={"White"}
-            onClick={() => {
-              setOverlay(<OverlayOne />);
-              onOpen();
-            }}
-          >
-            View more
-          </Button>
-        </Box>
-        <Box w="400px" h="400px">
-          <Image
-            borderRadius="xl"
-            mx="100"
-            mt="10"
-            boxSize="200"
-            src="https://scontent.fdvo2-1.fna.fbcdn.net/v/t39.30808-6/310996071_3338055726479422_7676943693330611078_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=yDxAllAKV3MAX8h3Gl0&_nc_ht=scontent.fdvo2-1.fna&oh=00_AfAbjyi7hjDtm-CMtSQyuRB3uhzkTmZ0tPQnimqwrWlfbw&oe=64079F1C"
-          />
-          <Heading
-            pt={30}
-            fontSize={"2xl"}
-            fontWeight={500}
-            fontFamily={"body"}
-          >
-            James Tu
-          </Heading>
-          <Text color={"gray.500"}>Frontend Developer</Text>
-          <Button
-            mt={30}
-            w={200}
-            ml="4"
-            _hover={{
-              transform: "translateY(-10px)",
-              boxShadow: "lg",
-            }}
-            bg={useColorModeValue("#151f21", "red.500")}
-            color={"White"}
-            onClick={() => {
-              setOverlay(<OverlayOne />);
-              onOpen();
-            }}
-          >
-            View more
-          </Button>
-        </Box>
-      </HStack>
+      <Center>
+        <SimpleGrid
+          columns={{ sm: 1, base: 2, md: 3, lg: 2 }}
+          spacing={{ sm: 6, lg: 20 }}
+          mt={7}
+          align="center"
+          mb={5}
+        >
+          {[...Array(2)].map((el) => {
+            return (
+              <Box
+                w={{ sm: 200, lg: "100%" }}
+                as={Link}
+                onClick={() => {
+                  setOverlay(<OverlayOne />);
+                  onOpen();
+                }}
+                _hover={{ textDecoration: "none" }}
+              >
+                <Image
+                  borderRadius="xl"
+                  boxSize="200"
+                  w="100%"
+                  h="auto"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0WTAFVzkuhv0KyF07XvNWinE1tvGQSizG6QKyM6pcCg&s"
+                />
+                <Heading
+                  pt={3}
+                  fontSize={"xl"}
+                  fontWeight={500}
+                  fontFamily={"body"}
+                >
+                  Prof. Roderick P. Go
+                </Heading>
+                <Text color={"gray.500"} fontSize={14} fontStyle="italic">
+                  Director of the Institute of Computer Studies
+                </Text>
+              </Box>
+            );
+          })}
+        </SimpleGrid>
+      </Center>
 
+      <Center>
+        <SimpleGrid
+          columns={{ sm: 1, base: 2, md: 3, lg: 4 }}
+          spacing={{ sm: 6, lg: 10 }}
+          mt={7}
+          align="center"
+        >
+          {[...Array(4)].map((el) => {
+            return (
+              <Box
+                w={{ sm: 200, lg: "100%" }}
+                as={Link}
+                onClick={() => {
+                  setOverlay(<OverlayOne />);
+                  onOpen();
+                }}
+                _hover={{ textDecoration: "none" }}
+              >
+                <Image
+                  borderRadius="xl"
+                  boxSize="200"
+                  w="100%"
+                  h="auto"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0WTAFVzkuhv0KyF07XvNWinE1tvGQSizG6QKyM6pcCg&s"
+                />
+                <Heading
+                  pt={3}
+                  fontSize={"xl"}
+                  fontWeight={500}
+                  fontFamily={"body"}
+                >
+                  Prof. Roderick P. Go
+                </Heading>
+                <Text color={"gray.500"} fontSize={14} fontStyle="italic">
+                  Director of the Institute of Computer Studies
+                </Text>
+              </Box>
+            );
+          })}
+        </SimpleGrid>
+      </Center>
       <Modal
         scrollBehavior={"inside"}
         isCentered
         isOpen={isOpen}
         onClose={onClose}
-        size={"lg"}
+        size="xl"
       >
         {overlay}
         <ModalContent>
@@ -171,7 +137,7 @@ function Faculty(props) {
               isCentered
               borderRadius="xl"
               boxSize="200"
-              src="https://scontent.fdvo2-1.fna.fbcdn.net/v/t39.30808-6/310996071_3338055726479422_7676943693330611078_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=yDxAllAKV3MAX8h3Gl0&_nc_ht=scontent.fdvo2-1.fna&oh=00_AfAbjyi7hjDtm-CMtSQyuRB3uhzkTmZ0tPQnimqwrWlfbw&oe=64079F1C"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0WTAFVzkuhv0KyF07XvNWinE1tvGQSizG6QKyM6pcCg&s"
             />
             <Heading
               isCentered
@@ -180,7 +146,7 @@ function Faculty(props) {
               fontWeight={500}
               fontFamily={"body"}
             >
-              Dr. James Tu PHP JVS
+              Prof. Roderick P. Go
             </Heading>
             <Text color={"gray.500"}>Frontend Developer</Text>
             Cyber Security Resume Sample. Teacher Resume Samples & Guide. CV
@@ -201,7 +167,7 @@ function Faculty(props) {
                 <Image
                   borderRadius="xl"
                   boxSize="200"
-                  src="https://scontent.fdvo2-1.fna.fbcdn.net/v/t39.30808-6/310996071_3338055726479422_7676943693330611078_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=yDxAllAKV3MAX8h3Gl0&_nc_ht=scontent.fdvo2-1.fna&oh=00_AfAbjyi7hjDtm-CMtSQyuRB3uhzkTmZ0tPQnimqwrWlfbw&oe=64079F1C"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0WTAFVzkuhv0KyF07XvNWinE1tvGQSizG6QKyM6pcCg&s"
                 />
                 <Text>Awards</Text>
               </Stack>
@@ -209,7 +175,7 @@ function Faculty(props) {
                 <Image
                   borderRadius="xl"
                   boxSize="200"
-                  src="https://scontent.fdvo2-1.fna.fbcdn.net/v/t39.30808-6/310996071_3338055726479422_7676943693330611078_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=yDxAllAKV3MAX8h3Gl0&_nc_ht=scontent.fdvo2-1.fna&oh=00_AfAbjyi7hjDtm-CMtSQyuRB3uhzkTmZ0tPQnimqwrWlfbw&oe=64079F1C"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0WTAFVzkuhv0KyF07XvNWinE1tvGQSizG6QKyM6pcCg&s"
                 />
                 <Text>Awards</Text>
               </Stack>

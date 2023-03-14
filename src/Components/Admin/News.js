@@ -1,24 +1,15 @@
 import {
   Box,
   Heading,
-  Text,
   Textarea,
   Input,
   FormControl,
   FormLabel,
-  FormHelperText,
   Button,
-  GridItem,
-  Grid,
-  UnorderedList,
-  ListItem,
-  AspectRatio,
 } from "@chakra-ui/react";
-import { ErrorResponse } from "@remix-run/router";
-import axios from "axios";
-import moment from "moment";
+
 import React, { useEffect, useState } from "react";
-import { BiSave, BiUpload } from "react-icons/bi";
+import { BiUpload } from "react-icons/bi";
 import api from "../../Api/api";
 import cloudinary from "../../Api/CloudinaryApi";
 
@@ -42,9 +33,9 @@ function News(props) {
         let upload = await cloudinary.post("/", data);
 
         if (upload.status === 200) {
-          let response = await api.post("/admin/news.php", {
+          let response = await api.post("/news", {
             title: title,
-            desc: desc,
+            description: desc,
             image: upload.data.url,
             public_id: upload.data.public_id,
           });
@@ -56,7 +47,7 @@ function News(props) {
             setFile("");
           }
 
-          console.log(response);
+          console.log(response.data);
         } else {
           console.log(upload);
         }

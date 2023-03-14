@@ -7,7 +7,7 @@ function NewsList(props) {
 
   const getNews = async () => {
     try {
-      let response = await api.get("/admin/news.php");
+      let response = await api.get("/news");
 
       if (response) {
         setList(response.data);
@@ -28,7 +28,7 @@ function NewsList(props) {
         </Text>
         <UnorderedList mt={5}>
           {list.map((e, k) => {
-            return <ListItem mt={3}>{e.NEWS_TITLE}</ListItem>;
+            return <ListItem mt={3}>{e.title}</ListItem>;
           })}
         </UnorderedList>
       </Box>

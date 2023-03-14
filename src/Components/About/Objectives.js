@@ -12,11 +12,11 @@ function Objectives(props) {
     <div>
       <SimpleGrid
         columns={{ base: 1, md: 2 }}
-        spacing={{ sm: 6, lg: 28 }}
+        // spacing={{ sm: 6, lg: 28 }}
         w="100%"
-        mt={14}
+        // mt={14}
       >
-        <Box>
+        <Box p={10}>
           <Text fontSize={22} fontWeight={600}>
             Objectives
           </Text>
@@ -37,7 +37,7 @@ function Objectives(props) {
           </UnorderedList>
         </Box>
 
-        <Box>
+        <Box bg="gray.100" color="alpha" p={10}>
           <Text fontSize={22} fontWeight={600}>
             Program Outcomes
           </Text>

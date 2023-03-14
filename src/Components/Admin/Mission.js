@@ -21,11 +21,11 @@ function Mission(props) {
 
   const getMission = async () => {
     try {
-      let mission = await api.get("/admin/get_mission.php");
+      let mission = await api.get("/mission");
 
       if (mission) {
-        setMTitle(mission.data[0].TITLE);
-        setMDesc(mission.data[0].DESCRIPTION);
+        setMTitle(mission.data[0].title);
+        setMDesc(mission.data[0].description);
         setDate(mission.data[0].DATE);
       }
     } catch (error) {
@@ -37,15 +37,17 @@ function Mission(props) {
   const update = async (event) => {
     event.preventDefault();
     try {
-      let response = await api.post("/admin/update_mission.php", {
+      let response = await api.post(`/mission/1`, {
         description: mDesc,
       });
 
-      if (response.data.status === 1) {
-        console.log("success");
-      } else {
-        console.log("failed");
-      }
+      console.log(response.data);
+
+      // if (response.data.status === 1) {
+      //   console.log("success");
+      // } else {
+      //   console.log("failed");
+      // }
     } catch (error) {
       console.log(error);
     }

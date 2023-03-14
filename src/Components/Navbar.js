@@ -34,6 +34,7 @@ export default function Header() {
       top={0}
       w="100%"
       borderBottom={1}
+      bg="white"
       borderStyle={"solid"}
       borderColor={useColorModeValue("gray.200", "gray.900")}
     >

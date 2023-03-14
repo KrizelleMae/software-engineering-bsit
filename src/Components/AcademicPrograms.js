@@ -5,11 +5,11 @@ import bsit from "../Assets/bsit.jpg";
 
 function AcademicPrograms(props) {
   return (
-    <Box align="center">
+    <Box align="center" mt={5}>
       <SimpleGrid
         columns={{ base: 1, md: 2 }}
         spacing={{ sm: 6, lg: 8 }}
-        w="100%"
+        w={900}
         mt={7}
         align="center"
       >
@@ -18,7 +18,7 @@ function AcademicPrograms(props) {
             <Box borderWidth="1px" borderRadius="lg" overflow="hidden">
               <Image src={bsit} />
 
-              <Box p="6">
+              <Box py={5} px={5}>
                 <Text
                   fontWeight={900}
                   letterSpacing="wide"
