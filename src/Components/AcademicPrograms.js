@@ -5,38 +5,41 @@ import bsit from "../Assets/bsit.jpg";
 
 function AcademicPrograms(props) {
   return (
-    <Box align="center" mt={5}>
+    <Box mt={5}>
       <SimpleGrid
         columns={{ base: 1, md: 2 }}
         spacing={{ sm: 6, lg: 8 }}
-        w={900}
+        w={{ sm: 350, lg: 700 }}
         mt={7}
-        align="center"
       >
         {[...Array(2)].map((el) => {
           return (
-            <Box borderWidth="1px" borderRadius="lg" overflow="hidden">
-              <Image src={bsit} />
+            <Box borderWidth="1px" overflow="hidden" p={5} borderRadius="base">
+              <Box h={250}>
+                <Image src={bsit} h="100%" w="100%" />
+              </Box>
 
-              <Box py={5} px={5}>
-                <Text
-                  fontWeight={900}
-                  letterSpacing="wide"
-                  fontSize="lg"
-                  textAlign="center"
-                >
+              <Box py={3} textAlign="left">
+                <Text fontWeight={600} letterSpacing="wide" fontSize="md">
                   Bachelor of Science in Information Technology
                 </Text>
-                <Text fontSize="xs" mt={5} px={8}>
+                <Text fontSize="xs" mt={5}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
+                  Ut enim ad minim veniam.
                 </Text>
 
-                <Button size="sm" rightIcon={<BiChevronRight />} mt={8}>
-                  See more
-                </Button>
+                <Box align="right">
+                  <Button
+                    size="sm"
+                    rightIcon={<BiChevronRight />}
+                    mt={5}
+                    variant="ghost"
+                    colorScheme="red"
+                  >
+                    See more
+                  </Button>
+                </Box>
               </Box>
             </Box>
           );

@@ -45,7 +45,7 @@ function Homepage(props) {
         </Box>
 
         {/* PROGRAMS */}
-        <Box pt={28} id="academic-programs" textAlign="center">
+        <Box pt={30} id="academic-programs" textAlign="center">
           <Heading fontSize={30} mb={3}>
             Academic Programs
           </Heading>

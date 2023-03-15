@@ -22,6 +22,13 @@ import {
   SimpleGrid,
   Link,
   Center,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  UnorderedList,
+  ListItem,
 } from "@chakra-ui/react";
 
 function Faculty(props) {
@@ -121,71 +128,55 @@ function Faculty(props) {
           })}
         </SimpleGrid>
       </Center>
-      <Modal
-        scrollBehavior={"inside"}
-        isCentered
-        isOpen={isOpen}
-        onClose={onClose}
-        size="xl"
-      >
-        {overlay}
-        <ModalContent>
-          <ModalHeader>Faculty Profile</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Image
-              isCentered
-              borderRadius="xl"
-              boxSize="200"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0WTAFVzkuhv0KyF07XvNWinE1tvGQSizG6QKyM6pcCg&s"
-            />
+
+      <Drawer placement="right" onClose={onClose} isOpen={isOpen} size="xs">
+        <DrawerOverlay />
+        <DrawerContent>
+          {/* <DrawerHeader></DrawerHeader> */}
+          <DrawerBody mt={7}>
+            <Center>
+              {" "}
+              <Image
+                isCentered
+                borderRadius="xl"
+                boxSize="200"
+                w={250}
+                h={250}
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0WTAFVzkuhv0KyF07XvNWinE1tvGQSizG6QKyM6pcCg&s"
+              />
+            </Center>
+
             <Heading
               isCentered
               pt={30}
-              fontSize={"2xl"}
+              fontSize={"xl"}
               fontWeight={500}
               fontFamily={"body"}
             >
-              Prof. Roderick P. Go
+              Full Name
             </Heading>
-            <Text color={"gray.500"}>Frontend Developer</Text>
-            Cyber Security Resume Sample. Teacher Resume Samples & Guide. CV
-            Samples for Students. Create a Free Resume, Export to MS Word, Build
-            a Cover Letter & More. Start Now! Shop Online. Read News. Get Tips.
-            <Divider />
+            <Text color={"gray.500"}>Rank</Text>
+
+            <Text color={"gray.700"}>Designation</Text>
+
             <Heading
               isCentered
-              pt={30}
-              fontSize={"2xl"}
+              pt={10}
+              fontSize={"lg"}
               fontWeight={500}
               fontFamily={"body"}
+              mt={2}
             >
-              Contact Info
+              Educational Qualifications:
             </Heading>
-            <HStack mt={5}>
-              <Stack>
-                <Image
-                  borderRadius="xl"
-                  boxSize="200"
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0WTAFVzkuhv0KyF07XvNWinE1tvGQSizG6QKyM6pcCg&s"
-                />
-                <Text>Awards</Text>
-              </Stack>
-              <Stack>
-                <Image
-                  borderRadius="xl"
-                  boxSize="200"
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0WTAFVzkuhv0KyF07XvNWinE1tvGQSizG6QKyM6pcCg&s"
-                />
-                <Text>Awards</Text>
-              </Stack>
-            </HStack>
-          </ModalBody>
-          <ModalFooter>
-            <Button onClick={onClose}>Close</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+            <UnorderedList>
+              {[...Array(3)].map((r, el) => {
+                return <ListItem mt={5}>Item {el + 1}</ListItem>;
+              })}
+            </UnorderedList>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
     </div>
   );
 }

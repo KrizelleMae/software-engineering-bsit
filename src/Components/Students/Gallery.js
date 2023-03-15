@@ -102,9 +102,6 @@ function Gallery(props) {
             </Box>
           </Box>
         </SwiperSlide>
-        <SwiperSlide>
-          <Image src={image2} />
-        </SwiperSlide>
       </Swiper>
 
       {/* MODAL */}
