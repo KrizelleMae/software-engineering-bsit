@@ -4,6 +4,7 @@ import AdminAbout from "../Pages/Admin/AdminAbout";
 import Dashboard from "../Pages/Admin/Dashboard";
 import Faculty from "../Pages/Admin/Faculty";
 import NewsAndAnnouncement from "../Pages/Admin/NewsAndAnnouncement";
+import Programs from "../Pages/Admin/Programs";
 import Homepage from "../Pages/Homepage";
 import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
@@ -21,6 +22,8 @@ function AnimatedRoutes() {
         path="/admin/news-announcement"
         element={<NewsAndAnnouncement />}
       />
+
+      <Route path="/admin/programs" element={<Programs />} />
 
       <Route path="/admin/faculty" element={<Faculty />} />
     </Routes>

@@ -5,9 +5,34 @@ import {
   ListItem,
   UnorderedList,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import api from "../../Api/api";
 
 function Objectives(props) {
+  const [list, setList] = useState([]);
+  const [vision, setVision] = useState("");
+
+  // const getMission = async () => {
+  //   let mission = await api.get("/mission");
+
+  //   if (mission) {
+  //     setMission(mission.data[0].description);
+  //   }
+  // };
+
+  const getData = async () => {
+    let response = await api.get("/objectives");
+
+    if (response) {
+      let temp = JSON.parse(response.data[0].description);
+      setList(temp);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div>
       <SimpleGrid
@@ -30,10 +55,9 @@ function Objectives(props) {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit:
           </Text>
           <UnorderedList mt={5} fontSize="sm">
-            <ListItem>Lorem ipsum dolor sit amet</ListItem>
-            <ListItem>Consectetur adipiscing elit</ListItem>
-            <ListItem>Integer molestie lorem at massa</ListItem>
-            <ListItem>Facilisis in pretium nisl aliquet</ListItem>
+            {list.map((el) => {
+              return <ListItem>{el.desc}</ListItem>;
+            })}
           </UnorderedList>
         </Box>
 

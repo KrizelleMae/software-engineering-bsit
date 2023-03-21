@@ -21,12 +21,12 @@ function Vision(props) {
 
   const getVision = async () => {
     try {
-      let vision = await api.get("/admin/get_vision.php");
+      let vision = await api.get("/vision");
 
       if (vision) {
-        setVTitle(vision.data[0].TITLE);
-        setVDesc(vision.data[0].DESCRIPTION);
-        setDate(vision.data[0].DATE);
+        setVTitle(vision.data[0].title);
+        setVDesc(vision.data[0].description);
+        setDate(vision.data[0].updated_at);
       }
     } catch (error) {
       console.log(error);
@@ -37,11 +37,12 @@ function Vision(props) {
   const update = async (event) => {
     event.preventDefault();
     try {
-      let response = await api.post("/admin/update_vision.php", {
+      let response = await api.post("/vision/1", {
+        title: vTitle,
         description: vDesc,
       });
 
-      if (response.data.status === 1) {
+      if (response.status === 200) {
         console.log("success");
       } else {
         console.log("failed");
@@ -81,6 +82,7 @@ function Vision(props) {
               autoFocus
               defaultValue={vDesc}
               bg="white"
+              rows="auto"
               onChange={(e) => setVDesc(e.target.value)}
             />
             <FormHelperText

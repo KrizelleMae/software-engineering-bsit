@@ -13,11 +13,25 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { BiSave } from "react-icons/bi";
 import api from "../../Api/api";
+import { Editor } from "react-draft-wysiwyg";
+import { EditorState, ContentState, convertToRaw } from "draft-js";
+import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 function Mission(props) {
   const [mTitle, setMTitle] = useState("");
   const [mDesc, setMDesc] = useState("");
+  const [newDesc, setNewDesc] = useState("");
   const [date, setDate] = useState("");
+
+  // const [editorState, setEditorState] = useState(() =>
+  //   EditorState.createEmpty()
+  // );
+
+  // const handleChange = (data) => {
+  //   let newData = convertToRaw(data.getCurrentContent());
+
+  //   setNewDesc(JSON.stringify(newData.blocks[0]["text"]));
+  // };
 
   const getMission = async () => {
     try {
@@ -41,7 +55,7 @@ function Mission(props) {
         description: mDesc,
       });
 
-      console.log(response.data);
+      console.log(response);
 
       // if (response.data.status === 1) {
       //   console.log("success");
@@ -79,12 +93,30 @@ function Mission(props) {
             <FormLabel fontWeight={600} fontSize={15}>
               Description
             </FormLabel>
-            <Textarea
-              autoFocus
-              defaultValue={mDesc}
-              bg="white"
-              onChange={(e) => setMDesc(e.target.value)}
-            />{" "}
+
+            <Box
+              border=".1px solid "
+              borderColor={"gray.200"}
+              borderRadius={10}
+            >
+              {/* <Editor
+                editorState={editorState}
+                height="100px"
+                wrapperClassName="wrapper-class"
+                editorClassName="editor-class"
+                toolbarClassName="toolbar-class"
+                // defaultContentState={editorState}
+                p={10}
+                onEditorStateChange={handleChange}
+              />
+              <Editor onChange={setEditorState} />; */}
+
+              <Textarea
+                onChange={(e) => setMDesc(e.target.value)}
+                defaultValue={mDesc}
+              />
+            </Box>
+
             <FormHelperText
               align="right"
               color="teal"

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Wrap,
   WrapItem,
@@ -15,8 +15,24 @@ import {
 import moment from "moment";
 import { BiCalendar } from "react-icons/bi";
 import "../Styles/Content.css";
+import api from "../Api/api";
 
 function News(props) {
+  const [list, setList] = useState([]);
+  const [first, setFirst] = useState([]);
+
+  const getData = async () => {
+    let response = await api.get("/news");
+
+    if (response) {
+      setList(response.data);
+      setFirst(response.data[0]);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <div>
       <Wrap alignItems="center">
@@ -26,35 +42,36 @@ function News(props) {
               className="image"
               borderRadius="lg"
               width={{ md: 670 }}
-              src="https://bit.ly/2jYM25F"
+              height={{ md: "460px" }}
+              src={first.image}
             />
             <Box className="overlay" px={10}>
               <Flex align Items="center">
                 <BiCalendar />
                 <Text fontSize={14} ml={2}>
-                  {moment().format("ll")}
+                  {moment(first.created_at).format("ll")}
                 </Text>
               </Flex>
               <LinkOverlay href="#">
-                <Heading>News Title 101</Heading>
+                <Heading>{first.title}</Heading>
               </LinkOverlay>
               <Text lineHeight={1.4} mt={6} textAlign="left" pr={10}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua ...
+                {first.description}...
               </Text>
             </Box>
           </LinkBox>
         </WrapItem>
         <WrapItem>
           <Stack display={{ sm: "none", md: "block" }} ml={3}>
-            {[...Array(4)].map((e) => {
+            {list.map((e) => {
               return (
                 <Box pt={3} display={{ md: "flex" }} w={500}>
                   <Box flexShrink={0}>
                     <Image
                       borderRadius="lg"
-                      width={{ md: 36 }}
-                      src="https://bit.ly/2jYM25F"
+                      width={{ md: 40 }}
+                      src={e.image}
+                      height={{ md: "140px" }}
                     />
                   </Box>
                   <Box mt={{ base: 4, md: 0 }} ml={{ md: 6 }}>
@@ -66,12 +83,12 @@ function News(props) {
                       fontWeight="semibold"
                       href="#"
                     >
-                      Finding customers for your new business
+                      {e.title}
                     </Link>
                     <Flex alignItems="center" mt={2}>
                       <BiCalendar />
                       <Text fontSize={14} ml={2}>
-                        {moment().format("ll")}
+                        {moment(e.created_at).format("ll")}
                       </Text>
                     </Flex>
                   </Box>

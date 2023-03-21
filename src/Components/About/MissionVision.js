@@ -1,7 +1,31 @@
 import { Box, SimpleGrid, Text } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import api from "../../Api/api";
 
 function MissionVision() {
+  const [mission, setMission] = useState("");
+  const [vision, setVision] = useState("");
+
+  const getMission = async () => {
+    let mission = await api.get("/mission");
+
+    if (mission) {
+      setMission(mission.data[0].description);
+    }
+  };
+
+  const getVision = async () => {
+    let vision = await api.get("/vision");
+
+    if (vision) {
+      setVision(vision.data[0].description);
+    }
+  };
+
+  useEffect(() => {
+    getMission();
+    getVision();
+  }, []);
   return (
     <SimpleGrid
       columns={{ base: 1, md: 2 }}
@@ -14,20 +38,25 @@ function MissionVision() {
           Mission
         </Text>
 
-        <Text
+        {/* <Text
           fontStyle="italic"
           mt={5}
           fontWeight={400}
           textAlign="justify"
           fontSize="sm"
+        > */}
+        <span
+          style={{
+            fontStyle: "italic",
+            mt: 5,
+            fontWeight: 400,
+            textAlign: "justify",
+            fontSize: "15px",
+          }}
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur.
-        </Text>
+          {mission}
+        </span>
+        {/* </Text> */}
       </Box>
 
       <Box p={10}>
@@ -42,10 +71,7 @@ function MissionVision() {
           textAlign="justify"
           fontSize="sm"
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
+          {vision}
         </Text>
       </Box>
     </SimpleGrid>

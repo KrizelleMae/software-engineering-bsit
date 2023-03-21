@@ -31,6 +31,7 @@ import {
   FiChevronDown,
   FiFilePlus,
   FiUsers,
+  FiList,
 } from "react-icons/fi";
 import { IconType } from "react-icons";
 import { ReactText } from "react";
@@ -39,11 +40,6 @@ import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { BiDownload, BiNews, BiUserPlus } from "react-icons/bi";
 import { BsFilePerson } from "react-icons/bs";
 import "../../Styles/Sidebar.css";
-
-// interface LinkItemProps {
-//   name: string;
-//   icon: IconType;
-// }
 
 const path = window.location.pathname;
 
@@ -125,6 +121,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <NavItem icon={FiFilePlus}>
           <Link href="/admin/about">About</Link>
         </NavItem>
+
         {/* {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />} */}
       </Flex>
       {/* ABOUT */}
@@ -149,6 +146,13 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         className={path.includes("admin/faculty") ? "active" : ""}
       >
         <Link href="/admin/faculty">Faculty</Link>
+      </NavItem>
+
+      <NavItem
+        icon={FiList}
+        className={path.includes("admin/programs") ? "active" : ""}
+      >
+        <Link href="/admin/programs">Programs</Link>
       </NavItem>
       <NavItem icon={BsFilePerson}>Alumni</NavItem>
       <NavItem icon={BiDownload}>Downloadables</NavItem>

@@ -21,140 +21,189 @@ import api from "../../Api/api";
 
 function Mission(props) {
   const [objectives, setObjectives] = useState([]);
+  const [id, setId] = useState("");
   const [date, setDate] = useState("");
-  const [len, setLen] = useState(objectives.length);
 
-  const add_objective = () => {};
-
-  //   const getMission = async () => {
-  //     try {
-  //       let mission = await api.get("/admin/get_mission.php");
-
-  //       if (mission) {
-  //         setMTitle(mission.data[0].TITLE);
-  //         setMDesc(mission.data[0].DESCRIPTION);
-  //         setDate(mission.data[0].DATE);
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-
-  // EDIT
-  //   const update = async (event) => {
-  //     event.preventDefault();
-  //     try {
-  //       let response = await api.post("/admin/update_mission.php", {
-  //         description: mDesc,
-  //       });
-
-  //       if (response.data.status === 1) {
-  //         console.log("success");
-  //       } else {
-  //         console.log("failed");
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-
-  const update = (e) => {
+  const add_objective = async (e) => {
     e.preventDefault();
-    console.log(objectives);
-  };
-  // OTHER SKILLS
-  const handleInputChange = (e, index) => {
-    const { name, value } = e.target;
+    let response = await api.post("/objectives", {
+      title: "Objectives",
+      description: JSON.stringify(objectives),
+    });
 
-    const list = [...objectives];
-    list[index][name] = value;
-    setObjectives(list);
+    console.log(response.data);
+  };
+
+  const update = async (e) => {
+    e.preventDefault();
+    let response = await api.post(`/objectives/${id}`, {
+      title: "Objectives",
+      description: JSON.stringify(objectives),
+    });
+
+    console.log(response.data);
+  };
+
+  // OTHER SKILLS
+  const handleInputChange = (value, index) => {
+    const list_new = [...objectives];
+    list_new[index]["desc"] = value;
+    setObjectives(list_new);
   };
 
   //   handle click event of the Remove button
   const handleRemoveClick = (index) => {
-    const list = [...objectives];
-    list.splice(index, 1);
-    setObjectives(list);
+    // console.log(index);
+    const list_new = [...objectives];
+    list_new.splice(index, 1);
+    setObjectives(list_new);
   };
 
   // handle click event of the Add button
   const handleAddClick = (k) => {
     setObjectives([...objectives, { desc: "" }]);
-    console.log(objectives[objectives.length]);
+    // console.log(list[list.length]);
+  };
+
+  const getObjectives = async () => {
+    let response = await api.get("/objectives");
+
+    setObjectives(JSON.parse(response.data[0].description));
+    setId(response.data[0].id);
+    // console.log(response.data);
   };
 
   useEffect(() => {
-    // getMission();
-  }, [len]);
+    getObjectives();
+  }, [id]);
 
   return (
     <Box mt={2}>
       <Heading fontSize="2xl">Objectives </Heading>
 
-      <form>
-        <Box mt={10}>
-          {objectives.map((e, key) => {
-            return (
-              <UnorderedList alignItems="center">
-                <ListItem>
-                  <FormControl
-                    isRequired
-                    mt={2}
-                    display="flex"
-                    alignItems="center"
-                  >
-                    {/* <FormLabel fontWeight={600} fontSize={15}>
+      {objectives.length === 0 ? (
+        <form>
+          <Box mt={10}>
+            {objectives.map((e, key) => {
+              return (
+                <UnorderedList alignItems="center">
+                  <ListItem>
+                    <FormControl
+                      isRequired
+                      mt={2}
+                      display="flex"
+                      alignItems="center"
+                    >
+                      {/* <FormLabel fontWeight={600} fontSize={15}>
                       Objective {key + 1}
                     </FormLabel> */}
-                    <Textarea
-                      autoFocus
-                      bg="white"
-                      rows={1}
-                      onChange={() => {
-                        e.target.value === ""
-                          ? console.log("empty")
-                          : handleInputChange(e, key);
-                      }}
-                    />
-                    <IconButton
-                      icon={<BiTrash />}
-                      size="xs"
-                      ml={2}
-                      colorScheme="red"
-                      onClick={() => {
-                        handleRemoveClick(key);
-                      }}
-                    />
-                  </FormControl>
-                </ListItem>
-              </UnorderedList>
-            );
-          })}
-        </Box>
-        <Button
-          mt={5}
-          rightIcon={<BiPlus />}
-          size="sm"
-          onClick={() => {
-            handleAddClick();
-          }}
-        >
-          Add objective
-        </Button>
-
-        <Box mt={5} align="right">
+                      <Textarea
+                        autoFocus
+                        bg="white"
+                        rows={1}
+                        onChange={(el) => {
+                          handleInputChange(el.target.value, key);
+                        }}
+                      />
+                      <IconButton
+                        icon={<BiTrash />}
+                        size="xs"
+                        ml={2}
+                        colorScheme="red"
+                        onClick={() => {
+                          handleRemoveClick(key);
+                        }}
+                      />
+                    </FormControl>
+                  </ListItem>
+                </UnorderedList>
+              );
+            })}
+          </Box>
           <Button
-            colorScheme="blue"
-            fontWeight={400}
-            rightIcon={<BiSave />}
-            type="submit"
-            onClick={update}
+            mt={5}
+            rightIcon={<BiPlus />}
+            size="sm"
+            onClick={() => {
+              handleAddClick();
+            }}
           >
-            Save edit
+            Add objective
           </Button>
-        </Box>
-      </form>
+
+          <Box mt={5} align="right">
+            <Button
+              colorScheme="blue"
+              fontWeight={400}
+              rightIcon={<BiSave />}
+              type="submit"
+              onClick={add_objective}
+            >
+              Add new
+            </Button>
+          </Box>
+        </form>
+      ) : (
+        <form>
+          <Box mt={10}>
+            {objectives.map((e, key) => {
+              return (
+                <UnorderedList alignItems="center">
+                  <ListItem>
+                    <FormControl
+                      isRequired
+                      mt={2}
+                      display="flex"
+                      alignItems="center"
+                    >
+                      <Textarea
+                        autoFocus
+                        bg="white"
+                        rows={1}
+                        defaultValue={e.desc}
+                        onChange={(el) => {
+                          handleInputChange(el.target.value, key);
+                        }}
+                      />
+                      <IconButton
+                        icon={<BiTrash />}
+                        size="xs"
+                        ml={2}
+                        colorScheme="red"
+                        onClick={() => {
+                          handleRemoveClick(key);
+                        }}
+                      />
+                    </FormControl>
+                  </ListItem>
+                </UnorderedList>
+              );
+            })}
+          </Box>
+          <Button
+            mt={5}
+            rightIcon={<BiPlus />}
+            size="sm"
+            onClick={() => {
+              handleAddClick();
+            }}
+          >
+            Add objective
+          </Button>
+
+          <Box mt={5} align="right">
+            <Button
+              colorScheme="blue"
+              fontWeight={400}
+              rightIcon={<BiSave />}
+              type="submit"
+              onClick={update}
+            >
+              Save changes
+            </Button>
+          </Box>
+        </form>
+      )}
     </Box>
   );
 }
