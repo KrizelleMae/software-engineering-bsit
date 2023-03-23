@@ -54,12 +54,14 @@ function News(props) {
                 </Text>
               </Flex>
               <LinkOverlay href="#">
-                <Heading>{first.title}</Heading>
+                <Heading fontSize={"2xl"} mt={2}>
+                  {first.title}
+                </Heading>
               </LinkOverlay>
               <Text lineHeight={1.4} mt={6} textAlign="left" pr={10}>
                 <LinesEllipsis
                   text={first.description}
-                  maxLine="3"
+                  maxLine="2"
                   ellipsis="..."
                   trimRight
                   basedOn="letters"
@@ -86,9 +88,8 @@ function News(props) {
                     </Box>
                     <Box mt={{ base: 4, md: 0 }} ml={{ md: 6 }}>
                       <Link
-                        mt={1}
                         display="block"
-                        fontSize="md"
+                        fontSize="sm"
                         lineHeight="normal"
                         fontWeight="semibold"
                         href="#"
@@ -106,7 +107,7 @@ function News(props) {
                       </Text>
                       <Flex alignItems="center" mt={2}>
                         <BiCalendar />
-                        <Text fontSize={14} ml={2}>
+                        <Text fontSize={12} ml={2}>
                           {moment(e.created_at).format("ll")}
                         </Text>
                       </Flex>
