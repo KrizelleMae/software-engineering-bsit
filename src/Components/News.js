@@ -42,7 +42,7 @@ function News(props) {
               className="image"
               borderRadius="lg"
               width={{ md: 670 }}
-              height={{ md: "460px" }}
+              height={{ md: "470px" }}
               src={first.image}
             />
             <Box className="overlay" px={10}>
@@ -69,9 +69,9 @@ function News(props) {
                   <Box flexShrink={0}>
                     <Image
                       borderRadius="lg"
-                      width={{ md: 40 }}
+                      width={{ md: "150px" }}
                       src={e.image}
-                      height={{ md: "140px" }}
+                      height={{ md: "100px" }}
                     />
                   </Box>
                   <Box mt={{ base: 4, md: 0 }} ml={{ md: 6 }}>

@@ -60,7 +60,7 @@ function Programs(props) {
   const [description, setDescription] = useState("");
   const [data, setData] = useState([]);
 
-  const getData = async () => {
+  const getProgram = async () => {
     try {
       let response = await api.get("/programs");
 
@@ -109,29 +109,14 @@ function Programs(props) {
     }
   };
 
-  //   // EDIT
-  //   const update = async (event) => {
-  //     event.preventDefault();
-  //     try {
-  //       let response = await api.post(`/mission/1`, {
-  //         description: mDesc,
-  //       });
-
-  //       console.log(response);
-
-  //       // if (response.data.status === 1) {
-  //       //   console.log("success");
-  //       // } else {
-  //       //   console.log("failed");
-  //       // }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-
   useEffect(() => {
-    getData();
-  }, [id]);
+    const intervalId = setInterval(() => {
+      getProgram();
+      // console.log("Fetching");
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <div className="container">
@@ -303,7 +288,6 @@ function Programs(props) {
               <Button colorScheme="blue" onClick={preview.onClose}>
                 Close
               </Button>
-              {/* <Button variant="ghost">Secondary Action</Button> */}
             </ModalFooter>
           </ModalContent>
         </Modal>

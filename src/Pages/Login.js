@@ -27,9 +27,22 @@ import {
 import ccs from "../Assets/ccs.jpg";
 import logo from "../Assets/logo.png";
 import wave from "../Assets/wave.svg";
+import api from "../Api/api";
 
 function Login(props) {
-  const [show, setShow] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const PostRequest = async (e) => {
+    e.preventDefault();
+
+    let response = await api.post("/login", {
+      email: email,
+      password: password,
+    });
+
+    console.log(response);
+  };
   return (
     <div
       className="login-page"
@@ -73,41 +86,50 @@ function Login(props) {
                   </Text>
                 </Box>
               </Box>
-              <Stack w="100%" mt={24}>
-                <FormControl>
-                  <FormLabel fontSize={14} color="#a20202" fontWeight="bold">
-                    Email address
-                  </FormLabel>
-                  <InputGroup>
-                    <InputLeftElement
-                      pointerEvents="none"
-                      children={<BsAt color="gray.300" />}
-                    />
-                    <Input
-                      type="email"
-                      fontSize={13.5}
-                      fontWeight={500}
+              <form onSubmit={PostRequest}>
+                <Stack w="100%" mt={24}>
+                  <FormControl isRequired>
+                    <FormLabel fontSize={14} color="#a20202" fontWeight="bold">
+                      Email address
+                    </FormLabel>
+                    <InputGroup>
+                      <InputLeftElement
+                        pointerEvents="none"
+                        children={<BsAt color="gray.300" />}
+                      />
+                      <Input
+                        type="text"
+                        fontSize={13.5}
+                        fontWeight={500}
+                        pattern="[a-z]{2}[0-9]{9}@wmsu.edu.ph"
+                        title="Kindly use your wmsu email."
+                        placeholder="your_account@wmsu.edu.ph"
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </InputGroup>
+                  </FormControl>
+                  <FormControl pt={2} pb={6} isRequired>
+                    <FormLabel
+                      fontSize={14}
+                      color="#a20202"
+                      fontWeight="bold"
                       placeholder="your_account@wmsu.edu.ph"
-                    />
-                  </InputGroup>
-                </FormControl>
-                <FormControl pt={2} pb={6}>
-                  <FormLabel
-                    fontSize={14}
-                    color="#a20202"
-                    fontWeight="bold"
-                    placeholder="your_account@wmsu.edu.ph"
-                  >
-                    Password
-                  </FormLabel>
-                  <InputGroup>
-                    <InputLeftElement
-                      pointerEvents="none"
-                      children={<BsLock color="gray.300" />}
-                    />
-                    <Input type="password" fontSize={15} fontWeight={500} />
+                    >
+                      Password
+                    </FormLabel>
+                    <InputGroup>
+                      <InputLeftElement
+                        pointerEvents="none"
+                        children={<BsLock color="gray.300" />}
+                      />
+                      <Input
+                        type="text"
+                        fontSize={15}
+                        fontWeight={500}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
 
-                    <InputRightElement
+                      {/* <InputRightElement
                       pointerEvents="none"
                       children={
                         show ? (
@@ -119,39 +141,38 @@ function Login(props) {
                       onclick={() => {
                         setShow(true);
                       }}
-                    />
-                  </InputGroup>
-                </FormControl>
-
-                <Box align="center">
-                  <Button
-                    bgColor="#a20202"
-                    color="white"
-                    _hover={{
-                      width: "100%",
-                      transition: "width 1s",
-                    }}
-                    width="85%"
-                    fontWeight="400"
-                    fontSize={12}
-                    mb={5}
-                    rightIcon={<BsArrowRightShort />}
-                  >
-                    LOGIN
-                  </Button>
-                  <br />
-                  <Link
-                    fontWeight="400"
-                    fontSize={13}
-                    variant="ghost"
-                    href="/signup"
-                  >
-                    Create an account
-                  </Link>
-                </Box>
-
-                <Box></Box>
-              </Stack>
+                    /> */}
+                    </InputGroup>
+                  </FormControl>
+                  <Box align="center">
+                    <Button
+                      type="submit"
+                      bgColor="#a20202"
+                      color="white"
+                      _hover={{
+                        width: "100%",
+                        transition: "width 1s",
+                      }}
+                      width="85%"
+                      fontWeight="400"
+                      fontSize={12}
+                      mb={5}
+                      rightIcon={<BsArrowRightShort />}
+                    >
+                      LOGIN
+                    </Button>
+                    <br />
+                    <Link
+                      fontWeight="400"
+                      fontSize={13}
+                      variant="ghost"
+                      href="/signup"
+                    >
+                      Create an account
+                    </Link>
+                  </Box>
+                </Stack>
+              </form>
             </Box>
           </GridItem>
         </Grid>

@@ -57,7 +57,7 @@ function ProgramsModal(props) {
 
   useEffect(() => {
     getData();
-  }, [props.id]);
+  }, []);
   return (
     <div>
       <ModalContent>

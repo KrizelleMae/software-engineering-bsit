@@ -53,11 +53,16 @@ function Faculty(props) {
   const [overlay, setOverlay] = React.useState(<OverlayOne />);
 
   useEffect(() => {
-    getFaculty();
+    const intervalId = setInterval(() => {
+      getFaculty();
+    }, 1000);
+
+    // cleanup function to clear the interval when the component unmounts or the interval changes
+    return () => clearInterval(intervalId);
   }, [id]);
   return (
     <div>
-      <Center>
+      {/* <Center>
         <SimpleGrid
           columns={{ sm: 1, base: 2, md: 2, lg: 1 }}
           spacing={{ sm: 6, lg: 20 }}
@@ -98,12 +103,14 @@ function Faculty(props) {
             );
           })}
         </SimpleGrid>
-      </Center>
+      </Center> */}
 
       {/* FACULTIES */}
       <Center>
         <SimpleGrid
-          columns={{ sm: 1, base: 2, md: 3, lg: 4 }}
+          columns={
+            list.length < 6 ? { sm: 0 } : { sm: 1, base: 2, md: 3, lg: 4 }
+          }
           spacing={{ sm: 6, lg: 10 }}
           mt={7}
           align="center"

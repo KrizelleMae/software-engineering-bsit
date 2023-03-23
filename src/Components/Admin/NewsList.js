@@ -18,8 +18,13 @@ function NewsList(props) {
   };
 
   useEffect(() => {
-    getNews();
-  }, [list]);
+    const intervalId = setInterval(() => {
+      getNews();
+    }, 1000);
+
+    // cleanup function to clear the interval when the component unmounts or the interval changes
+    return () => clearInterval(intervalId);
+  }, []);
   return (
     <div>
       <Box bg="gray.100" h="100%" p={6} borderRadius={5}>

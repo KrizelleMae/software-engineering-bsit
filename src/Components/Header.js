@@ -1,6 +1,9 @@
 import React from "react";
 // import Flickity from "react-flickity-component";
-import ccs from "../Assets/bsit.jpg";
+import campus from "../Assets/campus.jpg";
+import ccs1 from "../Assets/ccs.png";
+import pic from "../Assets/pic.jpg";
+import uni from "../Assets/uni.jpg";
 // import "../Styles/Flickity.css";
 import Slider from "react-slick";
 
@@ -22,18 +25,31 @@ function Header(props) {
 
   return (
     <Slider {...settings}>
-      {/* <div>
+      {/* {[...Array(4)].map((el) => {
+        return ( */}
+      <div>
         <img
-          src={ccs}
-          style={{ width: "100vw", height: "100vh", objectFit: "cover" }}
+          src={uni}
+          style={{ width: "100vw", height: "70vh", objectFit: "cover" }}
         />
       </div>
+
       <div>
-        <img src={ccs} />
+        {" "}
+        <img
+          src={pic}
+          style={{ width: "100vw", height: "70vh", objectFit: "cover" }}
+        />
       </div>
+
       <div>
-        <img src={ccs} />
-      </div> */}
+        <img
+          src={campus}
+          style={{ width: "100vw", height: "70vh", objectFit: "cover" }}
+        />
+      </div>
+      {/* );
+      })} */}
     </Slider>
   );
 }

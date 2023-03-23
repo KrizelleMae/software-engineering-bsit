@@ -20,12 +20,18 @@ function AcademicPrograms(props) {
 
     if (response) {
       setList(response.data);
+      console.log(response.data);
       // setFirst(response.data[0]);
     }
   };
 
   useEffect(() => {
-    getData();
+    const intervalId = setInterval(() => {
+      getData();
+    }, 2000);
+
+    // cleanup function to clear the interval when the component unmounts or the interval changes
+    return () => clearInterval(intervalId);
   }, []);
   return (
     <Box>

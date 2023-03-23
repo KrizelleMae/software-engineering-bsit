@@ -57,10 +57,6 @@ function News(props) {
     }
   };
 
-  useEffect(() => {
-    // getMission();
-  }, []);
-
   return (
     <Box mt={2}>
       <Heading fontSize="2xl">News </Heading>
