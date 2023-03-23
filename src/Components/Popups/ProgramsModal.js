@@ -21,7 +21,7 @@ import {
 } from "@chakra-ui/react";
 import api from "../../Api/api";
 import { BiPlus, BiSend, BiTrash } from "react-icons/bi";
-
+import { toast } from "react-toastify";
 function ProgramsModal(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -48,9 +48,31 @@ function ProgramsModal(props) {
       // public_id: upload.data.public_id,
     });
 
-    // if (response.status === 200) {
-    //   console.log("Success");
-    // }
+    if (response.status === 200) {
+      toast
+        .success("Successfully recorded", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+        .then((e) => {
+          window.location.reload(false);
+        });
+    } else {
+      toast.error("Error occurred. Please try again!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
 
     console.log(response.data);
   };

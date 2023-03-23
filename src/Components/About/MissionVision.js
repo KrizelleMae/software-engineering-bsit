@@ -45,7 +45,16 @@ function MissionVision() {
           textAlign="justify"
           fontSize="sm"
         > */}
-        <span
+        <Text
+          fontStyle="italic"
+          mt={5}
+          fontWeight={400}
+          textAlign="justify"
+          fontSize="sm"
+        >
+          {mission}
+        </Text>
+        {/* <span
           style={{
             fontStyle: "italic",
             mt: 5,
@@ -54,8 +63,8 @@ function MissionVision() {
             fontSize: "15px",
           }}
         >
-          {mission}
-        </span>
+          {mission} */}
+        {/* </span> */}
         {/* </Text> */}
       </Box>
 

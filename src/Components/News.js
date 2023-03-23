@@ -16,6 +16,7 @@ import moment from "moment";
 import { BiCalendar } from "react-icons/bi";
 import "../Styles/Content.css";
 import api from "../Api/api";
+import LinesEllipsis from "react-lines-ellipsis";
 
 function News(props) {
   const [list, setList] = useState([]);
@@ -42,7 +43,7 @@ function News(props) {
               className="image"
               borderRadius="lg"
               width={{ md: 670 }}
-              height={{ md: "470px" }}
+              height={{ md: "475px" }}
               src={first.image}
             />
             <Box className="overlay" px={10}>
@@ -56,7 +57,13 @@ function News(props) {
                 <Heading>{first.title}</Heading>
               </LinkOverlay>
               <Text lineHeight={1.4} mt={6} textAlign="left" pr={10}>
-                {first.description}...
+                <LinesEllipsis
+                  text={first.description}
+                  maxLine="3"
+                  ellipsis="..."
+                  trimRight
+                  basedOn="letters"
+                />
               </Text>
             </Box>
           </LinkBox>
@@ -64,36 +71,49 @@ function News(props) {
         <WrapItem>
           <Stack display={{ sm: "none", md: "block" }} ml={3}>
             {list.map((e) => {
-              return (
-                <Box pt={3} display={{ md: "flex" }} w={500}>
-                  <Box flexShrink={0}>
-                    <Image
-                      borderRadius="lg"
-                      width={{ md: "150px" }}
-                      src={e.image}
-                      height={{ md: "100px" }}
-                    />
-                  </Box>
-                  <Box mt={{ base: 4, md: 0 }} ml={{ md: 6 }}>
-                    <Link
-                      mt={1}
-                      display="block"
-                      fontSize="md"
-                      lineHeight="normal"
-                      fontWeight="semibold"
-                      href="#"
-                    >
-                      {e.title}
-                    </Link>
-                    <Flex alignItems="center" mt={2}>
-                      <BiCalendar />
-                      <Text fontSize={14} ml={2}>
-                        {moment(e.created_at).format("ll")}
+              if (e.id === 1) {
+                return "";
+              } else {
+                return (
+                  <Box pt={3} display={{ md: "flex" }} w={500}>
+                    <Box flexShrink={0}>
+                      <Image
+                        borderRadius="lg"
+                        width={{ md: "150px" }}
+                        src={e.image}
+                        height={{ md: "100px" }}
+                      />
+                    </Box>
+                    <Box mt={{ base: 4, md: 0 }} ml={{ md: 6 }}>
+                      <Link
+                        mt={1}
+                        display="block"
+                        fontSize="md"
+                        lineHeight="normal"
+                        fontWeight="semibold"
+                        href="#"
+                      >
+                        {e.title}
+                      </Link>
+                      <Text fontSize={"xs"} mt={2}>
+                        <LinesEllipsis
+                          text={e.description}
+                          maxLine="2"
+                          ellipsis="..."
+                          trimRight
+                          basedOn="letters"
+                        />
                       </Text>
-                    </Flex>
+                      <Flex alignItems="center" mt={2}>
+                        <BiCalendar />
+                        <Text fontSize={14} ml={2}>
+                          {moment(e.created_at).format("ll")}
+                        </Text>
+                      </Flex>
+                    </Box>
                   </Box>
-                </Box>
-              );
+                );
+              }
             })}
           </Stack>
         </WrapItem>

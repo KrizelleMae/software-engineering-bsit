@@ -12,6 +12,7 @@ import Mission from "../../Components/Admin/Mission";
 import Sidebar from "../../Components/Admin/Sidebar";
 import Vision from "../../Components/Admin/Vision";
 import Objectives from "../../Components/Admin/Objectives";
+import Outcomes from "../../Components/Admin/Outcomes";
 
 function AdminAbout(props) {
   return (
@@ -40,7 +41,9 @@ function AdminAbout(props) {
                 <TabPanel>
                   <Objectives />
                 </TabPanel>
-                <TabPanel></TabPanel>
+                <TabPanel>
+                  <Outcomes />
+                </TabPanel>
               </TabPanels>
             </Tabs>
           </Box>

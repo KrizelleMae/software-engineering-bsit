@@ -12,6 +12,7 @@ import React, { useEffect, useState } from "react";
 import { BiUpload } from "react-icons/bi";
 import api from "../../Api/api";
 import cloudinary from "../../Api/CloudinaryApi";
+import { toast } from "react-toastify";
 
 function News(props) {
   const [title, setTitle] = useState("");
@@ -23,7 +24,15 @@ function News(props) {
 
     try {
       if (file[0].size > 10000000) {
-        console.log("File size is too big. Maximum size upload is 10mb");
+        toast.error("File size is too big. Maximum size upload is 10mb", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       } else {
         const data = new FormData();
         data.append("file", file[0]);
@@ -41,15 +50,30 @@ function News(props) {
           });
 
           if (response.status === 200) {
-            console.log("Success");
+            toast.success("News successfully added", {
+              position: "top-center",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
             setDesc("");
             setTitle("");
             setFile("");
           }
-
-          console.log(response.data);
         } else {
-          console.log(upload);
+          toast.error("Error occurred. Try again!", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
         }
       }
     } catch (e) {

@@ -10,7 +10,7 @@ import api from "../../Api/api";
 
 function Objectives(props) {
   const [list, setList] = useState([]);
-  const [vision, setVision] = useState("");
+  const [outcomes, setOutcomes] = useState("");
 
   // const getMission = async () => {
   //   let mission = await api.get("/mission");
@@ -19,6 +19,18 @@ function Objectives(props) {
   //     setMission(mission.data[0].description);
   //   }
   // };
+
+  const get = async () => {
+    try {
+      let response = await api.get("/outcomes");
+
+      if (response) {
+        setOutcomes(response.data[0].description);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const getData = async () => {
     let response = await api.get("/objectives");
@@ -31,6 +43,7 @@ function Objectives(props) {
 
   useEffect(() => {
     getData();
+    get();
   }, []);
 
   return (
@@ -73,10 +86,7 @@ function Objectives(props) {
             textAlign="justify"
             fontSize="sm"
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            {outcomes}
           </Text>
         </Box>
       </SimpleGrid>

@@ -138,7 +138,6 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           </Box>
         </Stack>
       </Collapse> */}
-      <NavItem icon={BiUserPlus}>Students</NavItem>
 
       {/* ABOUT */}
       <NavItem
@@ -154,6 +153,8 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       >
         <Link href="/admin/programs">Programs</Link>
       </NavItem>
+
+      <NavItem icon={BiUserPlus}>Students</NavItem>
       <NavItem icon={BsFilePerson}>Alumni</NavItem>
       <NavItem icon={BiDownload}>Downloadables</NavItem>
     </Box>

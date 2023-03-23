@@ -2,25 +2,37 @@ import {
   Box,
   Button,
   Divider,
+  Drawer,
+  DrawerContent,
+  DrawerOverlay,
   Image,
+  ModalOverlay,
   SimpleGrid,
   Text,
+  useDisclosure,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { BiChevronRight } from "react-icons/bi";
 import api from "../Api/api";
 import LinesEllipsis from "react-lines-ellipsis";
+import ProgramsDrawer from "./Popups/ProgramsDrawer";
 
 function AcademicPrograms(props) {
   const [list, setList] = useState([]);
   // const [first, setFirst] = useState([]);
+  const [id, setId] = useState("");
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const OverlayOne = () => (
+    <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px) " />
+  );
+  const [overlay, setOverlay] = React.useState(<OverlayOne />);
 
   const getData = async () => {
     let response = await api.get("/programs");
 
     if (response) {
       setList(response.data);
-      console.log(response.data);
+      // console.log(response.data);
       // setFirst(response.data[0]);
     }
   };
@@ -38,7 +50,7 @@ function AcademicPrograms(props) {
       <SimpleGrid
         columns={{ base: 1, md: 2 }}
         spacing={{ sm: 6, lg: 8 }}
-        w={{ sm: 350, lg: 750 }}
+        w={{ sm: 350, lg: 740 }}
         mt={7}
       >
         {list.map((el) => {
@@ -78,6 +90,11 @@ function AcademicPrograms(props) {
                     mt={5}
                     variant="ghost"
                     colorScheme="red"
+                    onClick={() => {
+                      setOverlay(<OverlayOne />);
+                      setId(el.id);
+                      onOpen();
+                    }}
                   >
                     See more
                   </Button>
@@ -87,6 +104,13 @@ function AcademicPrograms(props) {
           );
         })}
       </SimpleGrid>
+
+      <Drawer placement="right" onClose={onClose} isOpen={isOpen} size="md">
+        <DrawerOverlay />
+        <DrawerContent>
+          <ProgramsDrawer id={id} />
+        </DrawerContent>
+      </Drawer>
     </Box>
   );
 }

@@ -18,6 +18,7 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { BiPlus, BiSave, BiTrash } from "react-icons/bi";
 import api from "../../Api/api";
+import { toast } from "react-toastify";
 
 function Mission(props) {
   const [objectives, setObjectives] = useState([]);
@@ -41,6 +42,27 @@ function Mission(props) {
       description: JSON.stringify(objectives),
     });
 
+    if (response.status === 200) {
+      toast.success("Successfully updated", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } else {
+      toast.error("File size is too big. Maximum size upload is 10mb", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
     console.log(response.data);
   };
 

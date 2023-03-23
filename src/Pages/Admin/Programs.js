@@ -41,7 +41,7 @@ import Sidebar from "../../Components/Admin/Sidebar";
 import api from "../../Api/api";
 
 import AcademicPrograms from "../../Components/AcademicPrograms";
-
+import { toast } from "react-toastify";
 import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { BiEditAlt, BiPlus, BiTrash } from "react-icons/bi";
 import cloudinary from "../../Api/CloudinaryApi";
@@ -77,7 +77,15 @@ function Programs(props) {
 
     try {
       if (file[0].size > 10000000) {
-        console.log("File size is too big. Maximum size upload is 10mb");
+        toast.error("File size is too big. Maximum size upload is 10mb", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       } else {
         const data = new FormData();
         data.append("file", file[0]);
@@ -95,9 +103,31 @@ function Programs(props) {
             // public_id: upload.data.public_id,
           });
 
-          // if (response.status === 200) {
-          //   console.log("Success");
-          // }
+          if (response.status === 200) {
+            toast
+              .success("Successfully recorded", {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              })
+              .then(() => {
+                window.location.reload(false);
+              });
+          } else {
+            toast.error("Error occurred. Please try again!", {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+          }
 
           console.log(response.data);
         } else {
@@ -110,13 +140,9 @@ function Programs(props) {
   };
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      getProgram();
-      // console.log("Fetching");
-    }, 1000);
-
-    return () => clearInterval(intervalId);
-  }, []);
+    getProgram();
+    // console.log("Fetching");
+  }, [data]);
 
   return (
     <div className="container">

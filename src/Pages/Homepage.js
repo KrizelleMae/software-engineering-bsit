@@ -13,7 +13,7 @@ import Summary from "../Components/Summary";
 
 function Homepage(props) {
   return (
-    <Box pr={0} mr={0} style={{ overflowX: "hidden" }}>
+    <Box pr={0} mr={0} style={{ overflowX: "hidden" }} id="home">
       <Navbar />
       <Box pt={16}>
         <Header />
@@ -32,20 +32,8 @@ function Homepage(props) {
           <News />
         </Box>
 
-        <Box mt={20}>
-          <Box mb={14}>
-            <Heading fontSize={30} mb={2}>
-              Student Activities
-            </Heading>
-            <Text color="gray.500" mb={10}>
-              IT Students enjoying the activities for the SY 2022-2023
-            </Text>
-            <Gallery />
-          </Box>
-        </Box>
-
         {/* PROGRAMS */}
-        <Box pt={30} id="academic-programs" textAlign="center">
+        <Box pt={24} id="academic-programs" textAlign="center">
           <Heading fontSize={30} mb={3}>
             Academic Programs
           </Heading>
@@ -71,7 +59,19 @@ function Homepage(props) {
           <About />
         </Box>
 
-        <Box mt={20}>
+        <Box pt={30} id="activities">
+          <Box mb={20}>
+            <Heading fontSize={30} mb={2}>
+              Student Activities
+            </Heading>
+            <Text color="gray.500" mb={10}>
+              IT Students enjoying the activities for the SY 2022-2023
+            </Text>
+            <Gallery />
+          </Box>
+        </Box>
+
+        <Box mt={20} id="faculty">
           <Box mb={14} textAlign="center">
             <Heading fontSize={30} mb={2}>
               Faculty Members

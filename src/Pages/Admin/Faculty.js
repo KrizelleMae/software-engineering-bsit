@@ -40,6 +40,7 @@ import React, { useEffect, useState } from "react";
 import { BiEdit, BiEditAlt, BiPlus, BiTrash } from "react-icons/bi";
 import api from "../../Api/api";
 import cloudinary from "../../Api/CloudinaryApi";
+import { toast } from "react-toastify";
 
 import Sidebar from "../../Components/Admin/Sidebar";
 import FacultyModal from "../../Components/Popups/FacultyModal";
@@ -64,12 +65,50 @@ function Faculty(props) {
     setData(response.data);
   };
 
+  const del = async (id) => {
+    let response = await api.delete(`/faculty/${id}`);
+
+    if (response.status === 200) {
+      toast
+        .success("Successfully recorded", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+        .then(() => {
+          window.location.reload(false);
+        });
+    } else {
+      toast.error("Error occurred. Please try again!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+  };
+
   const submit = async (e) => {
     e.preventDefault();
 
     try {
       if (file[0].size > 10000000) {
-        console.log("File size is too big. Maximum size upload is 10mb");
+        toast.error("File size is too big. Maximum size upload is 10mb", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       } else {
         const data = new FormData();
         data.append("file", file[0]);
@@ -87,13 +126,33 @@ function Faculty(props) {
             // public_id: upload.data.public_id,
           });
 
-          // if (response.status === 200) {
-          //   console.log("Success");
-          // }
+          if (response.status === 200) {
+            toast
+              .success("Successfully recorded", {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              })
+              .then(() => {
+                window.location.reload(false);
+              });
+          }
 
-          console.log(response.data);
+          // console.log(response.data);
         } else {
-          console.log(upload);
+          toast.error("Error occurred. Please try again!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
         }
       }
     } catch (e) {
@@ -132,7 +191,7 @@ function Faculty(props) {
 
   useEffect(() => {
     getAllFaculty();
-  }, [id]);
+  }, [id, data]);
   return (
     <div className="container">
       <Sidebar />
@@ -180,17 +239,26 @@ function Faculty(props) {
                         <i>-- See more --</i>
                       </Td>
                       <Td>
-                        <Button
+                        <IconButton
                           onClick={() => {
                             // getFaculty(el.id);
                             setId(el.id);
                             modal.onOpen();
                           }}
                           size="sm"
-                          rightIcon={<BiEditAlt />}
-                        >
-                          Edit
-                        </Button>
+                          colorScheme={"blue"}
+                          mr={2}
+                          icon={<BiEditAlt />}
+                        />
+
+                        <IconButton
+                          onClick={() => {
+                            del(el.id);
+                          }}
+                          size="sm"
+                          colorScheme={"red"}
+                          icon={<BiTrash />}
+                        />
                       </Td>
                     </Tr>
                   );

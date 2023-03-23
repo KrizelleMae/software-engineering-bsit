@@ -16,6 +16,7 @@ import api from "../../Api/api";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState, ContentState, convertToRaw } from "draft-js";
 import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { toast } from "react-toastify";
 
 function Mission(props) {
   const [mTitle, setMTitle] = useState("");
@@ -55,13 +56,27 @@ function Mission(props) {
         description: mDesc,
       });
 
-      console.log(response);
-
-      // if (response.data.status === 1) {
-      //   console.log("success");
-      // } else {
-      //   console.log("failed");
-      // }
+      if (response.status === 200) {
+        toast.success("Successfully updated", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      } else {
+        toast.error("File size is too big. Maximum size upload is 10mb", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
     } catch (error) {
       console.log(error);
     }

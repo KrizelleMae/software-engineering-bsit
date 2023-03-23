@@ -273,9 +273,11 @@ interface NavItem {
 const NAV_ITEMS: Array<NavItem> = [
   {
     label: "Home",
+    href: "#home",
   },
   {
     label: "About",
+    href: "#about",
     children: [
       {
         label: "Mission and Vision",
@@ -295,48 +297,47 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: `Academic Programs`,
-    href: "#",
+    href: "#academic-programs",
     children: [
       {
         label: "BSIT",
         subLabel: "Bachelor of Science in Information Technology",
-        href: "/academic-programs#bsit",
+        href: "#academic-programs",
       },
       {
         label: "MIT",
         subLabel: "Master's in Information Technology",
-        href: "/academic-programs#mit",
+        href: "#academic-programs",
       },
     ],
   },
   {
     label: "Faculty",
-    href: "#",
+    href: "#faculty",
   },
 
   {
     label: "More",
-    href: "#",
     children: [
       {
         label: "Support",
         subLabel: "Student Support & Services",
-        href: "/student-support",
+        href: "#",
       },
       {
         label: "Activities",
         subLabel: "Student Activities and Events",
-        href: "/student-act",
+        href: "#activities",
       },
       {
         label: "Scholarships",
         subLabel: "Student Available Scholarships",
-        href: "/student-act",
+        href: "#",
       },
       {
         label: "Download",
         subLabel: "Click here to view downloadable files",
-        href: "/student-act",
+        href: "#",
       },
     ],
   },
