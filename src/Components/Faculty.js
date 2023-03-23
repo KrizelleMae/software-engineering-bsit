@@ -109,7 +109,7 @@ function Faculty(props) {
       <Center>
         <SimpleGrid
           columns={
-            list.length < 6 ? { sm: 0 } : { sm: 1, base: 2, md: 3, lg: 4 }
+            list.length < 6 ? { sm: 2 } : { sm: 1, base: 2, md: 3, lg: 4 }
           }
           spacing={{ sm: 6, lg: 10 }}
           mt={7}

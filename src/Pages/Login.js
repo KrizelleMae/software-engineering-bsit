@@ -28,20 +28,25 @@ import ccs from "../Assets/ccs.jpg";
 import logo from "../Assets/logo.png";
 import wave from "../Assets/wave.svg";
 import api from "../Api/api";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  let navigate = useNavigate();
+
   const PostRequest = async (e) => {
     e.preventDefault();
 
-    let response = await api.post("/login", {
-      email: email,
-      password: password,
-    });
+    navigate("/admin");
 
-    console.log(response);
+    // let response = await api.post("/login", {
+    //   email: email,
+    //   password: password,
+    // });
+
+    // console.log(response);
   };
   return (
     <div
@@ -101,8 +106,8 @@ function Login(props) {
                         type="text"
                         fontSize={13.5}
                         fontWeight={500}
-                        pattern="[a-z]{2}[0-9]{9}@wmsu.edu.ph"
-                        title="Kindly use your wmsu email."
+                        // pattern="[a-z]{2}[0-9]{9}@wmsu.edu.ph"
+                        // title="Kindly use your wmsu email."
                         placeholder="your_account@wmsu.edu.ph"
                         onChange={(e) => setEmail(e.target.value)}
                       />
