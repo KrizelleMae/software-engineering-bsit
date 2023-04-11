@@ -36,9 +36,16 @@ function NewsList(props) {
   }, []);
   return (
     <div>
-      <Box bg="gray.50" h="100%" p={6} borderRadius={5} overflow="hidden">
+      <Box
+        bg="gray.50"
+        h="100%"
+        p={6}
+        borderRadius={5}
+        overflow="hidden"
+        mt={2}
+      >
         <Text fontWeight={600} fontSize={20}>
-          Recent posts
+          Recent news
         </Text>
         <Box mt={5}>
           {list.map((e, k) => {
@@ -48,12 +55,12 @@ function NewsList(props) {
                   mt={2}
                   bg={"white"}
                   p={3}
-                  boxShadow="md"
-                  borderRadius={"sm"}
+                  boxShadow="base"
+                  borderRadius={"md"}
                 >
                   <Image src={e.image} h={"70px"} w={"70px"} />
                   <Box ml={2} alignItems="center">
-                    <Text fontSize={"auto"} fontWeight={"bold"}>
+                    <Text fontSize={"sm"} fontWeight={"regular"}>
                       {e.title}
                     </Text>
                     <Box display={"flex"} mt={1}>

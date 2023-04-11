@@ -5,6 +5,7 @@ import Dashboard from "../Pages/Admin/Dashboard";
 import Faculty from "../Pages/Admin/Faculty";
 import NewsAndAnnouncement from "../Pages/Admin/NewsAndAnnouncement";
 import Programs from "../Pages/Admin/Programs";
+import FacultyMain from "../Pages/Faculty/FacultyMain";
 import Homepage from "../Pages/Homepage";
 import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
@@ -16,16 +17,19 @@ function AnimatedRoutes() {
       <Route path="/student-act" element={<Activities />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+
+      {/* ADMIN */}
       <Route index path="/admin/" element={<Dashboard />} />
       <Route path="/admin/about/" element={<AdminAbout />} />
       <Route
         path="/admin/news-announcement"
         element={<NewsAndAnnouncement />}
       />
-
       <Route path="/admin/programs" element={<Programs />} />
-
       <Route path="/admin/faculty" element={<Faculty />} />
+
+      {/* FACULTY */}
+      <Route path="/faculty" element={<FacultyMain />} />
     </Routes>
   );
 }
