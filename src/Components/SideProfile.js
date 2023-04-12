@@ -1,23 +1,8 @@
 import React, { useState } from "react";
 import { Box, Center, Image, Text, VStack, Link } from "@chakra-ui/react";
-import "../../Styles/Links.css";
+import "../Styles/Links.css";
 
-function SideProfile(props) {
-  const [side, setSide] = useState([
-    {
-      name: "Feed",
-      href: "/faculty",
-      active: true,
-    },
-    {
-      name: "My Profile",
-      href: "/profile",
-    },
-    {
-      name: "Account Settings",
-      href: "/settings",
-    },
-  ]);
+function SideProfile({ side }) {
   return (
     <Box>
       <Box px={{ sm: 0, lg: 24 }}>
@@ -48,7 +33,7 @@ function SideProfile(props) {
                 py={3}
                 textTransform="uppercase"
                 color="gray"
-                fontSize={15}
+                fontSize={14}
                 _hover={{
                   bg: "white",
                   color: "black",

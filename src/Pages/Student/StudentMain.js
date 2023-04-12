@@ -23,7 +23,7 @@ import NewsList from "../../Components/Admin/NewsList";
 import { BiChevronDown, BiSearch } from "react-icons/bi";
 import SideProfile from "../../Components/SideProfile";
 
-function FacultyMain(props) {
+function StudentMain(props) {
   const [side, setSide] = useState([
     {
       name: "Feed",
@@ -44,7 +44,7 @@ function FacultyMain(props) {
     },
   ]);
   return (
-    <Box>
+    <div>
       <Grid templateColumns={"repeat(9, 1fr)"} h={"100vh"}>
         {/* SIDEBAR */}
         <GridItem
@@ -87,8 +87,7 @@ function FacultyMain(props) {
                   </Button>
                 </InputRightElement>
               </InputGroup>
-
-              {/* MENU */}
+              MENU
               <Menu>
                 <MenuButton as={Button} rightIcon={<BiChevronDown />} size="sm">
                   Filter by{" "}
@@ -102,23 +101,11 @@ function FacultyMain(props) {
             </HStack>
           </Box>
 
-          <Stack mt={20} pt={10}>
-            <Text mb={3} textTransform="uppercase" fontWeight={600}>
-              Recent updates:
-            </Text>
-            {[...Array(2)].map((e) => {
-              return <Feed />;
-            })}
-          </Stack>
-        </GridItem>
-        <GridItem colSpan={3}>
-          <Box pos="fixed" h="100vh">
-            <NewsList />
-          </Box>
+          <Stack mt={20} pt={10}></Stack>
         </GridItem>
       </Grid>
-    </Box>
+    </div>
   );
 }
 
-export default FacultyMain;
+export default StudentMain;
