@@ -15,6 +15,7 @@ import {
   InputRightElement,
   Input,
   Text,
+  Container,
   Stack,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
@@ -44,7 +45,7 @@ function FacultyMain(props) {
     },
   ]);
   return (
-    <Box>
+    <Container maxW="container.4xl">
       <Grid templateColumns={"repeat(9, 1fr)"} h={"100vh"}>
         {/* SIDEBAR */}
         <GridItem
@@ -117,7 +118,7 @@ function FacultyMain(props) {
           </Box>
         </GridItem>
       </Grid>
-    </Box>
+    </Container>
   );
 }
 

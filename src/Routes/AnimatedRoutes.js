@@ -10,6 +10,7 @@ import Homepage from "../Pages/Homepage";
 import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
 import StudentMain from "../Pages/Student/StudentMain";
+import AlumniMain from "../Pages/Alumni/AlumniMain";
 
 function AnimatedRoutes() {
   return (
@@ -34,6 +35,9 @@ function AnimatedRoutes() {
 
       {/* STUDENTS */}
       <Route path="/student" element={<StudentMain />} />
+
+      {/* ALUMNI */}
+      <Route path="/alumni" element={<AlumniMain />} />
     </Routes>
   );
 }

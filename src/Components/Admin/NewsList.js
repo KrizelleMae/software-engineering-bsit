@@ -37,7 +37,7 @@ function NewsList(props) {
   return (
     <div>
       <Box
-        bg="gray.50"
+        // bg="gray.50"
         h="100%"
         p={6}
         borderRadius={5}

@@ -4,8 +4,8 @@ import "../Styles/Links.css";
 
 function SideProfile({ side }) {
   return (
-    <Box>
-      <Box px={{ sm: 0, lg: 24 }}>
+    <Box background={"gray.100"} h={"100vh"} pt={"50px"}>
+      <Box px={{ sm: 0, lg: 20 }}>
         <Image
           boxSize="150px"
           src="https://bit.ly/dan-abramov"
@@ -22,7 +22,7 @@ function SideProfile({ side }) {
         </VStack>
       </Box>
 
-      <Box pt={10}>
+      <Box pt={10} pr={5}>
         {side.map((e) => {
           return (
             <Link _hover={{ textDecoration: "none" }}>
@@ -30,13 +30,14 @@ function SideProfile({ side }) {
                 className={e.active ? "active" : ""}
                 my={3}
                 width="100%"
-                py={3}
+                py={4}
                 textTransform="uppercase"
-                color="gray"
-                fontSize={14}
+                color="gray.500"
+                fontSize={16}
                 _hover={{
                   bg: "white",
                   color: "black",
+                  borderRightRadius: "50px",
                 }}
               >
                 {e.name}
