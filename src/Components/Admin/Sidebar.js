@@ -277,7 +277,15 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
               <MenuItem>Settings</MenuItem>
 
               <MenuDivider />
-              <MenuItem>Sign out</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  sessionStorage.setItem("loggedIn", false);
+                  sessionStorage.removeItem("user");
+                  window.location.href = "/";
+                }}
+              >
+                Sign out
+              </MenuItem>
             </MenuList>
           </Menu>
         </Flex>

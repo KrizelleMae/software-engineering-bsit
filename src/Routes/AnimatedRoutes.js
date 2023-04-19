@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Activities from "../Pages/Activities";
 import AdminAbout from "../Pages/Admin/AdminAbout";
 import Dashboard from "../Pages/Admin/Dashboard";
@@ -13,8 +13,35 @@ import StudentMain from "../Pages/Student/StudentMain";
 import AlumniMain from "../Pages/Alumni/AlumniMain";
 import Downloads from "../Pages/Admin/Downloads";
 import UploadFile from "../Pages/Admin/UploadFile";
+import { useEffect, useState } from "react";
 
 function AnimatedRoutes() {
+  // let navigate = useNavigate();
+  // // const [user, setUser] = useState(null);
+  // const [loggedIn, setLoggedIn] = useState(
+  //   sessionStorage.getItem("loggedIn") ?? false
+  // );
+
+  // useEffect(() => {
+  //   // setLoggedIn();
+  //   // console.log(loggedIn);
+  //   if (loggedIn) {
+  //     const data = JSON.parse(sessionStorage.getItem("user"));
+
+  //     // console.log(data);
+  //     if (data.role == 0) {
+  //       navigate("/admin");
+  //     } else if (data.role == 1) {
+  //       navigate("/faculty");
+  //     } else if (data.role == 2) {
+  //       navigate("/student");
+  //     } else if (data.role == 3) {
+  //       navigate("/alumni");
+  //     }
+  //   } else {
+  //     console.log("Logged out");
+  //   }
+  // }, [loggedIn]);
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />

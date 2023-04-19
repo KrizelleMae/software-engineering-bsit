@@ -4,18 +4,13 @@ import {
   Text,
   Heading,
   Center,
-  Drawer,
-  DrawerOverlay,
-  DrawerContent,
   DrawerBody,
-  UnorderedList,
-  ListItem,
   useDisclosure,
   Box,
   Flex,
 } from "@chakra-ui/react";
 import api from "../../Api/api";
-import { BiNotepad, BiPaperclip } from "react-icons/bi";
+// import { BiNotepad } from "react-icons/bi";
 
 function ProgramsDrawer(props) {
   const { isOpen, onClose } = useDisclosure();
@@ -53,7 +48,7 @@ function ProgramsDrawer(props) {
 
         <Box pt={30}>
           <Flex>
-            <BiNotepad /> <small style={{ marginLeft: 2 }}> Program name</small>
+            <small style={{ marginLeft: 2 }}> Program name</small>
           </Flex>{" "}
           <Heading
             mt={1}

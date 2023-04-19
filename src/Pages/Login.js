@@ -29,6 +29,7 @@ import logo from "../Assets/logo.png";
 import wave from "../Assets/wave.svg";
 import api from "../Api/api";
 import { Navigate, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Login(props) {
   const [email, setEmail] = useState("");
@@ -39,12 +40,61 @@ function Login(props) {
   const PostRequest = async (e) => {
     e.preventDefault();
 
-    navigate("/admin");
+    // navigate("/admin");
+    try {
+      let response = await api.post("/login", {
+        email: email,
+        password: password,
+      });
 
-    // let response = await api.post("/login", {
-    //   email: email,
-    //   password: password,
-    // });
+      // const role = response.data.user.role;
+
+      // console.log(role);
+      if (response.data.status === 1) {
+        if (
+          typeof Storage !== "undefined" &&
+          typeof sessionStorage !== "undefined"
+        ) {
+          // Session Storage is available
+          sessionStorage.setItem("loggedIn", true);
+          sessionStorage.setItem("user", JSON.stringify(response.data.user));
+
+          if (response.data.user.role == 0) {
+            navigate("/admin");
+          } else if (response.data.user.role == 1) {
+            navigate("/faculty");
+          } else if (response.data.user.role == 2) {
+            navigate("/student");
+          } else if (response.data.user.role == 3) {
+            navigate("/alumni");
+          }
+        } else {
+          // Session Storage is not supported
+          alert("Session not available");
+        }
+      } else {
+        toast.error("Invalid credentials.", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Invalid credentials.", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
 
     // console.log(response);
   };
