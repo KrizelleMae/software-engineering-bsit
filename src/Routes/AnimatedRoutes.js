@@ -11,6 +11,8 @@ import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
 import StudentMain from "../Pages/Student/StudentMain";
 import AlumniMain from "../Pages/Alumni/AlumniMain";
+import Downloads from "../Pages/Admin/Downloads";
+import UploadFile from "../Pages/Admin/UploadFile";
 
 function AnimatedRoutes() {
   return (
@@ -29,6 +31,8 @@ function AnimatedRoutes() {
       />
       <Route path="/admin/programs" element={<Programs />} />
       <Route path="/admin/faculty" element={<Faculty />} />
+      <Route path="/admin/downloadables" element={<Downloads />} />
+      <Route path="/upload" element={<UploadFile />} />
 
       {/* FACULTY */}
       <Route path="/faculty" element={<FacultyMain />} />

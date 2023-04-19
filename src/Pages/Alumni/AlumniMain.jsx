@@ -19,12 +19,14 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
+  Text,
+  Link,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import NewsList from "../../Components/Admin/NewsList";
 import Downloadables from "../../Components/Downloadables";
 import AlumniProfileModal from "../../Components/Popups/AlumniProfileModal";
-import { industry } from "../../Data/WorkIndustryList";
+import StudentProfilePage from "../Faculty/StudentProfilePage";
 
 function AlumniMain(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -41,13 +43,15 @@ function AlumniMain(props) {
               {/* CONTENT */}
               <Tabs variant="soft-rounded" colorScheme="blue" p={10}>
                 <TabList>
-                  <Tab>Home</Tab>
+                  {/* <Tab>Home</Tab> */}
                   <Tab>Profile</Tab>
                   <Tab>Links</Tab>
                   <Tab>Downloadables</Tab>
                 </TabList>
                 <TabPanels py={10}>
-                  <TabPanel>{/* <StudentProfilePage /> */}</TabPanel>
+                  <TabPanel>
+                    <StudentProfilePage />
+                  </TabPanel>
                   <TabPanel>
                     <Button onClick={onOpen}>Open Modal</Button>
 
@@ -58,7 +62,16 @@ function AlumniMain(props) {
                     </Modal>
                   </TabPanel>
                   <TabPanel>
-                    <p>Links</p>
+                    <Text fontWeight={600} mb={2}>
+                      Survey link:
+                    </Text>
+                    {/* <Box py={2} px={3} bg="gray.100" borderRadius={5}> */}
+                    <Link
+                      href="https://drive.google.com/drive/my-drive"
+                      target="_blank"
+                    >
+                      https://drive.google.com/drive/my-drive
+                    </Link>
                   </TabPanel>
                   <TabPanel>
                     <Downloadables />
@@ -72,7 +85,9 @@ function AlumniMain(props) {
         </GridItem>
 
         <GridItem colSpan={1}>
-          <NewsList />
+          <Box pos="fixed" h="100vh">
+            <NewsList />
+          </Box>
         </GridItem>
       </Grid>
     </>

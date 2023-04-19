@@ -26,10 +26,21 @@ function Downloadables(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   // PREVIEW
-  const PreviewFile = (file_path) => {
-    const new_path = file_path.split("/");
-    setPath(new_path[1]);
-    onOpen();
+  // const download = (file_path) => {
+  //   const new_path = file_path.split("/");
+  //   setPath(new_path[1]);
+  //   onOpen();
+  // };
+
+  const download = async (file) => {
+    const path = file.split("/");
+    // let response = await api.get(`/download/${path[1]}`);
+    fetch(`/api/download/${path[1]}`)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = URL.createObjectURL(blob);
+        window.open(url, "_blank");
+      });
   };
 
   // FETCH FILES
@@ -46,8 +57,8 @@ function Downloadables(props) {
   }, []);
   return (
     <div>
-      <Text fontWeight={500} fontSize={20} mb={5} textTransform={"uppercase"}>
-        Downloadable Files
+      <Text fontWeight={500} fontSize={15} mb={5} textTransform={"uppercase"}>
+        Downloadable files
       </Text>
 
       <Alert status="info" borderRadius={3}>
@@ -86,7 +97,7 @@ function Downloadables(props) {
                 pl={4}
                 fontSize={13}
                 onClick={() => {
-                  PreviewFile(e.file_name);
+                  download(e.file_name);
                 }}
               >
                 {e.name}

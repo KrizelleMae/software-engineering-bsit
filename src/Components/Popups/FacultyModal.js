@@ -16,13 +16,16 @@ import {
   IconButton,
   Flex,
   Image,
+  HStack,
 } from "@chakra-ui/react";
 import api from "../../Api/api";
 import { BiPlus, BiSend, BiTrash } from "react-icons/bi";
 import { toast } from "react-toastify";
 
 function FacultyModal(props) {
-  const [name, setName] = useState("");
+  const [fname, setFname] = useState("");
+  const [mi, setMI] = useState("");
+  const [lname, setLname] = useState("");
   const [designation, setDesignation] = useState("");
   const [image, setImage] = useState("");
   const [list, setList] = useState([]);
@@ -31,7 +34,9 @@ function FacultyModal(props) {
 
   const getFaculty = async () => {
     let response = await api.get(`/faculty/${props.id}`);
-    setName(response.data.name);
+    setFname(response.data.fname);
+    setLname(response.data.lname);
+    setMI(response.data.mi);
     setDesignation(response.data.designation);
     setImage(response.data.image);
     setList(JSON.parse(response.data.qualifications));
@@ -61,7 +66,9 @@ function FacultyModal(props) {
   //   UPDATE
   const update = async () => {
     let response = await api.post(`/faculty/${props.id}`, {
-      name: name,
+      fname: fname,
+      mi: mi,
+      lname: lname,
       designation: designation,
       qualifications: JSON.stringify(list),
       // public_id: upload.data.public_id,
@@ -121,24 +128,56 @@ function FacultyModal(props) {
               />
 
               <Box w="100%">
-                <FormControl isRequired>
-                  <FormLabel
-                    fontWeight={500}
-                    color="gray.600"
-                    fontSize="sm"
-                    htmlFor="username"
-                  >
-                    Faculty name
-                  </FormLabel>
+                <HStack>
+                  <FormControl isRequired>
+                    <FormLabel
+                      fontWeight={500}
+                      color="gray.600"
+                      fontSize="sm"
+                      htmlFor="username"
+                    >
+                      First name
+                    </FormLabel>
 
-                  <Input
-                    placeholder="John"
-                    mr="2"
-                    defaultValue={name}
-                    name="name"
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </FormControl>
+                    <Input
+                      onChange={(e) => setFname(e.target.value)}
+                      value={fname}
+                      mr="2"
+                    />
+                  </FormControl>
+                  <FormControl isRequired>
+                    <FormLabel
+                      fontWeight={500}
+                      color="gray.600"
+                      fontSize="sm"
+                      htmlFor="username"
+                    >
+                      Last name
+                    </FormLabel>
+
+                    <Input
+                      onChange={(e) => setLname(e.target.value)}
+                      value={lname}
+                      mr="2"
+                    />
+                  </FormControl>
+                  <FormControl isRequired w={200}>
+                    <FormLabel
+                      fontWeight={500}
+                      color="gray.600"
+                      fontSize="sm"
+                      htmlFor="username"
+                    >
+                      MI
+                    </FormLabel>
+
+                    <Input
+                      onChange={(e) => setMI(e.target.value)}
+                      mr="2"
+                      value={mi}
+                    />
+                  </FormControl>
+                </HStack>
 
                 <FormControl isRequired mt={2}>
                   <FormLabel

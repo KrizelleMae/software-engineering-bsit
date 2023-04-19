@@ -51,7 +51,9 @@ function Faculty(props) {
   // const { , onOpen1, onClose1 } = useDisclosure();
   const [list, setList] = useState([]);
   // const [len, setLen] = useState(list.length);
-  const [name, setName] = useState("");
+  const [fname, setFname] = useState("");
+  const [mi, setMI] = useState("");
+  const [lname, setLname] = useState("");
   const [designation, setDesignation] = useState("");
   const [file, setFile] = useState("");
   const [id, setId] = useState("");
@@ -119,7 +121,9 @@ function Faculty(props) {
 
         if (upload.status === 200) {
           let response = await api.post("/faculty", {
-            name: name,
+            fname: fname,
+            mi: mi,
+            lname: lname,
             image: upload.data.url,
             designation: designation,
             qualifications: JSON.stringify(list),
@@ -232,7 +236,7 @@ function Faculty(props) {
                           src={el.image}
                         />
                       </Td>
-                      <Td>{el.name}</Td>
+                      <Td>{el.fname + " " + el.lname}</Td>
 
                       <Td>{el.designation}</Td>
                       <Td>
@@ -269,7 +273,7 @@ function Faculty(props) {
         </div>
 
         <Drawer
-          size={"lg"}
+          size={"xl"}
           isOpen={drawer.isOpen}
           placement="right"
           onClose={drawer.onClose}
@@ -304,22 +308,50 @@ function Faculty(props) {
                       }}
                     />
                   </FormControl>
-                  <FormControl isRequired>
-                    <FormLabel
-                      fontWeight={500}
-                      color="gray.600"
-                      fontSize="sm"
-                      htmlFor="username"
-                    >
-                      Faculty name
-                    </FormLabel>
+                  <HStack>
+                    <FormControl isRequired>
+                      <FormLabel
+                        fontWeight={500}
+                        color="gray.600"
+                        fontSize="sm"
+                        htmlFor="username"
+                      >
+                        First name
+                      </FormLabel>
 
-                    <Input
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="John"
-                      mr="2"
-                    />
-                  </FormControl>
+                      <Input
+                        onChange={(e) => setFname(e.target.value)}
+                        mr="2"
+                      />
+                    </FormControl>
+                    <FormControl isRequired>
+                      <FormLabel
+                        fontWeight={500}
+                        color="gray.600"
+                        fontSize="sm"
+                        htmlFor="username"
+                      >
+                        Last name
+                      </FormLabel>
+
+                      <Input
+                        onChange={(e) => setLname(e.target.value)}
+                        mr="2"
+                      />
+                    </FormControl>
+                    <FormControl isRequired w={200}>
+                      <FormLabel
+                        fontWeight={500}
+                        color="gray.600"
+                        fontSize="sm"
+                        htmlFor="username"
+                      >
+                        MI
+                      </FormLabel>
+
+                      <Input onChange={(e) => setMI(e.target.value)} mr="2" />
+                    </FormControl>
+                  </HStack>
 
                   <FormControl isRequired>
                     <FormLabel

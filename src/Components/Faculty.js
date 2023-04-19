@@ -140,7 +140,7 @@ function Faculty(props) {
                   fontWeight={500}
                   fontFamily={"body"}
                 >
-                  {el.name}
+                  {el.fname + " " + el.lname}
                 </Heading>
                 <Text color={"gray.500"} fontSize={14} fontStyle="italic">
                   {el.designation}

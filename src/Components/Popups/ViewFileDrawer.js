@@ -20,10 +20,10 @@ function ViewFileDrawer({ path }) {
   const [file, setFile] = useState("");
   const [image, setImage] = useState("");
 
-  const getFile = async () => {
-    let response = await api.get(`/file/${path}`);
-    setFile(response.data);
-  };
+  //   const getFile = async () => {
+  //     let response = await api.get(`/file/${path}`);
+  //     setFile(response.data);
+  //   };
 
   const download = async () => {
     let response = await api.get(`/download/${path}`);
@@ -33,7 +33,7 @@ function ViewFileDrawer({ path }) {
   };
 
   useEffect(() => {
-    getFile();
+    // getFile();
   }, [path]);
 
   return (

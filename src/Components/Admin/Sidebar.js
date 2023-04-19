@@ -154,9 +154,15 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <Link href="/admin/programs">Programs</Link>
       </NavItem>
 
+      <NavItem
+        icon={BiDownload}
+        className={path.includes("admin/downloadables") ? "active" : ""}
+      >
+        <Link href="/admin/downloadables">Downloadables</Link>
+      </NavItem>
+
       <NavItem icon={BiUserPlus}>Students</NavItem>
       <NavItem icon={BsFilePerson}>Alumni</NavItem>
-      <NavItem icon={BiDownload}>Downloadables</NavItem>
     </Box>
   );
 };

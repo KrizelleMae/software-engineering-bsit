@@ -11,6 +11,7 @@ import {
   Tabs,
   TabPanel,
   TabPanels,
+  Text,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import NewsList from "../../Components/Admin/NewsList";
@@ -32,7 +33,7 @@ function StudentMain(props) {
               <Tabs variant="soft-rounded" colorScheme="blue" p={10}>
                 <TabList>
                   <Tab>Profile</Tab>
-                  <Tab>Announcements</Tab>
+                  {/* <Tab>Announcements</Tab> */}
                   <Tab>Links</Tab>
                   <Tab>Downloadables</Tab>
                 </TabList>
@@ -40,11 +41,21 @@ function StudentMain(props) {
                   <TabPanel>
                     <StudentProfilePage />
                   </TabPanel>
-                  <TabPanel>
+                  {/* <TabPanel>
                     <p>Announcements</p>
-                  </TabPanel>
+                  </TabPanel> */}
                   <TabPanel>
-                    <p>Links</p>
+                    <Text fontWeight={600} mb={2}>
+                      Survey link:
+                    </Text>
+                    {/* <Box py={2} px={3} bg="gray.100" borderRadius={5}> */}
+                    <a
+                      href="https://drive.google.com/drive/my-drive"
+                      target="_blank"
+                    >
+                      https://drive.google.com/drive/my-drive
+                    </a>
+                    {/* </Box> */}
                   </TabPanel>
                   <TabPanel>
                     <Downloadables />
