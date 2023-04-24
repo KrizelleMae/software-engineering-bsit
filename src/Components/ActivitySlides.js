@@ -1,7 +1,6 @@
 import React from "react";
 // import Flickity from "react-flickity-component";
 import campus from "../Assets/campus.jpg";
-import ccs1 from "../Assets/ccs.png";
 import pic from "../Assets/pic.jpg";
 import uni from "../Assets/uni.jpg";
 import Slider from "react-slick";

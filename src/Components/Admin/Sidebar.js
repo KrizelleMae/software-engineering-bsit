@@ -105,7 +105,12 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         icon={BiNews}
         className={path.includes("admin/news-announcement") ? "active" : ""}
       >
-        <Link href="/admin/news-announcement">News & Anns</Link>
+        <Link
+          _hover={{ textDecoration: "none" }}
+          href="/admin/news-announcement"
+        >
+          News & Anns
+        </Link>
       </NavItem>
 
       <Flex
@@ -119,7 +124,9 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         className={path.includes("admin/about") ? "active" : ""}
       >
         <NavItem icon={FiFilePlus}>
-          <Link href="/admin/about">About</Link>
+          <Link _hover={{ textDecoration: "none" }} href="/admin/about">
+            About
+          </Link>
         </NavItem>
 
         {/* {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />} */}
@@ -128,13 +135,13 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       {/* <Collapse in={isOpen} animateOpacity>
         <Stack pl={8} py={3} bg="red.50">
           <Box py={2}>
-            <Link href="/admin/about/mission-vision">Mission and Vision</Link>
+            <Link _hover={{textDecoration: 'none'}} href="/admin/about/mission-vision">Mission and Vision</Link>
           </Box>
           <Box py={2}>
-            <Link href="/admin/about/objectives">Objectives</Link>
+            <Link _hover={{textDecoration: 'none'}} href="/admin/about/objectives">Objectives</Link>
           </Box>
           <Box py={2}>
-            <Link href="/admin/about/outcomes">Program Outcomes</Link>
+            <Link _hover={{textDecoration: 'none'}} href="/admin/about/outcomes">Program Outcomes</Link>
           </Box>
         </Stack>
       </Collapse> */}
@@ -144,25 +151,39 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         icon={FiUsers}
         className={path.includes("admin/faculty") ? "active" : ""}
       >
-        <Link href="/admin/faculty">Faculty</Link>
+        <Link _hover={{ textDecoration: "none" }} href="/admin/faculty">
+          Faculty
+        </Link>
       </NavItem>
 
       <NavItem
         icon={FiList}
         className={path.includes("admin/programs") ? "active" : ""}
       >
-        <Link href="/admin/programs">Programs</Link>
+        <Link _hover={{ textDecoration: "none" }} href="/admin/programs">
+          Programs
+        </Link>
       </NavItem>
 
       <NavItem
         icon={BiDownload}
         className={path.includes("admin/downloadables") ? "active" : ""}
       >
-        <Link href="/admin/downloadables">Downloadables</Link>
+        <Link _hover={{ textDecoration: "none" }} href="/admin/downloadables">
+          Downloadables
+        </Link>
       </NavItem>
 
-      <NavItem icon={BiUserPlus}>Students</NavItem>
-      <NavItem icon={BsFilePerson}>Alumni</NavItem>
+      <NavItem
+        icon={BiUserPlus}
+        className={path.includes("admin/students") ? "active" : ""}
+      >
+        <Link _hover={{ textDecoration: "none" }} href="/admin/students">
+          Students
+        </Link>
+      </NavItem>
+
+      <NavItem>Alumni</NavItem>
     </Box>
   );
 };
@@ -174,6 +195,7 @@ interface NavItemProps extends FlexProps {
 const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
   return (
     <Link
+      _hover={{ textDecoration: "none" }}
       href="#"
       style={{ textDecoration: "none" }}
       _focus={{ boxShadow: "none" }}

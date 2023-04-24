@@ -14,6 +14,7 @@ import AlumniMain from "../Pages/Alumni/AlumniMain";
 import Downloads from "../Pages/Admin/Downloads";
 import UploadFile from "../Pages/Admin/UploadFile";
 import { useEffect, useState } from "react";
+import Students from "../Pages/Admin/Students";
 
 function AnimatedRoutes() {
   // let navigate = useNavigate();
@@ -60,6 +61,7 @@ function AnimatedRoutes() {
       <Route path="/admin/faculty" element={<Faculty />} />
       <Route path="/admin/downloadables" element={<Downloads />} />
       <Route path="/upload" element={<UploadFile />} />
+      <Route path="/admin/students" element={<Students />} />
 
       {/* FACULTY */}
       <Route path="/faculty" element={<FacultyMain />} />

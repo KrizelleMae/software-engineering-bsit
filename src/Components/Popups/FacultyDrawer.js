@@ -25,7 +25,9 @@ function FacultyDrawer(props) {
 
   const getFaculty = async () => {
     let response = await api.get(`/faculty/${props.id}`);
-    setName(response.data.name);
+    setName(
+      response.data.fname + " " + response.data.mi + " " + response.data.lname
+    );
     setImage(response.data.image);
     setDesignation(response.data.designation);
     let parsed = JSON.parse(response.data.qualifications);
