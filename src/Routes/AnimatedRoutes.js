@@ -15,6 +15,7 @@ import Downloads from "../Pages/Admin/Downloads";
 import UploadFile from "../Pages/Admin/UploadFile";
 import { useEffect, useState } from "react";
 import Students from "../Pages/Admin/Students";
+import PDFViewer from "../Components/FileViewer";
 
 function AnimatedRoutes() {
   // let navigate = useNavigate();
@@ -49,6 +50,7 @@ function AnimatedRoutes() {
       <Route path="/student-act" element={<Activities />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/view/{file}" element={<PDFViewer />} />
 
       {/* ADMIN */}
       <Route index path="/admin/" element={<Dashboard />} />

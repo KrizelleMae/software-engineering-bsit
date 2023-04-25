@@ -16,9 +16,10 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { BsFile, BsFileEarmarkPdf, BsFiletypeDocx } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../Api/api";
 import ViewFileDrawer from "./Popups/ViewFileDrawer";
+import PDFViewer from "./FileViewer";
 
 function Downloadables(props) {
   const [list, setList] = useState([]);
@@ -32,15 +33,23 @@ function Downloadables(props) {
   //   onOpen();
   // };
 
-  const download = async (file) => {
+  // const download = async (file) => {
+  //   // const path = file.split("/");
+  //   // // let response = await api.get(`/download/${path[1]}`);
+  //   // fetch(`/api/download/${path[1]}`)
+  //   //   .then((response) => response.blob())
+  //   //   .then((blob) => {
+  //   //     const url = URL.createObjectURL(blob);
+  //       // window.open(url, "_blank");
+  //   //   });
+  // };
+  let navigate = useNavigate();
+  const download = (file) => {
     const path = file.split("/");
-    // let response = await api.get(`/download/${path[1]}`);
-    fetch(`/api/download/${path[1]}`)
-      .then((response) => response.blob())
-      .then((blob) => {
-        const url = URL.createObjectURL(blob);
-        window.open(url, "_blank");
-      });
+    // window.location.href = file;
+    // window.open(file, "_blank");
+
+    window.location.href = `view/${path[2]}`;
   };
 
   // FETCH FILES
