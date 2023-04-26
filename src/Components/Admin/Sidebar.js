@@ -37,7 +37,7 @@ import { IconType } from "react-icons";
 import { ReactText } from "react";
 import logo from "../../Assets/logo.png";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
-import { BiDownload, BiNews, BiUserPlus } from "react-icons/bi";
+import { BiDownload, BiNews, BiPaperPlane, BiUserPlus } from "react-icons/bi";
 import { BsFilePerson } from "react-icons/bs";
 import "../../Styles/Sidebar.css";
 
@@ -183,7 +183,14 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         </Link>
       </NavItem>
 
-      <NavItem>Alumni</NavItem>
+      <NavItem
+        icon={BiPaperPlane}
+        className={path.includes("admin/memo") ? "active" : ""}
+      >
+        <Link _hover={{ textDecoration: "none" }} href="/admin/memo">
+          Memorandum
+        </Link>
+      </NavItem>
     </Box>
   );
 };

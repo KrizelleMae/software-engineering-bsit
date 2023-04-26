@@ -10,6 +10,7 @@ import {
   Box,
 } from "@chakra-ui/react";
 import StudentActivities from "../../Components/Admin/StudentActivities";
+import StudentSupport from "../../Contents/StudentSupport";
 
 function Students(props) {
   return (
@@ -31,7 +32,9 @@ function Students(props) {
                   </Button> */}
                   <StudentActivities />
                 </TabPanel>
-                <TabPanel>{/* */}</TabPanel>
+                <TabPanel>
+                  <StudentSupport />
+                </TabPanel>
               </TabPanels>
             </Tabs>
           </Box>

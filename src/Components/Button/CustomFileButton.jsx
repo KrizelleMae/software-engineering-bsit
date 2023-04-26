@@ -21,11 +21,11 @@ function CustomFileButton(props) {
       <input
         type="file"
         ref={fileInputRef}
-        accept="image/*"
+        // accept="image/*"
         style={{
           display: "none",
         }}
-        multiple={true}
+        // multiple={true}
         onChange={handleFileInputChange}
       />
       <Button size="sm" onClick={handleButtonClick} colorScheme="blue">

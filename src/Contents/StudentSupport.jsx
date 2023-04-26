@@ -22,19 +22,16 @@ import {
 import React, { useState } from "react";
 import { BiEditAlt, BiPlus, BiTrash } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
-import AddActivity from "../../Contents/AddActivity";
 
-function StudentActivities(props) {
+function StudentSupport(props) {
   let navigate = useNavigate();
   const drawer = useDisclosure();
 
-  const [data, setData] = useState([]);
-
   return (
-    <>
+    <div>
       <Box mt={2}>
         <Flex alignItems="center" justifyContent="space-between">
-          <Heading fontSize="2xl">Student Activities </Heading>{" "}
+          <Heading fontSize="2xl">Student Support </Heading>{" "}
           <Box align="right" my={2}>
             <Button
               colorScheme="green"
@@ -51,12 +48,12 @@ function StudentActivities(props) {
           <Table size="sm" variant="simple">
             <Thead>
               <Tr>
-                <Th>Activity </Th>
-                {/* <Th>Rank</Th> */}
-                <Th>Date</Th>
-                <Th>location</Th>
+                <Th>Image</Th>
+                <Th>Organization </Th>
                 <Th>Description</Th>
-                <Th>Actions</Th>
+                <Th>Head</Th>
+                <Th>Address</Th>
+                <Th>Contact</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -67,15 +64,19 @@ function StudentActivities(props) {
                       <Image borderRadius="full" boxSize="54" />
                     </Td> */}
 
-                    <Td>Activity</Td>
-                    <Td>Date</Td>
-                    <Td>Location</Td>
+                    <Td>Image</Td>
+                    <Td>Organization name</Td>
+
                     <Td>
                       <i style={{ fontSize: 12 }}>
                         -- Click edit to view description and images --
                       </i>
                     </Td>
-                    <Td>
+
+                    <Td>John Doe</Td>
+                    <Td>WMSU Campus A</Td>
+                    <Td>09876787657</Td>
+                    {/* <Td>
                       <IconButton
                         onClick={() => {
                           // getFaculty(el.id);
@@ -95,7 +96,7 @@ function StudentActivities(props) {
                         colorScheme={"red"}
                         icon={<BiTrash />}
                       />
-                    </Td>
+                    </Td> */}
                   </Tr>
                 );
               })}
@@ -103,27 +104,8 @@ function StudentActivities(props) {
           </Table>
         </TableContainer>
       </Box>
-      {/* ADD ACTIVITY DRAWER */}{" "}
-      <Drawer
-        size={"xl"}
-        isOpen={drawer.isOpen}
-        placement="right"
-        onClose={drawer.onClose}
-      >
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader borderBottomWidth="1px">Add new activity</DrawerHeader>
-
-          <DrawerBody>
-            <Box p={5}>
-              <AddActivity />
-            </Box>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
-    </>
+    </div>
   );
 }
 
-export default StudentActivities;
+export default StudentSupport;
