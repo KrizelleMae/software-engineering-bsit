@@ -18,13 +18,16 @@ import {
   Container,
   Stack,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Feed from "../../Components/Faculty/Feed";
 import NewsList from "../../Components/Admin/NewsList";
 import { BiChevronDown, BiSearch } from "react-icons/bi";
 import SideProfile from "../../Components/SideProfile";
+import api from "../../Api/api";
 
 function FacultyMain(props) {
+  const [access, setAccess] = useState(1);
+  const [data, setData] = useState([]);
   const [side, setSide] = useState([
     {
       name: "Feed",
@@ -44,6 +47,19 @@ function FacultyMain(props) {
       href: "/faculty-downloadables",
     },
   ]);
+
+  const [id, setId] = useState("");
+
+  const getList = async () => {
+    let response = await api.get(`/memoAccess/1`);
+
+    setData(response.data);
+  };
+
+  useEffect(() => {
+    getList();
+  }, [data]);
+
   return (
     <Container maxW="container.4xl">
       <Grid templateColumns={"repeat(9, 1fr)"} h={"100vh"}>
@@ -107,8 +123,17 @@ function FacultyMain(props) {
             <Text mb={3} textTransform="uppercase" fontWeight={600}>
               Recent updates:
             </Text>
-            {[...Array(2)].map((e) => {
-              return <Feed />;
+            {data.map((e, key) => {
+              return (
+                <Feed
+                  title={e.title}
+                  description={e.description}
+                  file={e.file}
+                  file_name={e.file_name}
+                  created_at={e.created_at}
+                  updated_at={e.cupdated_at}
+                />
+              );
             })}
           </Stack>
         </GridItem>

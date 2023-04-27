@@ -9,6 +9,7 @@ import {
   List,
   ListIcon,
   ListItem,
+  Select,
   Text,
   Textarea,
   VStack,
@@ -22,6 +23,7 @@ import { toast } from "react-toastify";
 
 function AddMemo(props) {
   //DATA
+  const [access, setAccess] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [files, setFiles] = useState([]);
@@ -64,6 +66,7 @@ function AddMemo(props) {
     e.preventDefault();
 
     const formData = new FormData();
+    formData.append("access", access);
     formData.append("title", title);
     formData.append("description", description);
     formData.append("file", files[0]);
@@ -105,6 +108,21 @@ function AddMemo(props) {
       }}
     >
       <FormControl isRequired>
+        <FormLabel fontWeight={600} fontSize={15}>
+          Audience
+        </FormLabel>
+        <Select
+          placeholder="Select option"
+          onChange={(e) => {
+            setAccess(e.target.value);
+          }}
+        >
+          <option value="1">Faculties only</option>
+          <option value="2">Students only</option>
+          <option value="3">All</option>
+        </Select>
+      </FormControl>
+      <FormControl isRequired mt={3}>
         <FormLabel fontWeight={600} fontSize={15}>
           Memo title
         </FormLabel>

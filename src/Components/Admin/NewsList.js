@@ -57,6 +57,7 @@ function NewsList(props) {
                   p={3}
                   boxShadow="base"
                   borderRadius={"md"}
+                  key={k}
                 >
                   <Image src={e.image} h={"70px"} w={"70px"} />
                   <Box ml={2} alignItems="center">
