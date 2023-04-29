@@ -25,8 +25,10 @@ import {
 import React, { useState } from "react";
 import NewsList from "../../Components/Admin/NewsList";
 import Downloadables from "../../Components/Downloadables";
-import AlumniProfileModal from "../../Components/Popups/AlumniProfileModal";
+import AlumniProfileModal from "../../Components/Alumni/AlumniProfileModal";
 import StudentProfilePage from "../Faculty/StudentProfilePage";
+import { BiEdit } from "react-icons/bi";
+import AlumniDetails from "../../Contents/AlumniDetails";
 
 function AlumniMain(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -37,6 +39,7 @@ function AlumniMain(props) {
           <Box backgroundColor="white" h={"100%"}>
             <HStack
               w={"full"}
+
               // bg="gray.100"
               // ml={-1}
             >
@@ -49,12 +52,22 @@ function AlumniMain(props) {
                   <Tab>Downloadables</Tab>
                 </TabList>
                 <TabPanels py={10}>
-                  <TabPanel>
+                  <TabPanel sx={{ width: "100vh" }}>
                     <StudentProfilePage />
-                  </TabPanel>
-                  <TabPanel>
-                    <Button onClick={onOpen}>Open Modal</Button>
-
+                    <Box align="center">
+                      <Button
+                        onClick={onOpen}
+                        size="sm"
+                        leftIcon={<BiEdit />}
+                        mt={2}
+                        colorScheme="orange"
+                        variant="outline"
+                      >
+                        Edit details
+                      </Button>
+                    </Box>
+                    {/* DETAILS */}
+                    <AlumniDetails />
                     <Modal isOpen={isOpen} onClose={onClose} size={"3xl"}>
                       <ModalOverlay />
 
@@ -73,6 +86,7 @@ function AlumniMain(props) {
                       https://drive.google.com/drive/my-drive
                     </Link>
                   </TabPanel>
+
                   <TabPanel>
                     <Downloadables />
                   </TabPanel>

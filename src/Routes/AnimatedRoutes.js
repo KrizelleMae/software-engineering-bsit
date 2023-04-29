@@ -17,6 +17,9 @@ import { useEffect, useState } from "react";
 import Students from "../Pages/Admin/Students";
 import PDFViewer from "../Components/FileViewer";
 import Memo from "../Pages/Admin/Memo";
+import SurveyLink from "../Pages/Admin/SurveyLink";
+import EditActivity from "../Pages/Admin/EditActivity";
+import StudentTable from "../Components/Faculty/StudentTable";
 
 function AnimatedRoutes() {
   // let navigate = useNavigate();
@@ -51,7 +54,7 @@ function AnimatedRoutes() {
       <Route path="/student-act" element={<Activities />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/view/{file}" element={<PDFViewer />} />
+      <Route path="/view/:file" element={<PDFViewer />} />
 
       {/* ADMIN */}
       <Route index path="/admin/" element={<Dashboard />} />
@@ -66,9 +69,12 @@ function AnimatedRoutes() {
       <Route path="/upload" element={<UploadFile />} />
       <Route path="/admin/students" element={<Students />} />
       <Route path="/admin/memo" element={<Memo />} />
+      <Route path="/admin/view-activity/:id" element={<EditActivity />} />
+      <Route path="/admin/surveylink" element={<SurveyLink />} />
 
       {/* FACULTY */}
       <Route path="/faculty" element={<FacultyMain />} />
+      <Route path="/student-table" element={<StudentTable />} />
 
       {/* STUDENTS */}
       <Route path="/student" element={<StudentMain />} />

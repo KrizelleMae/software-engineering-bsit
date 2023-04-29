@@ -42,9 +42,14 @@ function FacultyMain(props) {
       name: "Account Settings",
       href: "/settings",
     },
+
     {
       name: "Downloadables",
       href: "/faculty-downloadables",
+    },
+    {
+      name: "Students",
+      href: "/student-table",
     },
   ]);
 

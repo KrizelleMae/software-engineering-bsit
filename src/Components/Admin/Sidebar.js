@@ -39,6 +39,7 @@ import logo from "../../Assets/logo.png";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { BiDownload, BiNews, BiPaperPlane, BiUserPlus } from "react-icons/bi";
 import { BsFilePerson } from "react-icons/bs";
+import { IoLinkSharp } from "react-icons/io5";
 import "../../Styles/Sidebar.css";
 
 const path = window.location.pathname;
@@ -189,6 +190,14 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       >
         <Link _hover={{ textDecoration: "none" }} href="/admin/memo">
           Memorandum
+        </Link>
+      </NavItem>
+      <NavItem
+        icon={IoLinkSharp}
+        className={path.includes("admin/surveylink") ? "active" : ""}
+      >
+        <Link _hover={{ textDecoration: "none" }} href="/admin/surveylink">
+          Links
         </Link>
       </NavItem>
     </Box>

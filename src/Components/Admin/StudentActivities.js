@@ -19,16 +19,30 @@ import {
   DrawerHeader,
   useDisclosure,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiEditAlt, BiPlus, BiTrash } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import AddActivity from "../../Contents/AddActivity";
+import api from "../../Api/api";
+import moment from "moment";
 
 function StudentActivities(props) {
   let navigate = useNavigate();
   const drawer = useDisclosure();
 
   const [data, setData] = useState([]);
+
+  const getData = async () => {
+    let response = await api.get(`/activity`);
+
+    if (response) {
+      setData(response.data);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <>
@@ -52,34 +66,45 @@ function StudentActivities(props) {
             <Thead>
               <Tr>
                 <Th>Activity </Th>
-                {/* <Th>Rank</Th> */}
+                <Th>Description</Th>
                 <Th>Date</Th>
                 <Th>location</Th>
-                <Th>Description</Th>
+
                 <Th>Actions</Th>
               </Tr>
             </Thead>
             <Tbody>
-              {[...Array(4)].map((el) => {
+              {data.map((el) => {
                 return (
                   <Tr>
                     {/* <Td>
                       <Image borderRadius="full" boxSize="54" />
                     </Td> */}
 
-                    <Td>Activity</Td>
-                    <Td>Date</Td>
-                    <Td>Location</Td>
+                    <Td>{el.activity_name}</Td>
                     <Td>
                       <i style={{ fontSize: 12 }}>
                         -- Click edit to view description and images --
                       </i>
                     </Td>
                     <Td>
+                      {el.date_started === el.date_ended ? (
+                        el.date_started
+                      ) : (
+                        <>
+                          {moment(el.date_started).format("ll")}
+                          {" - "}
+                          {moment(el.date_ended).format("ll")}
+                        </>
+                      )}
+                    </Td>
+                    <Td>{el.location}</Td>
+
+                    <Td>
                       <IconButton
                         onClick={() => {
                           // getFaculty(el.id);
-                          navigate("/admin/view-activity/${id}");
+                          navigate(`/admin/view-activity/${el.id}`);
                         }}
                         size="sm"
                         colorScheme={"blue"}

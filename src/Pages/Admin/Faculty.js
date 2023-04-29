@@ -113,6 +113,7 @@ function Faculty(props) {
         });
       } else {
         const data = new FormData();
+
         data.append("file", file[0]);
         data.append("upload_preset", "v5l0cmm0");
         data.append("cloud_name", "de0h9yawl");
@@ -182,7 +183,6 @@ function Faculty(props) {
   // handle click event of the Add button
   const handleAddClick = (k) => {
     setList([...list, { desc: "" }]);
-    console.log(list[list.length]);
   };
 
   // const handleChange = (e) => {

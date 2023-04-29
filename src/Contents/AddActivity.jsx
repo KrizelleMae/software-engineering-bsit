@@ -16,6 +16,9 @@ import React, { useState } from "react";
 import CustomFileButton from "../Components/Button/CustomFileButton";
 import { MdCheckCircle, MdImage } from "react-icons/md";
 import { BiMinusCircle, BiUpload } from "react-icons/bi";
+import api from "../Api/api";
+import cloudinary from "../Api/CloudinaryApi";
+import { toast } from "react-toastify";
 
 function AddActivity(props) {
   //DATA
@@ -26,6 +29,7 @@ function AddActivity(props) {
   const [link, setLink] = useState("");
   const [description, setDescription] = useState("");
   const [files, setFiles] = useState([]);
+  const [uploads, setUploads] = useState([]);
 
   const [isDragging, setIsDragging] = useState(false);
 
@@ -64,17 +68,40 @@ function AddActivity(props) {
   // UPLOAD TO SERVER
   const PostData = async (e) => {
     e.preventDefault();
-    // PostRequest({ url: "api/uploadCaf" }).then((res) => {
-    //   // Response here
-    //   console.log({ caf: caf, files: files });
-    // });
-    // console.log({ files: files });
+    const data = new FormData();
+
+    files.forEach(async (file) => {
+      data.append("file", file);
+      data.append("upload_preset", "v5l0cmm0");
+      data.append("cloud_name", "de0h9yawl");
+
+      let upload = await cloudinary.post("/", data);
+
+      // successfull upload
+      if (upload.status === 200) {
+        setUploads((current) => [...current, upload.data.url]);
+      } else {
+        console.log("ERROR OCCURRED!");
+      }
+
+      // console.log(JSON.stringify(uploads));
+    });
+
+    let response = await api.post("/activity", {
+      activity_name: activityName,
+      date_started: dateStarted,
+      date_ended: dateEnded,
+      location: location,
+      link: link,
+      description: description,
+      images: JSON.stringify(uploads),
+    });
   };
 
   return (
     <form
-      onSubmit={() => {
-        PostData();
+      onSubmit={(e) => {
+        PostData(e);
       }}
     >
       <FormControl isRequired>
