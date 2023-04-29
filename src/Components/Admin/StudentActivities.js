@@ -25,6 +25,8 @@ import { useNavigate } from "react-router-dom";
 import AddActivity from "../../Contents/AddActivity";
 import api from "../../Api/api";
 import moment from "moment";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 function StudentActivities(props) {
   let navigate = useNavigate();
@@ -38,6 +40,47 @@ function StudentActivities(props) {
     if (response) {
       setData(response.data);
     }
+  };
+
+  const destroy = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        let response = await api.delete(`/link/${id}`);
+        if (response.status === 200) {
+          toast
+            .success("Successfully deleted", {
+              position: "top-center",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            })
+            .then((e) => {
+              window.location.reload(false);
+            });
+        } else {
+          toast.error("Error occurred. Please try again!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+      }
+    });
   };
 
   useEffect(() => {
@@ -89,7 +132,7 @@ function StudentActivities(props) {
                     </Td>
                     <Td>
                       {el.date_started === el.date_ended ? (
-                        el.date_started
+                        moment(el.date_started).format("ll")
                       ) : (
                         <>
                           {moment(el.date_started).format("ll")}

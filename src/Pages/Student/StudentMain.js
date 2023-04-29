@@ -19,6 +19,7 @@ import StudentProfilePage from "../Faculty/StudentProfilePage";
 import Downloadables from "../../Components/Downloadables";
 import api from "../../Api/api";
 import Feed from "../../Components/Faculty/Feed";
+import LinkList from "../../Components/LinkList";
 
 function StudentMain(props) {
   const [data, setData] = useState([]);
@@ -71,17 +72,7 @@ function StudentMain(props) {
                     </Stack>
                   </TabPanel>
                   <TabPanel>
-                    <Text fontWeight={600} mb={2}>
-                      Survey link:
-                    </Text>
-                    {/* <Box py={2} px={3} bg="gray.100" borderRadius={5}> */}
-                    <a
-                      href="https://drive.google.com/drive/my-drive"
-                      target="_blank"
-                    >
-                      https://drive.google.com/drive/my-drive
-                    </a>
-                    {/* </Box> */}
+                    <LinkList />
                   </TabPanel>
                   <TabPanel>
                     <Downloadables />

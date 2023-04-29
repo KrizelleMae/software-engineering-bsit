@@ -1,7 +1,7 @@
 import { Box, Container } from "@chakra-ui/react";
 import React from "react";
 import Header from "../Components/Navbar";
-import Gallery from "../Components/Students/Gallery";
+import Gallery from "../Components/Gallery";
 import Navbar from "../Components/Navbar";
 
 function Activities(props) {

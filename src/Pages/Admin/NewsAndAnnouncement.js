@@ -32,31 +32,25 @@ function NewsAndAnnouncement(props) {
       <Sidebar />
       <div className="content">
         <div className="content-wrapper">
-          <Box bg="white" boxShadow="lg" p={4}>
-            <Tabs variant="enclosed">
-              <TabList>
-                <Tab>News</Tab>
-                <Tab>Announcements</Tab>
-              </TabList>
-              <TabPanels>
-                <TabPanel>
-                  <Button onClick={preview.onOpen} size="sm">
-                    Preview
-                  </Button>
-                  <Grid templateColumns="repeat(5, 1fr)" gap={4}>
-                    <GridItem colSpan={3}>
-                      <News />
-                    </GridItem>
-                    <GridItem colSpan={2} h="auto">
-                      <NewsList />
-                    </GridItem>
-                  </Grid>
-                </TabPanel>
-                <TabPanel>
-                  <Announcements />
-                </TabPanel>
-              </TabPanels>
-            </Tabs>
+          <Box bg="white" px={4}>
+            <Grid templateColumns="repeat(5, 1fr)" gap={4}>
+              <GridItem colSpan={3}>
+                <Heading>News</Heading>
+                <Button
+                  onClick={preview.onOpen}
+                  size="sm"
+                  mt={6}
+                  colorScheme="orange"
+                  variant="outline"
+                >
+                  Preview
+                </Button>
+                <News />
+              </GridItem>
+              <GridItem colSpan={2} h="auto">
+                <NewsList />
+              </GridItem>
+            </Grid>
           </Box>
         </div>
       </div>

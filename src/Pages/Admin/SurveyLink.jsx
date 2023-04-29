@@ -44,7 +44,7 @@ function SurveyLink(props) {
   const [id, setId] = useState("");
 
   const getList = async () => {
-    let response = await api.get(`/memo`);
+    let response = await api.get("/link");
 
     setData(response.data);
   };
@@ -64,7 +64,7 @@ function SurveyLink(props) {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        let response = await api.delete(`/memo/${id}`);
+        let response = await api.delete(`/link/${id}`);
         if (response.status === 200) {
           toast
             .success("Successfully deleted", {
@@ -100,7 +100,7 @@ function SurveyLink(props) {
         <Sidebar />
         <div className="content">
           <div className="content-wrapper">
-            <Heading>Survey Link </Heading>
+            <Heading> Link </Heading>
 
             <Flex justifyContent={"start"} alignItems={"center"} mt={8} mb={4}>
               <Button
@@ -109,7 +109,7 @@ function SurveyLink(props) {
                 size="sm"
                 mr={2}
               >
-                + Add survey
+                + Add link
               </Button>
               {/* 
               <Button
@@ -135,53 +135,55 @@ function SurveyLink(props) {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {data.map((el) => {
-                    return (
-                      <Tr>
-                        <Td>{el.surveyid}Survey 1</Td>
-                        <Td>{el.surveyid}Survey Description</Td>
-                        <Td
-                          style={{
-                            display: "flex",
-                            gap: 2,
-                            alignItems: "center",
-                          }}
-                        >
-                          <BsFiletypeDocx />
-                          <Link href={el.link}>{el.file_link}https//hello</Link>
-                        </Td>
-                        <Td>
-                          {" "}
-                          {el.linkaccess === 1 ? (
-                            <Badge variant="subtle" colorScheme="blue">
-                              Faculty
-                            </Badge>
-                          ) : el.linkaccess === 2 ? (
-                            <Badge variant="subtle" colorScheme="orange">
-                              Students
-                            </Badge>
-                          ) : (
-                            <Badge variant="subtle" colorScheme="green">
-                              Everyone
-                            </Badge>
-                          )}
-                        </Td>
-                        <Td>{moment(el.created_at).format("LLL")}</Td>
-                        <Td>
-                          <Button
-                            onClick={() => {
-                              destroy(el.id);
-                            }}
-                            colorScheme="red"
-                            size="sm"
-                            rightIcon={<BiTrashAlt />}
-                          >
-                            Delete
-                          </Button>
-                        </Td>
-                      </Tr>
-                    );
-                  })}
+                  {data.length == 0
+                    ? "No data available"
+                    : data.map((el) => {
+                        return (
+                          <Tr>
+                            <Td>{el.link_name}</Td>
+                            <Td>{el.link_description}</Td>
+                            <Td
+                              style={{
+                                display: "flex",
+                                gap: 2,
+                                alignItems: "center",
+                              }}
+                            >
+                              <BsFiletypeDocx />
+                              <Link href={el.link}>{el.link}</Link>
+                            </Td>
+                            <Td>
+                              {" "}
+                              {el.access === 1 ? (
+                                <Badge variant="subtle" colorScheme="blue">
+                                  Faculty
+                                </Badge>
+                              ) : el.access === 2 ? (
+                                <Badge variant="subtle" colorScheme="orange">
+                                  Students
+                                </Badge>
+                              ) : (
+                                <Badge variant="subtle" colorScheme="green">
+                                  Everyone
+                                </Badge>
+                              )}
+                            </Td>
+                            <Td>{moment(el.created_at).format("LLL")}</Td>
+                            <Td>
+                              <Button
+                                onClick={() => {
+                                  destroy(el.id);
+                                }}
+                                colorScheme="red"
+                                size="sm"
+                                rightIcon={<BiTrashAlt />}
+                              >
+                                Delete
+                              </Button>
+                            </Td>
+                          </Tr>
+                        );
+                      })}
                 </Tbody>
               </Table>
             </TableContainer>
@@ -205,11 +207,6 @@ function SurveyLink(props) {
               <AddSurvey id={id} />
             </Box>
           </DrawerBody>
-          <DrawerFooter>
-            <Button colorScheme="teal" onClick={drawer.onOpen} w="30%">
-              Save
-            </Button>
-          </DrawerFooter>
         </DrawerContent>
       </Drawer>
 

@@ -12,26 +12,57 @@ import {
   Select,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import CustomFileButton from "../Components/Button/CustomFileButton";
-import { MdImage } from "react-icons/md";
-import { BiMinusCircle, BiUpload } from "react-icons/bi";
 import api from "../Api/api";
 import { toast } from "react-toastify";
 
 function AddSurvey(props) {
   //DATA
   const [access, setAccess] = useState(null);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [files, setFiles] = useState([]);
-  const [isDragging, setIsDragging] = useState(false);
+  const [linkName, setLinkName] = useState("");
+  const [linkDesc, setLinkDesc] = useState("");
+  const [link, setLink] = useState("");
 
-  const handleDrop = (event) => {};
+  const PostData = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("access", access);
+    formData.append("link_name", linkName);
+    formData.append("link_description", linkDesc);
+    formData.append("link", link);
+
+    let response = await api.post("/link", formData);
+    if (response.status === 200) {
+      toast
+        .success("Successfully recorded", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+        .then((e) => {
+          window.location.reload(false);
+        });
+    } else {
+      toast.error("Error occurred. Please try again!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+  };
   return (
     <form
-    // onSubmit={(e) => {
-    //   PostData(e);
-    // }}
+      onSubmit={(e) => {
+        PostData(e);
+      }}
     >
       <FormControl isRequired>
         <FormLabel fontWeight={600} fontSize={15}>
@@ -40,7 +71,7 @@ function AddSurvey(props) {
         <Input
           type="text"
           onChange={(e) => {
-            setTitle(e.target.value);
+            setLinkName(e.target.value);
           }}
         />
       </FormControl>
@@ -55,7 +86,7 @@ function AddSurvey(props) {
               setAccess(e.target.value);
             }}
           >
-            <option value="1">Faculties only</option>
+            <option value="1">Faculty only</option>
             <option value="2">Students only</option>
             <option value="3">All</option>
           </Select>
@@ -65,7 +96,12 @@ function AddSurvey(props) {
         </FormLabel>
         <InputGroup size="md">
           <InputLeftAddon children="https://" />
-          <Input placeholder="mysite" />
+          <Input
+            placeholder="mysite"
+            onChange={(e) => {
+              setLink(e.target.value);
+            }}
+          />
         </InputGroup>
       </FormControl>
       <FormControl isRequired mt={3}>
@@ -75,10 +111,14 @@ function AddSurvey(props) {
         <Textarea
           rows={3}
           onChange={(e) => {
-            setDescription(e.target.value);
+            setLinkDesc(e.target.value);
           }}
         />
       </FormControl>
+
+      <Button colorScheme="teal" type="submit" w="30%" mt={10} align="right">
+        Save
+      </Button>
     </form>
   );
 }

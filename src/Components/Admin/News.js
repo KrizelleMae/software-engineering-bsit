@@ -83,8 +83,6 @@ function News(props) {
 
   return (
     <Box mt={2}>
-      <Heading fontSize="2xl">News </Heading>
-
       <form onSubmit={post_to_cloudinary}>
         <Box mt={10} w={"auto"}>
           <FormControl isRequired>

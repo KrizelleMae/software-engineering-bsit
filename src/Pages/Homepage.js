@@ -8,7 +8,7 @@ import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import Navbar from "../Components/Navbar";
 import News from "../Components/News";
-import Gallery from "../Components/Students/Gallery";
+import Gallery from "../Components/Gallery";
 import Summary from "../Components/Summary";
 
 function Homepage(props) {

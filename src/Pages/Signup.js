@@ -70,9 +70,9 @@ function Signup(props) {
       //   style={{ position: "absolute", margin: "auto" }}
     >
       <Image src={wave} position="absolute" bottom="0" zIndex="-50" />
-      <Container py={12} maxWidth="container.md">
-        <Box bg="white" height="85vh" boxShadow="lg" borderRadius={5} p={8}>
-          <Box mt={7}>
+      <Container py={10} maxWidth="container.md">
+        <Box bg="white" height="90vh" boxShadow="lg" borderRadius={5} p={8}>
+          <Box>
             <Box display="flex" alignItems="center">
               <Image src={logo} style={{ height: 50 }} borderLeftRadius={10} />
               <Box ml={2} lineHeight={1.4}>
@@ -93,27 +93,66 @@ function Signup(props) {
             <form onSubmit={PostRequest}>
               <FormControl isRequired lineHeight={1} mt={12}>
                 <FormLabel fontSize={13} fontWeight={600} color="#a20202">
-                  Current year
+                  Status
                 </FormLabel>
                 <InputGroup>
                   <Select
-                    placeholder="Select option"
                     fontSize={14}
                     bg="gray.100"
                     border={0}
                     onChange={(e) => setYear(e.target.value)}
                   >
-                    <option defaultSelected>Select year</option>
-                    <option value="1">First year</option>
-                    <option value="2">Second year</option>
-                    <option value="3">Third year</option>
-                    <option value="4">Fourth year</option>
-                    <option value="irregular">Off sem</option>
-                    <option value="graduate">Graduate (Masteral)</option>
+                    <option defaultSelected>Please select</option>
+                    <option value="student">Student</option>
                     <option value="alumni">Alumni</option>
                   </Select>
                 </InputGroup>
               </FormControl>
+
+              {year === "student" ? (
+                <HStack mt={5}>
+                  <FormControl isRequired lineHeight={1} w={1500}>
+                    <FormLabel fontSize={13} fontWeight={600} color="#a20202">
+                      Adviser
+                    </FormLabel>
+                    <InputGroup>
+                      <Select
+                        fontSize={14}
+                        bg="gray.100"
+                        border={0}
+                        // onChange={(e) => setYear(e.target.value)}
+                      >
+                        <option defaultSelected>Select adviser</option>
+                        <option value="student">Student</option>
+                        <option value="alumni">Alumni</option>
+                      </Select>
+                    </InputGroup>
+                  </FormControl>
+                  <FormControl isRequired lineHeight={1}>
+                    <FormLabel fontSize={13} fontWeight={600} color="#a20202">
+                      Batch started (Year)
+                    </FormLabel>
+                    <InputGroup>
+                      {/* <InputLeftElement
+                    pointerEvents="none"
+                    children={<BsAt color="gray.300" />} */}
+                      {/* /> */}
+                      <Input
+                        type="number"
+                        minLength="4"
+                        bg="gray.100"
+                        border={0}
+                        fontSize={13.5}
+                        fontWeight={500}
+                        onChange={(e) => setLname(e.target.value)}
+                        // placeholder="your_account@wmsu.edu.ph"
+                      />
+                    </InputGroup>
+                  </FormControl>
+                </HStack>
+              ) : (
+                ""
+              )}
               <HStack mt={5}>
                 <FormControl isRequired lineHeight={1}>
                   <FormLabel fontSize={13} fontWeight={600} color="#a20202">

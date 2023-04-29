@@ -110,7 +110,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           _hover={{ textDecoration: "none" }}
           href="/admin/news-announcement"
         >
-          News & Anns
+          News
         </Link>
       </NavItem>
 
