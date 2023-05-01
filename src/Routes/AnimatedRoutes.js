@@ -59,7 +59,7 @@ function AnimatedRoutes() {
       <Route path="/view/:file" element={<PDFViewer />} />
 
       {/* ADMIN */}
-      <Route index path="/admin/" element={<Dashboard />} />
+      <Route index path="/admin/dashboard" element={<Dashboard />} />
       <Route path="/admin/about/" element={<AdminAbout />} />
       <Route
         path="/admin/news-announcement"

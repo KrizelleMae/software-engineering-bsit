@@ -300,7 +300,7 @@ function Signup(props) {
                         children={<BsLock color="gray.300" />}
                       />
                       <Input
-                        onChange={(e) => setTempPass(e.target.value)}
+                        onChange={(e) => setPassword(e.target.value)}
                         bg="gray.100"
                         border={0}
                         type="text"

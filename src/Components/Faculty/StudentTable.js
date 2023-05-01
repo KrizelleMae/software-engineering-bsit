@@ -64,6 +64,7 @@ import { toast } from "react-toastify";
 import { BsClipboard } from "react-icons/bs";
 import Downloadables from "../Downloadables";
 import LogoutBtn from "../LogoutBtn";
+import LinkList from "../LinkList";
 
 function StudentTable(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -180,6 +181,14 @@ function StudentTable(props) {
               color={"blue.500"}
               textTransform={"uppercase"}
             >
+              Links
+            </Tab>
+            <Tab
+              fontWeight={600}
+              fontSize={13}
+              color={"blue.500"}
+              textTransform={"uppercase"}
+            >
               Downloadables
             </Tab>
             <Tab
@@ -190,14 +199,7 @@ function StudentTable(props) {
             >
               My Students
             </Tab>
-            <Tab
-              fontWeight={600}
-              fontSize={13}
-              color={"blue.500"}
-              textTransform={"uppercase"}
-            >
-              Account Settings
-            </Tab>
+
             <Tab
               fontWeight={600}
               fontSize={13}
@@ -265,6 +267,11 @@ function StudentTable(props) {
               </Stack>
             </TabPanel>
             <TabPanel>
+              <Box p={10}>
+                <LinkList />
+              </Box>
+            </TabPanel>
+            <TabPanel>
               {/* DOWNLOADS */}
               <Box p={10}>
                 <Downloadables />
@@ -284,38 +291,45 @@ function StudentTable(props) {
                     </Tr>
                   </Thead>
                   <Tbody>
-                    {data.map((el) => {
-                      return (
-                        <Tr>
-                          {/* <Td>
+                    {data.length === 0 ? (
+                      <Tr>
+                        <Td colSpan={5} textAlign="center" py={6}>
+                          No data found
+                        </Td>
+                      </Tr>
+                    ) : (
+                      data.map((el) => {
+                        return (
+                          <Tr>
+                            {/* <Td>
                       <Image borderRadius="full" boxSize="54" />
                     </Td> */}
-                          <Td>{el.lname + ", " + el.fname + " " + el.mi}</Td>
-                          <Td> {el.batch}</Td>
-                          <Td>{el.email}</Td>
-                          <Td>
-                            {el.year === "" ? (
-                              <Badge colorScheme="yellow">Undergrad</Badge>
-                            ) : (
-                              <Badge colorScheme="blue">Alumni</Badge>
-                            )}
-                          </Td>
+                            <Td>{el.lname + ", " + el.fname + " " + el.mi}</Td>
+                            <Td> {el.batch}</Td>
+                            <Td>{el.email}</Td>
+                            <Td>
+                              {el.year === "" ? (
+                                <Badge colorScheme="yellow">Undergrad</Badge>
+                              ) : (
+                                <Badge colorScheme="blue">Alumni</Badge>
+                              )}
+                            </Td>
 
-                          <Td>
-                            <HStack>
-                              <Button
-                                size="sm"
-                                colorScheme={"blue"}
-                                onClick={() => {
-                                  onOpen();
-                                  show(el.FK_user_ID);
-                                }}
-                                icon={<BiShowAlt />}
-                              >
-                                Show
-                              </Button>
-                            </HStack>
-                            {/* <IconButton
+                            <Td>
+                              <HStack>
+                                <Button
+                                  size="sm"
+                                  colorScheme={"blue"}
+                                  onClick={() => {
+                                    onOpen();
+                                    show(el.FK_user_ID);
+                                  }}
+                                  icon={<BiShowAlt />}
+                                >
+                                  Show
+                                </Button>
+                              </HStack>
+                              {/* <IconButton
                         onClick={() => {
                           // getFaculty(el.id);
                           navigate(`/admin/view-activity/${el.id}`);
@@ -326,7 +340,7 @@ function StudentTable(props) {
                         icon={<BiEditAlt />}
                       /> */}
 
-                            {/* <IconButton
+                              {/* <IconButton
                         onClick={() => {
                           delete "id";
                         }}
@@ -334,17 +348,14 @@ function StudentTable(props) {
                         colorScheme={"red"}
                         icon={<BiTrash />}
                       /> */}
-                          </Td>
-                        </Tr>
-                      );
-                    })}
+                            </Td>
+                          </Tr>
+                        );
+                      })
+                    )}
                   </Tbody>
                 </Table>
               </TableContainer>
-            </TabPanel>
-            <TabPanel>
-              {/* ACCOUNT */}
-              <h1>Account Settings</h1>
             </TabPanel>
           </TabPanels>
         </Tabs>

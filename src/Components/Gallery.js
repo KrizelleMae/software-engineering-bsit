@@ -75,8 +75,8 @@ function Gallery(props) {
                         onOpen();
                       }}
                     >
-                      {/* <Image src={JSON.parse(el.image1)} className="image" /> */}
-                      <Image src={image} className="image" />
+                      <Image src={JSON.parse(el.image1)[0]} className="image" />
+                      {/* <Image src={image} className="image" /> */}
                       <Box className="overlay-act" pl={10}>
                         <Text
                           fontWeight={600}

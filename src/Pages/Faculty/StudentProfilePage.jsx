@@ -12,6 +12,7 @@ import {
 import "../../Styles/Links.css";
 
 function StudentProfilePage({ side }) {
+  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")));
   return (
     <Box>
       <Box align="center">
@@ -20,7 +21,7 @@ function StudentProfilePage({ side }) {
         </Avatar>
         <VStack mt={5} spacing={2}>
           <Text fontSize={20} color="alpha.800" fontWeight={500}>
-            John Rupert Sierra
+            {user?.fname + " " + user?.mi + ". " + user?.lname}
           </Text>
           <Text fontSize={14} color="gray.500">
             Rank / Designation

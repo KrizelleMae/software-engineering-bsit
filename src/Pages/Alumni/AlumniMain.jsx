@@ -1,11 +1,8 @@
 import {
   Box,
-  Button,
-  Center,
   Grid,
   GridItem,
   HStack,
-  Stack,
   Tab,
   TabList,
   Tabs,
@@ -13,14 +10,9 @@ import {
   TabPanels,
   Modal,
   ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
+  Stack,
+  Button,
   useDisclosure,
-  Text,
-  Link,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import NewsList from "../../Components/Admin/NewsList";
@@ -30,6 +22,7 @@ import StudentProfilePage from "../Faculty/StudentProfilePage";
 import { BiEdit } from "react-icons/bi";
 import AlumniDetails from "../../Contents/AlumniDetails";
 import LogoutBtn from "../../Components/LogoutBtn";
+import LinkList from "../../Components/LinkList";
 
 function AlumniMain(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -67,11 +60,11 @@ function AlumniMain(props) {
                         colorScheme="orange"
                         variant="outline"
                       >
-                        Edit details
+                        Complete details
                       </Button>
                     </Box>
                     {/* DETAILS */}
-                    <AlumniDetails />
+                    {/* <AlumniDetails /> */}
                     <Modal isOpen={isOpen} onClose={onClose} size={"3xl"}>
                       <ModalOverlay />
 
@@ -79,16 +72,9 @@ function AlumniMain(props) {
                     </Modal>
                   </TabPanel>
                   <TabPanel>
-                    <Text fontWeight={600} mb={2}>
-                      Survey link:
-                    </Text>
-                    {/* <Box py={2} px={3} bg="gray.100" borderRadius={5}> */}
-                    <Link
-                      href="https://drive.google.com/drive/my-drive"
-                      target="_blank"
-                    >
-                      https://drive.google.com/drive/my-drive
-                    </Link>
+                    <Box>
+                      <LinkList />
+                    </Box>
                   </TabPanel>
 
                   <TabPanel>

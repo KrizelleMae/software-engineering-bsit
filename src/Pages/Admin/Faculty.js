@@ -35,6 +35,11 @@ import {
   Avatar,
   IconButton,
   TableContainer,
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { BiEdit, BiEditAlt, BiPlus, BiTrash } from "react-icons/bi";
@@ -45,6 +50,7 @@ import { toast } from "react-toastify";
 import Sidebar from "../../Components/Admin/Sidebar";
 import FacultyModal from "../../Components/Popups/FacultyModal";
 import Swal from "sweetalert2";
+import FacultyList from "./FacultyList";
 
 function Faculty(props) {
   const drawer = useDisclosure();
@@ -245,73 +251,87 @@ function Faculty(props) {
         <div className="content-wrapper">
           <Heading>Faculty</Heading>
 
-          <Button
-            colorScheme="teal"
-            onClick={drawer.onOpen}
-            mt={8}
-            mb={4}
-            size="sm"
-          >
-            + Add Faculty
-          </Button>
+          <Tabs variant="enclosed" mt={7}>
+            <TabList>
+              <Tab>Faculty</Tab>
+              <Tab>Faculty accounts</Tab>
+            </TabList>
+            <TabPanels>
+              <TabPanel>
+                <Button
+                  colorScheme="teal"
+                  onClick={drawer.onOpen}
+                  mt={8}
+                  mb={4}
+                  size="sm"
+                  align="right"
+                >
+                  + Add Faculty
+                </Button>
 
-          <TableContainer border={"1px solid #eee"}>
-            <Table size="sm" variant="simple">
-              <Thead>
-                <Tr>
-                  <Th>Photo</Th>
-                  <Th>Name</Th>
-                  {/* <Th>Rank</Th> */}
-                  <Th>Designation</Th>
-                  <Th>Qualifications</Th>
-                  <Th>Actions</Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                {data.map((el) => {
-                  return (
-                    <Tr>
-                      <Td>
-                        <Image
-                          borderRadius="full"
-                          boxSize="54"
-                          src={el.image}
-                        />
-                      </Td>
-                      <Td>{el.fname + " " + el.lname}</Td>
+                <TableContainer border={"1px solid #eee"}>
+                  <Table size="sm" variant="simple">
+                    <Thead>
+                      <Tr>
+                        <Th>Photo</Th>
+                        <Th>Name</Th>
+                        {/* <Th>Rank</Th> */}
+                        <Th>Designation</Th>
+                        <Th>Qualifications</Th>
+                        <Th>Actions</Th>
+                      </Tr>
+                    </Thead>
+                    <Tbody>
+                      {data.map((el) => {
+                        return (
+                          <Tr>
+                            <Td>
+                              <Image
+                                borderRadius="full"
+                                boxSize="54"
+                                src={el.image}
+                              />
+                            </Td>
+                            <Td>{el.fname + " " + el.lname}</Td>
 
-                      <Td>{el.designation}</Td>
-                      <Td>
-                        <i>-- See more --</i>
-                      </Td>
-                      <Td>
-                        <IconButton
-                          onClick={() => {
-                            // getFaculty(el.id);
-                            setId(el.id);
-                            modal.onOpen();
-                          }}
-                          size="sm"
-                          colorScheme={"blue"}
-                          mr={2}
-                          icon={<BiEditAlt />}
-                        />
+                            <Td>{el.designation}</Td>
+                            <Td>
+                              <i>-- See more --</i>
+                            </Td>
+                            <Td>
+                              <IconButton
+                                onClick={() => {
+                                  // getFaculty(el.id);
+                                  setId(el.id);
+                                  modal.onOpen();
+                                }}
+                                size="sm"
+                                colorScheme={"blue"}
+                                mr={2}
+                                icon={<BiEditAlt />}
+                              />
 
-                        <IconButton
-                          onClick={() => {
-                            destroy(el.id);
-                          }}
-                          size="sm"
-                          colorScheme={"red"}
-                          icon={<BiTrash />}
-                        />
-                      </Td>
-                    </Tr>
-                  );
-                })}
-              </Tbody>
-            </Table>
-          </TableContainer>
+                              <IconButton
+                                onClick={() => {
+                                  destroy(el.id);
+                                }}
+                                size="sm"
+                                colorScheme={"red"}
+                                icon={<BiTrash />}
+                              />
+                            </Td>
+                          </Tr>
+                        );
+                      })}
+                    </Tbody>
+                  </Table>
+                </TableContainer>
+              </TabPanel>
+              <TabPanel>
+                <FacultyList />
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
         </div>
 
         <Drawer

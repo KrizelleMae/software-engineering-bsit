@@ -101,7 +101,14 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         icon={FiHome}
         className={path.includes("admin/dashboard") ? "active" : ""}
       >
-        Dashboard
+        <Link
+          fontSize={13}
+          fontWeight={600}
+          _hover={{ textDecoration: "none" }}
+          href="/admin/dashboard"
+        >
+          Dashboard
+        </Link>
       </NavItem>
       <NavItem
         icon={BiNews}

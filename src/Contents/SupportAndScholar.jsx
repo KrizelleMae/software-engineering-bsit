@@ -48,7 +48,7 @@ function SupportAndScholar(props) {
         <Text>Student support sevices and Scholarships BSIT</Text>
       </Stack> */}
       <Grid templateColumns="repeat(2, 1fr)" gap={10} mr="50px">
-        <GridItem w="100%" h="200">
+        <GridItem h="200" colSpan={1}>
           <Text mt="50px" fontSize={18} mb={2}>
             Student Support
           </Text>
@@ -65,7 +65,10 @@ function SupportAndScholar(props) {
                     <Image
                       objectFit="cover"
                       maxW={{ base: "100%", sm: "200px" }}
-                      src={JSON.parse(el.image)[0]}
+                      src={
+                        JSON.parse(el.images)[0] ??
+                        "https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
+                      }
                     />
                     <Stack>
                       <CardBody>
@@ -83,7 +86,7 @@ function SupportAndScholar(props) {
             })}
           </Wrap>
         </GridItem>
-        <GridItem w="100%" h="200">
+        <GridItem h="200" colSpan={1}>
           <Text mt="50px" fontSize={18} mb={2}>
             Student Scholarship
           </Text>

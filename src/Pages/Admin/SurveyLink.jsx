@@ -35,6 +35,7 @@ import { BiEditAlt, BiTrashAlt } from "react-icons/bi";
 import MemoModal from "../../Components/Popups/MemoModal";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import LinesEllipsis from "react-lines-ellipsis";
 
 function SurveyLink(props) {
   const drawer = useDisclosure();
@@ -128,7 +129,7 @@ function SurveyLink(props) {
                 <Thead>
                   <Tr>
                     <Th>Survey Name</Th>
-                    <Th>Survey Description</Th>
+                    <Th sx={{ minW: "300px" }}>Survey Description</Th>
                     <Th>Survey Links</Th>
                     <Th>Access</Th>
                     <Th>Date posted</Th>
@@ -142,19 +143,27 @@ function SurveyLink(props) {
                         return (
                           <Tr>
                             <Td>{el.link_name}</Td>
-                            <Td>{el.link_description}</Td>
+                            <Td>
+                              <LinesEllipsis
+                                text={el.link_description}
+                                maxLine="1"
+                                ellipsis="..."
+                                trimRight
+                                basedOn="letters"
+                              />
+                            </Td>
                             <Td
                               style={{
                                 display: "flex",
                                 gap: 2,
                                 alignItems: "center",
+                                justifyContent: "center",
                               }}
                             >
                               <BsFiletypeDocx />
                               <Link href={el.link}>{el.link}</Link>
                             </Td>
                             <Td>
-                              {" "}
                               {el.access === 1 ? (
                                 <Badge variant="subtle" colorScheme="blue">
                                   Faculty
@@ -162,6 +171,10 @@ function SurveyLink(props) {
                               ) : el.access === 2 ? (
                                 <Badge variant="subtle" colorScheme="orange">
                                   Students
+                                </Badge>
+                              ) : el.access === 3 ? (
+                                <Badge variant="subtle" colorScheme="purple">
+                                  Alumni
                                 </Badge>
                               ) : (
                                 <Badge variant="subtle" colorScheme="green">

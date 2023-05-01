@@ -29,8 +29,8 @@ function AlumniProfileModal(props) {
     JSON.parse(sessionStorage.getItem("user"))
   );
   const [fName, setFName] = useState(user?.fname);
-  const [mName, setMName] = useState(user?.mname);
-  const [lName, setLName] = useState(user?.lfname);
+  const [mName, setMName] = useState(user?.mi);
+  const [lName, setLName] = useState(user?.lname);
   const [batch, setBatch] = useState("");
   const [section, setSection] = useState("");
   const [agencyType, setAgency] = useState("");
@@ -45,16 +45,18 @@ function AlumniProfileModal(props) {
   const update = async (e) => {
     e.preventDefault();
 
-    let response = await api.post(`/alumni/${user?.id}`, {
-      fName: fName,
-      lName: lName,
-      mName: mName,
+    let response = await api.post(`/alumni`, {
+      fname: fName,
+      lname: lName,
+      mname: mName,
       batch: batch,
       section: section,
       agency: agencyType,
       industry: industryType,
-      title: title,
-      year: year,
+      job_title: title,
+      years_in_service: year,
+      FK_user_ID: user?.id,
+
       // public_id: upload.data.public_id,
     });
 
@@ -105,7 +107,7 @@ function AlumniProfileModal(props) {
               <Flex mb={4}>
                 <Box w="100%">
                   <HStack>
-                    <FormControl isRequired>
+                    <FormControl isRequired isReadOnly>
                       <FormLabel
                         fontWeight={500}
                         color="gray.600"
@@ -123,14 +125,14 @@ function AlumniProfileModal(props) {
                       />
                     </FormControl>
 
-                    <FormControl>
+                    <FormControl isReadOnly>
                       <FormLabel
                         fontWeight={500}
                         color="gray.600"
                         fontSize="sm"
                         htmlFor="username"
                       >
-                        Middle name
+                        Middle initial
                       </FormLabel>
 
                       <Input
@@ -141,7 +143,7 @@ function AlumniProfileModal(props) {
                       />
                     </FormControl>
 
-                    <FormControl isRequired>
+                    <FormControl isRequired isReadOnly>
                       <FormLabel
                         fontWeight={500}
                         color="gray.600"
