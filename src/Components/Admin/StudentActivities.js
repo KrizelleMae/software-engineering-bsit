@@ -53,7 +53,7 @@ function StudentActivities(props) {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        let response = await api.delete(`/link/${id}`);
+        let response = await api.delete(`/activity/${id}`);
         if (response.status === 200) {
           toast
             .success("Successfully deleted", {
@@ -85,7 +85,7 @@ function StudentActivities(props) {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [data]);
 
   return (
     <>
@@ -117,56 +117,64 @@ function StudentActivities(props) {
               </Tr>
             </Thead>
             <Tbody>
-              {data.map((el) => {
-                return (
-                  <Tr>
-                    {/* <Td>
+              {data.length === 0 ? (
+                <Tr>
+                  <Td colSpan={5} textAlign="center" py={6}>
+                    No data found
+                  </Td>
+                </Tr>
+              ) : (
+                data.map((el) => {
+                  return (
+                    <Tr>
+                      {/* <Td>
                       <Image borderRadius="full" boxSize="54" />
                     </Td> */}
 
-                    <Td>{el.activity_name}</Td>
-                    <Td>
-                      <i style={{ fontSize: 12 }}>
-                        -- Click edit to view description and images --
-                      </i>
-                    </Td>
-                    <Td>
-                      {el.date_started === el.date_ended ? (
-                        moment(el.date_started).format("ll")
-                      ) : (
-                        <>
-                          {moment(el.date_started).format("ll")}
-                          {" - "}
-                          {moment(el.date_ended).format("ll")}
-                        </>
-                      )}
-                    </Td>
-                    <Td>{el.location}</Td>
+                      <Td>{el.activity_name}</Td>
+                      <Td>
+                        <i style={{ fontSize: 12 }}>
+                          -- Click edit to view description and images --
+                        </i>
+                      </Td>
+                      <Td>
+                        {el.date_started === el.date_ended ? (
+                          moment(el.date_started).format("ll")
+                        ) : (
+                          <>
+                            {moment(el.date_started).format("ll")}
+                            {" - "}
+                            {moment(el.date_ended).format("ll")}
+                          </>
+                        )}
+                      </Td>
+                      <Td>{el.location}</Td>
 
-                    <Td>
-                      <IconButton
-                        onClick={() => {
-                          // getFaculty(el.id);
-                          navigate(`/admin/view-activity/${el.id}`);
-                        }}
-                        size="sm"
-                        colorScheme={"blue"}
-                        mr={2}
-                        icon={<BiEditAlt />}
-                      />
+                      <Td>
+                        {/* <IconButton
+                          onClick={() => {
+                            // getFaculty(el.id);
+                            navigate(`/admin/view-activity/${el.id}`);
+                          }}
+                          size="sm"
+                          colorScheme={"blue"}
+                          mr={2}
+                          icon={<BiEditAlt />}
+                        /> */}
 
-                      <IconButton
-                        onClick={() => {
-                          delete "id";
-                        }}
-                        size="sm"
-                        colorScheme={"red"}
-                        icon={<BiTrash />}
-                      />
-                    </Td>
-                  </Tr>
-                );
-              })}
+                        <IconButton
+                          onClick={() => {
+                            destroy(el.id);
+                          }}
+                          size="sm"
+                          colorScheme={"red"}
+                          icon={<BiTrash />}
+                        />
+                      </Td>
+                    </Tr>
+                  );
+                })
+              )}
             </Tbody>
           </Table>
         </TableContainer>

@@ -4,9 +4,10 @@ import api from "../Api/api";
 
 function LinkList(props) {
   const [data, setData] = useState([]);
-  const getList = async () => {
-    let response = await api.get(`/linkAccess/1`);
+  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")));
 
+  const getList = async () => {
+    let response = await api.get(`/linkAccess/${user?.role}`);
     setData(response.data);
   };
 

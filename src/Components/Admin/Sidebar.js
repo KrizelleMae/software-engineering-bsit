@@ -41,6 +41,7 @@ import { BiDownload, BiNews, BiPaperPlane, BiUserPlus } from "react-icons/bi";
 import { BsFilePerson } from "react-icons/bs";
 import { IoLinkSharp } from "react-icons/io5";
 import "../../Styles/Sidebar.css";
+import LogoutBtn from "../LogoutBtn";
 
 const path = window.location.pathname;
 
@@ -107,6 +108,8 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         className={path.includes("admin/news-announcement") ? "active" : ""}
       >
         <Link
+          fontSize={13}
+          fontWeight={600}
           _hover={{ textDecoration: "none" }}
           href="/admin/news-announcement"
         >
@@ -125,7 +128,12 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         className={path.includes("admin/about") ? "active" : ""}
       >
         <NavItem icon={FiFilePlus}>
-          <Link _hover={{ textDecoration: "none" }} href="/admin/about">
+          <Link
+            fontSize={13}
+            fontWeight={600}
+            _hover={{ textDecoration: "none" }}
+            href="/admin/about"
+          >
             About
           </Link>
         </NavItem>
@@ -136,13 +144,16 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       {/* <Collapse in={isOpen} animateOpacity>
         <Stack pl={8} py={3} bg="red.50">
           <Box py={2}>
-            <Link _hover={{textDecoration: 'none'}} href="/admin/about/mission-vision">Mission and Vision</Link>
+            <Link fontSize={13}
+            fontWeight={600} _hover={{textDecoration: 'none'}} href="/admin/about/mission-vision">Mission and Vision</Link>
           </Box>
           <Box py={2}>
-            <Link _hover={{textDecoration: 'none'}} href="/admin/about/objectives">Objectives</Link>
+            <Link fontSize={13}
+            fontWeight={600} _hover={{textDecoration: 'none'}} href="/admin/about/objectives">Objectives</Link>
           </Box>
           <Box py={2}>
-            <Link _hover={{textDecoration: 'none'}} href="/admin/about/outcomes">Program Outcomes</Link>
+            <Link fontSize={13}
+            fontWeight={600} _hover={{textDecoration: 'none'}} href="/admin/about/outcomes">Program Outcomes</Link>
           </Box>
         </Stack>
       </Collapse> */}
@@ -152,7 +163,12 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         icon={FiUsers}
         className={path.includes("admin/faculty") ? "active" : ""}
       >
-        <Link _hover={{ textDecoration: "none" }} href="/admin/faculty">
+        <Link
+          fontSize={13}
+          fontWeight={600}
+          _hover={{ textDecoration: "none" }}
+          href="/admin/faculty"
+        >
           Faculty
         </Link>
       </NavItem>
@@ -161,7 +177,12 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         icon={FiList}
         className={path.includes("admin/programs") ? "active" : ""}
       >
-        <Link _hover={{ textDecoration: "none" }} href="/admin/programs">
+        <Link
+          fontSize={13}
+          fontWeight={600}
+          _hover={{ textDecoration: "none" }}
+          href="/admin/programs"
+        >
           Programs
         </Link>
       </NavItem>
@@ -170,7 +191,12 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         icon={BiDownload}
         className={path.includes("admin/downloadables") ? "active" : ""}
       >
-        <Link _hover={{ textDecoration: "none" }} href="/admin/downloadables">
+        <Link
+          fontSize={13}
+          fontWeight={600}
+          _hover={{ textDecoration: "none" }}
+          href="/admin/downloadables"
+        >
           Downloadables
         </Link>
       </NavItem>
@@ -179,7 +205,12 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         icon={BiUserPlus}
         className={path.includes("admin/students") ? "active" : ""}
       >
-        <Link _hover={{ textDecoration: "none" }} href="/admin/students">
+        <Link
+          fontSize={13}
+          fontWeight={600}
+          _hover={{ textDecoration: "none" }}
+          href="/admin/students"
+        >
           Students
         </Link>
       </NavItem>
@@ -188,7 +219,12 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         icon={BiPaperPlane}
         className={path.includes("admin/memo") ? "active" : ""}
       >
-        <Link _hover={{ textDecoration: "none" }} href="/admin/memo">
+        <Link
+          fontSize={13}
+          fontWeight={600}
+          _hover={{ textDecoration: "none" }}
+          href="/admin/memo"
+        >
           Memorandum
         </Link>
       </NavItem>
@@ -196,7 +232,12 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         icon={IoLinkSharp}
         className={path.includes("admin/surveylink") ? "active" : ""}
       >
-        <Link _hover={{ textDecoration: "none" }} href="/admin/surveylink">
+        <Link
+          fontSize={13}
+          fontWeight={600}
+          _hover={{ textDecoration: "none" }}
+          href="/admin/surveylink"
+        >
           Links
         </Link>
       </NavItem>
@@ -211,6 +252,8 @@ interface NavItemProps extends FlexProps {
 const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
   return (
     <Link
+      fontSize={13}
+      fontWeight={600}
       _hover={{ textDecoration: "none" }}
       href="#"
       style={{ textDecoration: "none" }}
@@ -285,7 +328,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
           icon={<FiBell />}
         /> */}
         <Flex alignItems={"center"}>
-          <Menu>
+          <Menu sx={{ zIndex: 50 }}>
             <MenuButton
               py={2}
               transition="all 0.3s"
@@ -299,30 +342,27 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                   spacing="1px"
                   ml="2"
                 >
-                  <Text fontSize="sm">John Doe</Text>
-                  <Text fontSize="xs">ADMIN</Text>
+                  <Text fontSize="sm">ADMIN</Text>
+                  <Text fontSize="xs">BSIT-CCS</Text>
                 </VStack>
                 <Box display={{ base: "none", md: "flex" }}>
                   <FiChevronDown />
                 </Box>
               </HStack>
             </MenuButton>
-            <MenuList
-              bg={useColorModeValue("white", "gray.900")}
-              borderColor={useColorModeValue("gray.200", "gray.700")}
-            >
-              <MenuItem>Profile</MenuItem>
-              <MenuItem>Settings</MenuItem>
+            <MenuList>
+              {/* <MenuItem>Profile</MenuItem>
+              <MenuItem>Settings</MenuItem> */}
 
-              <MenuDivider />
+              {/* <MenuDivider /> */}
               <MenuItem
-                onClick={() => {
-                  sessionStorage.setItem("loggedIn", false);
-                  sessionStorage.removeItem("user");
-                  window.location.href = "/";
-                }}
+              // onClick={() => {
+              //   sessionStorage.setItem("loggedIn", false);
+              //   sessionStorage.removeItem("user");
+              //   window.location.href = "/";
+              // }}
               >
-                Sign out
+                <LogoutBtn />
               </MenuItem>
             </MenuList>
           </Menu>

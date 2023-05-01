@@ -96,6 +96,32 @@ function AddActivity(props) {
       description: description,
       images: JSON.stringify(uploads),
     });
+
+    if (response.status === 200) {
+      toast
+        .success("Successfully recorded", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+        .then((e) => {
+          window.location.reload(false);
+        });
+    } else {
+      toast.error("Error occurred. Please try again!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
   };
 
   return (
@@ -153,7 +179,7 @@ function AddActivity(props) {
           />
         </FormControl>
 
-        <FormControl isRequired>
+        <FormControl>
           <FormLabel fontWeight={600} fontSize={15}>
             Social media link
           </FormLabel>

@@ -43,9 +43,10 @@ function SurveyLink(props) {
   const [data, setData] = useState([]);
   const [id, setId] = useState("");
 
-  const getList = async () => {
-    let response = await api.get("/link");
+  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")));
 
+  const getList = async () => {
+    let response = await api.get(`/link`);
     setData(response.data);
   };
 
@@ -123,7 +124,7 @@ function SurveyLink(props) {
             </Flex>
 
             <TableContainer border={"1px solid #eee"}>
-              <Table size="md" variant="simple">
+              <Table size="sm" variant="simple">
                 <Thead>
                   <Tr>
                     <Th>Survey Name</Th>

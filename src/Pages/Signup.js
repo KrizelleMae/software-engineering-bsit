@@ -17,7 +17,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Styles/Login.css";
 import api from "../Api/api";
 import {
@@ -29,6 +29,7 @@ import {
 } from "react-icons/bs";
 import logo from "../Assets/logo.png";
 import wave from "../Assets/wave.svg";
+import Swal from "sweetalert2";
 
 function Signup(props) {
   const [show, setShow] = useState(false);
@@ -36,33 +37,69 @@ function Signup(props) {
   const [fname, setFname] = useState("");
   const [mi, setMI] = useState("");
   const [lname, setLname] = useState("");
-  const [year, setYear] = useState(null);
+  const [batch, setBatch] = useState("");
+  const [type, setType] = useState(0);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [tempPass, setTempPass] = useState("");
-  const [role, setRole] = useState(2);
+  const [adviser, setAdviser] = useState("");
+  const [formData, setFormData] = useState([]);
+
+  const [faculty, setFaculty] = useState([]);
 
   const isError = tempPass !== password;
+
+  const FetchFaculty = async () => {
+    let response = await api("/faculty");
+
+    setFaculty(response.data);
+  };
 
   const PostRequest = async (e) => {
     e.preventDefault();
 
-    if (year === "alumni") {
-      setRole(3);
-    }
-
     let response = await api.post("/register", {
       fname: fname,
       mi: mi,
+      batch: batch,
+      adviser: adviser,
       lname: lname,
-      role: role,
-      year: year,
+      role: type,
       email: email,
       password: password,
     });
 
-    console.log(response);
+    if (response.data.message == "success") {
+      Swal.fire(
+        "Account registered!",
+        "You may now login using your credentials. Thank you!",
+        "success"
+      ).then(async () => {
+        window.location.href = "/login";
+      });
+    } else {
+      Swal.fire("Error occurred!", "error").then(async () => {
+        window.location.reload(false);
+      });
+    }
+
+    // console.log(response);
+
+    // console.log({
+    //   fname: fname,
+    //   mi: mi,
+    //   batch: batch,
+    //   adviser: adviser,
+    //   lname: lname,
+    //   role: type,
+    //   email: email,
+    //   password: password,
+    // });
   };
+
+  useEffect(() => {
+    FetchFaculty();
+  }, []);
 
   return (
     <div
@@ -90,26 +127,32 @@ function Signup(props) {
               </Box>
             </Box>
 
-            <form onSubmit={PostRequest}>
-              <FormControl isRequired lineHeight={1} mt={12}>
+            <form
+              onSubmit={(e) => {
+                PostRequest(e);
+              }}
+            >
+              <FormControl isRequired lineHeight={1} mt={10}>
                 <FormLabel fontSize={13} fontWeight={600} color="#a20202">
-                  Status
+                  User type
                 </FormLabel>
                 <InputGroup>
                   <Select
                     fontSize={14}
                     bg="gray.100"
                     border={0}
-                    onChange={(e) => setYear(e.target.value)}
+                    onChange={(e) => setType(e.target.value)}
                   >
-                    <option defaultSelected>Please select</option>
-                    <option value="student">Student</option>
-                    <option value="alumni">Alumni</option>
+                    <option defaultSelected value="">
+                      Select type
+                    </option>
+                    <option value="2">Student</option>
+                    <option value="3">Alumni</option>
                   </Select>
                 </InputGroup>
               </FormControl>
 
-              {year === "student" ? (
+              {type === "2" ? (
                 <HStack mt={5}>
                   <FormControl isRequired lineHeight={1} w={1500}>
                     <FormLabel fontSize={13} fontWeight={600} color="#a20202">
@@ -120,11 +163,18 @@ function Signup(props) {
                         fontSize={14}
                         bg="gray.100"
                         border={0}
-                        // onChange={(e) => setYear(e.target.value)}
+                        onChange={(e) => setAdviser(e.target.value)}
                       >
-                        <option defaultSelected>Select adviser</option>
-                        <option value="student">Student</option>
-                        <option value="alumni">Alumni</option>
+                        <option defaultSelected value="">
+                          Please select
+                        </option>
+                        {faculty.map((el, key) => {
+                          return (
+                            <option key={key} value={el.id}>
+                              {el.lname + ", " + el.fname + " " + el.mi + "."}
+                            </option>
+                          );
+                        })}
                       </Select>
                     </InputGroup>
                   </FormControl>
@@ -138,13 +188,12 @@ function Signup(props) {
                     children={<BsAt color="gray.300" />} */}
                       {/* /> */}
                       <Input
-                        type="number"
-                        minLength="4"
+                        type="text"
                         bg="gray.100"
                         border={0}
                         fontSize={13.5}
                         fontWeight={500}
-                        onChange={(e) => setLname(e.target.value)}
+                        onChange={(e) => setBatch(e.target.value)}
                         // placeholder="your_account@wmsu.edu.ph"
                       />
                     </InputGroup>
@@ -227,8 +276,8 @@ function Signup(props) {
                       type="text"
                       fontSize={13.5}
                       fontWeight={500}
-                      pattern="[a-z]{2}[0-9]{9}@wmsu.edu.ph"
-                      title="Kindly use your wmsu account."
+                      // pattern="[a-z]{2}[0-9]{9}@wmsu.edu.ph"
+                      // title="Kindly use your wmsu account."
                       placeholder="your_account@wmsu.edu.ph"
                       onChange={(e) => setEmail(e.target.value)}
                     />
@@ -262,30 +311,30 @@ function Signup(props) {
                       />
                     </InputGroup>
                   </FormControl>
-                  <FormControl isRequired lineHeight={1}>
-                    <FormLabel
-                      fontSize={13}
-                      fontWeight={600}
-                      color="#a20202"
-                      placeholder="your_account@wmsu.edu.ph"
-                    >
-                      Confirm password
-                    </FormLabel>
-                    <InputGroup>
-                      <InputLeftElement
-                        pointerEvents="none"
-                        children={<BsLock color="gray.300" />}
-                      />
-                      <Input
-                        bg="gray.100"
-                        border={0}
-                        type="text"
-                        fontSize={15}
-                        fontWeight={500}
-                        onChange={(e) => setPassword(e.target.value)}
-                      />
-                    </InputGroup>
-                  </FormControl>
+                  {/* <FormControl isRequired lineHeight={1}>
+                        <FormLabel
+                          fontSize={13}
+                          fontWeight={600}
+                          color="#a20202"
+                          placeholder="your_account@wmsu.edu.ph"
+                        >
+                          Confirm password
+                        </FormLabel>
+                        <InputGroup>
+                          <InputLeftElement
+                            pointerEvents="none"
+                            children={<BsLock color="gray.300" />}
+                          />
+                          <Input
+                            bg="gray.100"
+                            border={0}
+                            type="text"
+                            fontSize={15}
+                            fontWeight={500}
+                            onChange={(e) => setPassword(e.target.value)}
+                          />
+                        </InputGroup>
+                      </FormControl> */}
                 </HStack>
 
                 {!isError ? (

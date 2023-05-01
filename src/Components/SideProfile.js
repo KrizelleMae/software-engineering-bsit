@@ -12,6 +12,8 @@ function SideProfile({ side }) {
       navigate("/profile");
     } else if (e === "/settings") {
       navigate("/settings");
+    } else if (e === "/student-table") {
+      navigate("/student-table");
     } else {
       navigate("/faculty-downloadables");
     }

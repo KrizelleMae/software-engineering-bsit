@@ -29,6 +29,7 @@ import AlumniProfileModal from "../../Components/Alumni/AlumniProfileModal";
 import StudentProfilePage from "../Faculty/StudentProfilePage";
 import { BiEdit } from "react-icons/bi";
 import AlumniDetails from "../../Contents/AlumniDetails";
+import LogoutBtn from "../../Components/LogoutBtn";
 
 function AlumniMain(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -50,6 +51,9 @@ function AlumniMain(props) {
                   <Tab>Profile</Tab>
                   <Tab>Links</Tab>
                   <Tab>Downloadables</Tab>
+                  <Tab>
+                    <LogoutBtn />
+                  </Tab>
                 </TabList>
                 <TabPanels py={10}>
                   <TabPanel sx={{ width: "100vh" }}>

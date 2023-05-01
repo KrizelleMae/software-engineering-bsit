@@ -14,6 +14,7 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
+  Image,
   Container,
 } from "@chakra-ui/react";
 import {
@@ -22,7 +23,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
-
+import logo from "../Assets/ccs-logo.png";
 import { BiLogIn } from "react-icons/bi";
 export default function Header() {
   const { isOpen, onToggle } = useDisclosure();
@@ -66,12 +67,15 @@ export default function Header() {
             />
           </Flex>
           <Flex flex={{ base: 1 }} justify={{ base: "center", md: "left " }}>
-            <Text
-              textAlign={useBreakpointValue({ base: "center", md: "left" })}
-            >
-              {/* <Image src={logo} height="45px" /> */}
-              BSIT Logo
-              {/* Bachelor of Science in Information Technology */}
+            {" "}
+            <Image src={logo} height="45px" />
+            <Text>
+              <Box ml={4}>
+                <Text fontSize={15} fontWeight={600}>
+                  Bachelor of Science in Information Technology
+                </Text>
+                <Text fontSize={14}>Western Mindanao State University</Text>
+              </Box>
             </Text>
           </Flex>
           <Flex
@@ -321,23 +325,18 @@ const NAV_ITEMS: Array<NavItem> = [
     children: [
       {
         label: "Support",
-        subLabel: "Student Support & Services",
-        href: "#",
+        subLabel: "Student Support",
+        href: "/activities",
       },
       {
         label: "Activities",
         subLabel: "Student Activities and Events",
-        href: "#activities",
+        href: "/activities",
       },
       {
         label: "Scholarships",
         subLabel: "Student Available Scholarships",
-        href: "#",
-      },
-      {
-        label: "Download",
-        subLabel: "Click here to view downloadable files",
-        href: "#",
+        href: "/activities",
       },
     ],
   },

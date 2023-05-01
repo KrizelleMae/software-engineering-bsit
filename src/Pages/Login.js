@@ -47,42 +47,44 @@ function Login(props) {
         password: password,
       });
 
+      console.log(response);
+
       // const role = response.data.user.role;
 
       // console.log(role);
-      if (response.data.status === 1) {
-        if (
-          typeof Storage !== "undefined" &&
-          typeof sessionStorage !== "undefined"
-        ) {
-          // Session Storage is available
-          sessionStorage.setItem("loggedIn", true);
-          sessionStorage.setItem("user", JSON.stringify(response.data.user));
+      // if (response.data.status === 1) {
+      //   if (
+      //     typeof Storage !== "undefined" &&
+      //     typeof sessionStorage !== "undefined"
+      //   ) {
+      //     // Session Storage is available
+      //     sessionStorage.setItem("loggedIn", true);
+      //     sessionStorage.setItem("user", JSON.stringify(response.data.user));
 
-          if (response.data.user.role == 0) {
-            navigate("/admin");
-          } else if (response.data.user.role == 1) {
-            navigate("/faculty");
-          } else if (response.data.user.role == 2) {
-            navigate("/student");
-          } else if (response.data.user.role == 3) {
-            navigate("/alumni");
-          }
-        } else {
-          // Session Storage is not supported
-          alert("Session not available");
-        }
-      } else {
-        toast.error("Invalid credentials.", {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
-      }
+      //     if (response.data.user.role == 0) {
+      //       navigate("/admin");
+      //     } else if (response.data.user.role == 1) {
+      //       navigate("/faculty");
+      //     } else if (response.data.user.role == 2) {
+      //       navigate("/student");
+      //     } else if (response.data.user.role == 3) {
+      //       navigate("/alumni");
+      //     }
+      //   } else {
+      //     // Session Storage is not supported
+      //     alert("Session not available");
+      //   }
+      // } else {
+      //   toast.error("Invalid credentials.", {
+      //     position: "top-center",
+      //     autoClose: 3000,
+      //     hideProgressBar: false,
+      //     closeOnClick: true,
+      //     draggable: true,
+      //     progress: undefined,
+      //     theme: "colored",
+      //   });
+      // }
     } catch (error) {
       console.log(error);
       toast.error("Invalid credentials.", {

@@ -25,50 +25,36 @@ import { agency } from "../../Data/AgencyList";
 import { years } from "../../Data/Years";
 
 function AlumniProfileModal(props) {
-  const [name, setName] = useState("");
-  const [designation, setDesignation] = useState("");
-  const [image, setImage] = useState("");
-  const [list, setList] = useState([]);
-
-  const [details, setDetails] = useState([]);
-
-  console.log(industry.industry);
-
-  const getFaculty = async () => {
-    let response = await api.get(`/faculty/${props.id}`);
-    setName(response.data.name);
-    setDesignation(response.data.designation);
-    setImage(response.data.image);
-    setList(JSON.parse(response.data.qualifications));
-  };
-
-  // OTHER SKILLS
-  const handleInputChange = (value, index) => {
-    const list_new = [...list];
-    list_new[index]["desc"] = value;
-    setList(list_new);
-  };
-
-  //   handle click event of the Remove button
-  const handleRemoveClick = (index) => {
-    // console.log(index);
-    const list_new = [...list];
-    list_new.splice(index, 1);
-    setList(list_new);
-  };
-
-  // handle click event of the Add button
-  const handleAddClick = (k) => {
-    setList([...list, { desc: "" }]);
-    console.log(list[list.length]);
-  };
+  const [user, setUserData] = useState(
+    JSON.parse(sessionStorage.getItem("user"))
+  );
+  const [fName, setFName] = useState(user?.fname);
+  const [mName, setMName] = useState(user?.mname);
+  const [lName, setLName] = useState(user?.lfname);
+  const [batch, setBatch] = useState("");
+  const [section, setSection] = useState("");
+  const [agencyType, setAgency] = useState("");
+  const [industryType, setIndustry] = useState("");
+  const [title, setTitle] = useState("");
+  const [year, setYear] = useState("");
+  // const [designation, setDesignation] = useState("");
+  // const [image, setImage] = useState("");
+  // const [list, setList] = useState([]);
 
   //   UPDATE
-  const update = async () => {
-    let response = await api.post(`/faculty/${props.id}`, {
-      name: name,
-      designation: designation,
-      qualifications: JSON.stringify(list),
+  const update = async (e) => {
+    e.preventDefault();
+
+    let response = await api.post(`/alumni/${user?.id}`, {
+      fName: fName,
+      lName: lName,
+      mName: mName,
+      batch: batch,
+      section: section,
+      agency: agencyType,
+      industry: industryType,
+      title: title,
+      year: year,
       // public_id: upload.data.public_id,
     });
 
@@ -97,214 +83,220 @@ function AlumniProfileModal(props) {
         theme: "colored",
       });
     }
-
-    console.log(response.data);
   };
 
-  useEffect(() => {
-    getFaculty();
-  }, [props.id]);
+  useEffect(() => {}, []);
   return (
     <div>
-      <ModalContent>
-        <ModalHeader>Alumni Profile</ModalHeader>
-        <ModalCloseButton />
-        <DrawerBody>
-          {/* {details.map((el) => {
+      <form
+        onSubmit={(e) => {
+          update(e);
+        }}
+      >
+        <ModalContent>
+          <ModalHeader>Alumni Profile</ModalHeader>
+          <ModalCloseButton />
+          <DrawerBody>
+            {/* {details.map((el) => {
             return (
               <> */}
-          <Stack spacing="25px" p={4}>
-            <Flex mb={4}>
-              <Box w="100%">
-                <HStack>
-                  <FormControl isRequired>
-                    <FormLabel
-                      fontWeight={500}
-                      color="gray.600"
-                      fontSize="sm"
-                      htmlFor="username"
-                    >
-                      First name
-                    </FormLabel>
 
-                    <Input
-                      placeholder="John"
-                      mr="2"
-                      defaultValue={name}
-                      name="name"
-                      onChange={(e) => setName(e.target.value)}
-                    />
-                  </FormControl>
+            <Stack spacing="25px" p={4}>
+              <Flex mb={4}>
+                <Box w="100%">
+                  <HStack>
+                    <FormControl isRequired>
+                      <FormLabel
+                        fontWeight={500}
+                        color="gray.600"
+                        fontSize="sm"
+                        htmlFor="username"
+                      >
+                        First name
+                      </FormLabel>
 
-                  <FormControl isRequired>
-                    <FormLabel
-                      fontWeight={500}
-                      color="gray.600"
-                      fontSize="sm"
-                      htmlFor="username"
-                    >
-                      Middle name
-                    </FormLabel>
+                      <Input
+                        mr="2"
+                        value={fName}
+                        name="name"
+                        onChange={(e) => setFName(e.target.value)}
+                      />
+                    </FormControl>
 
-                    <Input
-                      placeholder="John"
-                      mr="2"
-                      defaultValue={name}
-                      name="name"
-                      onChange={(e) => setName(e.target.value)}
-                    />
-                  </FormControl>
+                    <FormControl>
+                      <FormLabel
+                        fontWeight={500}
+                        color="gray.600"
+                        fontSize="sm"
+                        htmlFor="username"
+                      >
+                        Middle name
+                      </FormLabel>
 
-                  <FormControl isRequired>
-                    <FormLabel
-                      fontWeight={500}
-                      color="gray.600"
-                      fontSize="sm"
-                      htmlFor="username"
-                    >
-                      Last name
-                    </FormLabel>
+                      <Input
+                        mr="2"
+                        value={mName}
+                        name="name"
+                        onChange={(e) => setMName(e.target.value)}
+                      />
+                    </FormControl>
 
-                    <Input
-                      placeholder="John"
-                      mr="2"
-                      defaultValue={name}
-                      name="name"
-                      onChange={(e) => setName(e.target.value)}
-                    />
-                  </FormControl>
-                </HStack>
+                    <FormControl isRequired>
+                      <FormLabel
+                        fontWeight={500}
+                        color="gray.600"
+                        fontSize="sm"
+                        htmlFor="username"
+                      >
+                        Last name
+                      </FormLabel>
 
-                <HStack mt={5}>
-                  <FormControl isRequired>
-                    <FormLabel
-                      fontWeight={500}
-                      color="gray.600"
-                      fontSize="sm"
-                      htmlFor="username"
-                    >
-                      Batch
-                    </FormLabel>
+                      <Input
+                        mr="2"
+                        value={lName}
+                        name="name"
+                        onChange={(e) => setLName(e.target.value)}
+                      />
+                    </FormControl>
+                  </HStack>
 
-                    <Input
-                      placeholder="John"
-                      mr="2"
-                      defaultValue={name}
-                      name="name"
-                      onChange={(e) => setName(e.target.value)}
-                    />
-                  </FormControl>
+                  <HStack mt={5}>
+                    <FormControl isRequired>
+                      <FormLabel
+                        fontWeight={500}
+                        color="gray.600"
+                        fontSize="sm"
+                        htmlFor="username"
+                      >
+                        Batch
+                      </FormLabel>
 
-                  <FormControl isRequired>
-                    <FormLabel
-                      fontWeight={500}
-                      color="gray.600"
-                      fontSize="sm"
-                      htmlFor="username"
-                    >
-                      Section
-                    </FormLabel>
+                      <Input
+                        mr="2"
+                        value={batch}
+                        name="name"
+                        onChange={(e) => setBatch(e.target.value)}
+                      />
+                    </FormControl>
 
-                    <Input
-                      placeholder="John"
-                      mr="2"
-                      defaultValue={name}
-                      name="name"
-                      onChange={(e) => setName(e.target.value)}
-                    />
-                  </FormControl>
-                </HStack>
-              </Box>
-            </Flex>
+                    <FormControl isRequired>
+                      <FormLabel
+                        fontWeight={500}
+                        color="gray.600"
+                        fontSize="sm"
+                        htmlFor="username"
+                      >
+                        Section (BSIT-4A)
+                      </FormLabel>
 
-            <HStack>
-              <FormControl isRequired>
-                <FormLabel
-                  fontWeight={500}
-                  color="gray.600"
-                  fontSize="sm"
-                  htmlFor="username"
-                >
-                  Agency Type
-                </FormLabel>
+                      <Input
+                        mr="2"
+                        value={section}
+                        name="name"
+                        onChange={(e) => setSection(e.target.value)}
+                      />
+                    </FormControl>
+                  </HStack>
+                </Box>
+              </Flex>
 
-                <Select placeholder="Select job">
-                  {agency.map((el) => {
-                    return <option value={el.name}>{el.name}</option>;
-                  })}
-                </Select>
-              </FormControl>
-              <FormControl isRequired>
-                <FormLabel
-                  fontWeight={500}
-                  color="gray.600"
-                  fontSize="sm"
-                  htmlFor="username"
-                >
-                  Work Industry
-                </FormLabel>
+              <HStack>
+                <FormControl isRequired>
+                  <FormLabel
+                    fontWeight={500}
+                    color="gray.600"
+                    fontSize="sm"
+                    htmlFor="username"
+                  >
+                    Agency Type
+                  </FormLabel>
 
-                <Select placeholder="Select industry">
-                  {industry.industry.map((el) => {
-                    return <option value={el.name}>{el.name}</option>;
-                  })}
-                </Select>
-              </FormControl>
-            </HStack>
+                  <Select
+                    placeholder="Select job"
+                    onChange={(e) => setAgency(e.target.value)}
+                  >
+                    {agency.map((el) => {
+                      return <option value={el.name}>{el.name}</option>;
+                    })}
+                  </Select>
+                </FormControl>
+                <FormControl isRequired>
+                  <FormLabel
+                    fontWeight={500}
+                    color="gray.600"
+                    fontSize="sm"
+                    htmlFor="username"
+                  >
+                    Work Industry
+                  </FormLabel>
 
-            <HStack>
-              <FormControl isRequired width={1500}>
-                <FormLabel
-                  fontWeight={500}
-                  color="gray.600"
-                  fontSize="sm"
-                  htmlFor="username"
-                >
-                  Job Title
-                </FormLabel>
+                  <Select
+                    placeholder="Select industry"
+                    onChange={(e) => setIndustry(e.target.value)}
+                  >
+                    {industry.industry.map((el) => {
+                      return <option value={el.name}>{el.name}</option>;
+                    })}
+                  </Select>
+                </FormControl>
+              </HStack>
 
-                <Input
-                  placeholder="John"
-                  mr="2"
-                  defaultValue={name}
-                  name="name"
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </FormControl>
-              <FormControl isRequired>
-                <FormLabel
-                  fontWeight={500}
-                  color="gray.600"
-                  fontSize="sm"
-                  htmlFor="username"
-                >
-                  Years in Service
-                </FormLabel>
+              <HStack>
+                <FormControl isRequired width={1500}>
+                  <FormLabel
+                    fontWeight={500}
+                    color="gray.600"
+                    fontSize="sm"
+                    htmlFor="username"
+                  >
+                    Job Title
+                  </FormLabel>
 
-                <Select placeholder="Years">
-                  {years.map((el) => {
-                    return <option value={el.name}>{el.name}</option>;
-                  })}
-                </Select>
-              </FormControl>
-            </HStack>
-          </Stack>
-          {/* </>
+                  <Input
+                    mr="2"
+                    value={title}
+                    name="name"
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                </FormControl>
+                <FormControl isRequired>
+                  <FormLabel
+                    fontWeight={500}
+                    color="gray.600"
+                    fontSize="sm"
+                    htmlFor="username"
+                  >
+                    Years in Service
+                  </FormLabel>
+
+                  <Select
+                    placeholder="Years"
+                    onChange={(e) => setYear(e.target.value)}
+                  >
+                    {years.map((el) => {
+                      return <option value={el.name}>{el.name}</option>;
+                    })}
+                  </Select>
+                </FormControl>
+              </HStack>
+            </Stack>
+            {/* </>
             );
           })} */}
-        </DrawerBody>
+          </DrawerBody>
 
-        <ModalFooter>
-          <Button
-            variant="solid"
-            colorScheme="blue"
-            fontWeight={500}
-            onClick={update}
-          >
-            Submit
-          </Button>
-        </ModalFooter>
-      </ModalContent>
+          <ModalFooter>
+            <Button
+              variant="solid"
+              colorScheme="blue"
+              type="submit"
+              fontWeight={500}
+            >
+              Submit
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </form>
     </div>
   );
 }

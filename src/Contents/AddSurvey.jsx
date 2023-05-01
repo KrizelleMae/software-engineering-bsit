@@ -88,7 +88,8 @@ function AddSurvey(props) {
           >
             <option value="1">Faculty only</option>
             <option value="2">Students only</option>
-            <option value="3">All</option>
+            <option value="3">Alumni only</option>
+            <option value="4">All</option>
           </Select>
         </FormControl>
         <FormLabel fontWeight={600} fontSize={15} mt="3">

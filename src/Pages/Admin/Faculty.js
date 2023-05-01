@@ -44,6 +44,7 @@ import { toast } from "react-toastify";
 
 import Sidebar from "../../Components/Admin/Sidebar";
 import FacultyModal from "../../Components/Popups/FacultyModal";
+import Swal from "sweetalert2";
 
 function Faculty(props) {
   const drawer = useDisclosure();
@@ -193,6 +194,47 @@ function Faculty(props) {
   //   setNewData(temp);
   // };
 
+  const destroy = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        let response = await api.delete(`/faculty/${id}`);
+        if (response.status === 200) {
+          toast
+            .success("Successfully deleted", {
+              position: "top-center",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            })
+            .then((e) => {
+              window.location.reload(false);
+            });
+        } else {
+          toast.error("Error occurred. Please try again!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+      }
+    });
+  };
+
   useEffect(() => {
     getAllFaculty();
   }, [id, data]);
@@ -257,7 +299,7 @@ function Faculty(props) {
 
                         <IconButton
                           onClick={() => {
-                            del(el.id);
+                            destroy(el.id);
                           }}
                           size="sm"
                           colorScheme={"red"}

@@ -10,6 +10,7 @@ import Navbar from "../Components/Navbar";
 import News from "../Components/News";
 import Gallery from "../Components/Gallery";
 import Summary from "../Components/Summary";
+import SupportAndScholar from "../Contents/SupportAndScholar";
 
 function Homepage(props) {
   return (
@@ -22,9 +23,9 @@ function Homepage(props) {
         {/* <Box mt={14} py={20} h={200} borderRadius={10} borderWidth={1}>
           <Heading >Header here</Heading>
         </Box> */}
-        <Box mt={10}>
+        {/* <Box mt={10}>
           <Summary />
-        </Box>
+        </Box> */}
         <Box mt={10} id="news">
           <Heading fontSize={30} mb={3}>
             News
@@ -59,17 +60,18 @@ function Homepage(props) {
           <About />
         </Box>
 
-        <Box pt={30} id="activities">
+        {/* <Box pt={30} id="activities">
           <Box mb={20}>
             <Heading fontSize={30} mb={2}>
-              Student Activities
+              Student Activities, Support and Scholarships
             </Heading>
             <Text color="gray.500" mb={10}>
               IT Students enjoying the activities for the SY 2022-2023
             </Text>
             <Gallery />
+            <SupportAndScholar />
           </Box>
-        </Box>
+        </Box> */}
 
         <Box mt={20} id="faculty">
           <Box mb={14} textAlign="center">

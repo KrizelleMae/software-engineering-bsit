@@ -20,6 +20,7 @@ import Downloadables from "../../Components/Downloadables";
 import api from "../../Api/api";
 import Feed from "../../Components/Faculty/Feed";
 import LinkList from "../../Components/LinkList";
+import LogoutBtn from "../../Components/LogoutBtn";
 
 function StudentMain(props) {
   const [data, setData] = useState([]);
@@ -50,6 +51,9 @@ function StudentMain(props) {
                   <Tab>Memorandums</Tab>
                   <Tab>Links</Tab>
                   <Tab>Downloadables</Tab>
+                  <Tab>
+                    <LogoutBtn />
+                  </Tab>
                 </TabList>
                 <TabPanels py={7}>
                   <TabPanel>

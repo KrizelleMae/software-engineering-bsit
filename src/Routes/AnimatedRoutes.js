@@ -20,6 +20,7 @@ import Memo from "../Pages/Admin/Memo";
 import SurveyLink from "../Pages/Admin/SurveyLink";
 import EditActivity from "../Pages/Admin/EditActivity";
 import StudentTable from "../Components/Faculty/StudentTable";
+import StudentContents from "../Pages/StudentContents";
 
 function AnimatedRoutes() {
   // let navigate = useNavigate();
@@ -51,6 +52,7 @@ function AnimatedRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
+      <Route path="/activities" element={<StudentContents />} />
       <Route path="/student-act" element={<Activities />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
@@ -73,8 +75,8 @@ function AnimatedRoutes() {
       <Route path="/admin/surveylink" element={<SurveyLink />} />
 
       {/* FACULTY */}
-      <Route path="/faculty" element={<FacultyMain />} />
-      <Route path="/student-table" element={<StudentTable />} />
+      {/* <Route path="/faculty" element={<FacultyMain />} /> */}
+      <Route path="/faculty" element={<StudentTable />} />
 
       {/* STUDENTS */}
       <Route path="/student" element={<StudentMain />} />

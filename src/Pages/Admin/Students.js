@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import StudentActivities from "../../Components/Admin/StudentActivities";
 import StudentSupport from "../../Contents/StudentSupport";
+import StudentScholarship from "../../Contents/StudentScholarship";
 
 function Students(props) {
   return (
@@ -34,6 +35,10 @@ function Students(props) {
                 </TabPanel>
                 <TabPanel>
                   <StudentSupport />
+                </TabPanel>
+
+                <TabPanel>
+                  <StudentScholarship />
                 </TabPanel>
               </TabPanels>
             </Tabs>

@@ -1,10 +1,8 @@
 import {
   Avatar,
   Box,
-  Button,
   Card,
   CardBody,
-  CardFooter,
   CardHeader,
   Center,
   Flex,
@@ -12,9 +10,7 @@ import {
   Icon,
   Link,
   Text,
-  Stack,
   Badge,
-  Divider,
   HStack,
 } from "@chakra-ui/react";
 import moment from "moment";

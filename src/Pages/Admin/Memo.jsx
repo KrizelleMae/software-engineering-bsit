@@ -122,11 +122,11 @@ function Memo(props) {
             </Flex>
 
             <TableContainer border={"1px solid #eee"}>
-              <Table size="md" variant="simple">
+              <Table size="sm" variant="simple">
                 <Thead>
                   <Tr>
                     <Th>Title</Th>
-                    <Th>Description</Th>
+                    {/* <Th>Description</Th> */}
                     <Th>File</Th>
                     <Th>Access</Th>
                     <Th>Date posted</Th>
@@ -139,7 +139,7 @@ function Memo(props) {
                     return (
                       <Tr>
                         <Td>{el.title}</Td>
-                        <Td style={{ width: "100%" }}>
+                        {/* <Td style={{ width: "100%" }}>
                           <small>
                             <Text
                               style={{ display: "flex", alignItems: "center" }}
@@ -148,7 +148,7 @@ function Memo(props) {
                               &nbsp; to view ---
                             </Text>
                           </small>
-                        </Td>
+                        </Td> */}
                         <Td
                           style={{
                             display: "flex",

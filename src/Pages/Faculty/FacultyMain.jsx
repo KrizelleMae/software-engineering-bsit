@@ -66,7 +66,7 @@ function FacultyMain(props) {
   }, [data]);
 
   return (
-    <Container maxW="container.4xl">
+    <Container maxW="container.5xl">
       <Grid templateColumns={"repeat(9, 1fr)"} h={"100vh"}>
         {/* SIDEBAR */}
         <GridItem
@@ -111,7 +111,7 @@ function FacultyMain(props) {
               </InputGroup>
 
               {/* MENU */}
-              <Menu>
+              {/* <Menu>
                 <MenuButton as={Button} rightIcon={<BiChevronDown />} size="sm">
                   Filter by{" "}
                 </MenuButton>
@@ -120,7 +120,7 @@ function FacultyMain(props) {
                   <MenuItem>Order</MenuItem>
                   <MenuItem>News</MenuItem>
                 </MenuList>
-              </Menu>
+              </Menu> */}
             </HStack>
           </Box>
 
